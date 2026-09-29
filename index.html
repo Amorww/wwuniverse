@@ -192,7 +192,7 @@
   <div class="how" id="howBox" aria-hidden="true">
     <div class="how-card">
       <h3>这个测试怎么算？</h3>
-      <p>每个选项会给不同人物增加不同权重，再按人物各自的题目结构做校准。若最高匹配刚好并列，会优先参考区分度更高的核心题。13道题都会参与结果计算，没有标准答案。</p>
+      <p>每个选项会给不同人物增加不同权重，再按人物各自的题目结构做校准。每次开始测试时，选项顺序会随机打乱；返回上一题时顺序保持不变。若匹配刚好并列，会优先参考区分度更高的核心题。13道题都会参与结果计算，没有标准答案。</p>
       <button class="how-close" id="howClose">知道了</button>
     </div>
   </div>
@@ -258,7 +258,7 @@
 </div>
 <canvas id="poster" width="1080" height="2050" style="display:none"></canvas>
 <script>
-const CALIB={bear20:22,bear30:32,feng:29,ji:12.5,li:14,lu:15};
+const CALIB={bear20:23,bear30:32,feng:29.5,ji:10,li:14,lu:16};
 const NAMES={bear20:'20岁的熊艺文',bear30:'30岁的熊艺文',feng:'风晴朗',ji:'季嘉轩',li:'李麟',lu:'陆浩宇',ren:'任明远'};
 const displayName=k=>k==='ji'?'季嘉轩*':NAMES[k];
 const markJiName=name=>name==='季嘉轩'?'季嘉轩*':name;
@@ -290,13 +290,13 @@ const questions=[
    ['先试试，做了再判断适不适合',{bear20:2}],
    ['先把顾虑捋清楚，看有没有办法解决',{bear30:3}],
    ['先问自己：我是真的想要吗？',{feng:4}],
-   ['先算算要投入多少，值不值得',{bear30:1},'ren1']
+   ['先算算要投入多少，值不值得',{},'ren1']
  ]},
  {q:'大家约好的地方临时去不了了。',a:[
    ['那就边走边看，说不定能发现别的好玩的',{bear20:2}],
    ['看看附近还有什么合适的，重新安排一下',{bear30:2}],
    ['那今天就算了，改天再约也行',{feng:1}],
-   ['地方不重要，人都在就行，随便找个地方继续玩',{lu:3,ji:1}]
+   ['地方不重要，人都在就行，随便找个地方继续玩',{lu:3}]
  ]},
  {q:'好朋友最近状态很差。',a:[
    ['拉他出去做点别的，先换换心情',{bear20:1,lu:1}],
@@ -332,19 +332,19 @@ const questions=[
    ['去体验个没试过的东西',{bear20:2}],
    ['买个最近真正需要的东西',{bear30:2}],
    ['买个自己喜欢、别人可能觉得没用的东西',{feng:2}],
-   ['研究一下怎么花最值',{bear30:1},'ren2']
+   ['研究一下怎么花最值',{},'ren2']
  ]},
  {q:'朋友突然发来：“完了，我闯祸了。”',a:[
    ['先把事情从头说一遍，我们看看怎么补救',{bear30:3}],
    ['你在哪？我过去找你',{li:2,bear30:1}],
    ['先等等，这事会不会牵连到我？',{},'ren3'],
-   ['别一个人慌，出来走走，路上再说',{lu:2,ji:1}]
+   ['别一个人慌，出来走走，路上再说',{lu:2}]
  ]},
  {q:'一个团队任务没人愿意接。',a:[
    ['我没做过，我来试试',{bear20:2}],
    ['先拆一下，看看怎么做最省事',{bear30:3}],
    ['如果不是我的责任，我不会因为气氛就接下',{feng:3}],
-   ['我先把大家叫起来，一起弄',{lu:2,ji:1}]
+   ['我先把大家叫起来，一起弄',{lu:2}]
  ]},
  {q:'哪一句最顺眼？',a:[
    ['试了再说。',{bear20:4}],
@@ -509,7 +509,7 @@ const PAIR_CORE={
   'ji|lu':[1,7]
 };
 const DEFAULT_ORDER=['bear20','bear30','feng','ji','li','lu'];
-let idx=0, answers=[], scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0}, marks=new Set();
+let idx=0, answers=[], optionOrders=[], scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0}, marks=new Set();
 let currentResultContext={key:null,secondaryKey:null,ranked:[]};
 const $=s=>document.querySelector(s);
 document.body.classList.add('home-mode');
@@ -517,11 +517,12 @@ function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.re
 $('#howBtn').onclick=()=>{$('#howBox').classList.add('show');$('#howBox').setAttribute('aria-hidden','false');};
 $('#howClose').onclick=()=>{$('#howBox').classList.remove('show');$('#howBox').setAttribute('aria-hidden','true');};
 $('#howBox').onclick=e=>{if(e.target===$('#howBox'))$('#howClose').click();};
-$('#startBtn').onclick=()=>{idx=0;answers=[];scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();show('quiz');renderQ();};
+function shuffledOrder(n){const a=Array.from({length:n},(_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+$('#startBtn').onclick=()=>{idx=0;answers=[];optionOrders=questions.map(q=>shuffledOrder(q.a.length));scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();show('quiz');renderQ();};
 $('#backBtn').onclick=()=>{if(idx===0){show('home');return;} rebuild(idx-1);};
 function rebuild(target){idx=0;scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();const prev=answers.slice(0,target);answers=prev.slice();prev.forEach((choice,i)=>applyChoice(i,choice,false));idx=target;renderQ();}
 function applyChoice(qi,ai,save=true){const item=questions[qi].a[ai];const pts=item[1]||{};Object.keys(pts).forEach(k=>scores[k]=(scores[k]||0)+pts[k]);if(item[2])marks.add(item[2]);if(save)answers[qi]=ai;}
-function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[i]}</span>${a[0]}`;b.onclick=()=>{applyChoice(idx,i,true);idx++;if(idx>=questions.length)finish();else renderQ();};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
+function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';const order=optionOrders[idx]||Array.from({length:q.a.length},(_,i)=>i);order.forEach((originalIndex,displayIndex)=>{const a=q.a[originalIndex];const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[displayIndex]}</span>${a[0]}`;b.onclick=()=>{applyChoice(idx,originalIndex,true);idx++;if(idx>=questions.length)finish();else renderQ();};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
 function pointsFor(k,qi){
   const ai=answers[qi];
   if(ai===undefined) return 0;
@@ -536,25 +537,29 @@ function normCore(k,indices){
   return max?got/max:0;
 }
 function genericCore(k){return normCore(k,CORE_QUESTIONS[k]||[]);}
-function breakTie(keys){
-  if(keys.length===2){
-    const pair=[...keys].sort().join('|');
-    const inds=PAIR_CORE[pair];
-    if(inds){
-      const a=normCore(keys[0],inds),b=normCore(keys[1],inds);
-      if(Math.abs(a-b)>1e-9) return a>b?keys[0]:keys[1];
-    }
+function compareTieKeys(a,b){
+  const pair=[a,b].sort().join('|');
+  const inds=PAIR_CORE[pair];
+  if(inds){
+    const ca=normCore(a,inds),cb=normCore(b,inds);
+    if(Math.abs(ca-cb)>1e-9) return cb-ca;
   }
-  return [...keys].sort((a,b)=>genericCore(b)-genericCore(a)||scores[b]-scores[a]||DEFAULT_ORDER.indexOf(a)-DEFAULT_ORDER.indexOf(b))[0];
+  const ga=genericCore(a),gb=genericCore(b);
+  if(Math.abs(ga-gb)>1e-9) return gb-ga;
+  if(scores[a]!==scores[b]) return scores[b]-scores[a];
+  return DEFAULT_ORDER.indexOf(a)-DEFAULT_ORDER.indexOf(b);
 }
+function breakTie(keys){return [...keys].sort(compareTieKeys)[0];}
 function buildRanking(){
-  let ranked=Object.keys(CALIB).map(k=>({k,ratio:scores[k]/CALIB[k],raw:scores[k],core:genericCore(k)}))
-    .sort((a,b)=>b.ratio-a.ratio||b.core-a.core||b.raw-a.raw||DEFAULT_ORDER.indexOf(a.k)-DEFAULT_ORDER.indexOf(b.k));
-  const topRatio=ranked[0].ratio;
-  const tied=ranked.filter(x=>Math.abs(x.ratio-topRatio)<1e-9).map(x=>x.k);
-  if(tied.length>1){
-    const winner=breakTie(tied);
-    ranked=[ranked.find(x=>x.k===winner),...ranked.filter(x=>x.k!==winner)];
+  const base=Object.keys(CALIB).map(k=>({k,ratio:scores[k]/CALIB[k],raw:scores[k],core:genericCore(k)}))
+    .sort((a,b)=>b.ratio-a.ratio);
+  const ranked=[];
+  for(let i=0;i<base.length;){
+    let j=i+1;
+    while(j<base.length&&Math.abs(base[j].ratio-base[i].ratio)<1e-9) j++;
+    const group=base.slice(i,j).sort((a,b)=>compareTieKeys(a.k,b.k));
+    ranked.push(...group);
+    i=j;
   }
   return ranked;
 }
