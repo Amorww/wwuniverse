@@ -146,8 +146,8 @@
       <div class="home-stage">
         <div class="cosmos-art" aria-hidden="true">
           <div class="cosmos-ring"></div><div class="cosmos-ring r2"></div><div class="cosmos-ring r3"></div>
-          <div class="cosmos-node n1">试</div><div class="cosmos-node n2">解</div><div class="cosmos-node n3">撤</div>
-          <div class="cosmos-node n4">撑</div><div class="cosmos-node n5">守</div><div class="cosmos-node n6">带</div>
+          <div class="cosmos-node n1">试</div><div class="cosmos-node n2">解</div><div class="cosmos-node n3">归</div>
+          <div class="cosmos-node n4">亮</div><div class="cosmos-node n5">守</div><div class="cosmos-node n6">活</div>
           <div class="cosmos-core"></div>
         </div>
       </div>
@@ -167,7 +167,7 @@
   <div class="how" id="howBox" aria-hidden="true">
     <div class="how-card">
       <h3>这个测试怎么算？</h3>
-      <p>每个选项会给不同人物增加不同权重，最终按各人物的可得满分做归一化比较。13道题都会参与结果计算，没有标准答案。</p>
+      <p>每个选项会给不同人物增加不同权重，再按人物各自的题目结构做校准。若最高匹配刚好并列，会优先参考区分度更高的核心题。13道题都会参与结果计算，没有标准答案。</p>
       <button class="how-close" id="howClose">知道了</button>
     </div>
   </div>
@@ -217,7 +217,7 @@
 <div class="toast" id="toast">结果卡已生成</div>
 <canvas id="poster" width="1080" height="1350" style="display:none"></canvas>
 <script>
-const MAX={bear20:27,bear30:29,feng:24,ji:13,li:19,lu:20};
+const CALIB={bear20:22,bear30:32,feng:29,ji:12.5,li:14,lu:15};
 const NAMES={bear20:'20岁的熊艺文',bear30:'30岁的熊艺文',feng:'风晴朗',ji:'季嘉轩',li:'李麟',lu:'陆浩宇',ren:'任明远'};
 const THEMES={
   bear20:['#d94f83','#ed86ab','#fff0f6','#f5cddd'],
@@ -228,30 +228,185 @@ const THEMES={
   lu:['#cf8b35','#e5b35f','#fff5e4','#f5dfb8'],
   ren:['#58606b','#858e99','#f0f2f4','#dce0e5']
 };
+
 const questions=[
- {q:'明天突然多出一天假。',a:[['出门再说',{bear20:2,lu:1}],['把拖着的事清掉',{bear30:2,li:1}],['找个安静地方待着',{feng:2}],['抓个人一起玩',{lu:2,ji:1}]]},
- {q:'突然被人 cue 上台。',a:[['上就上',{bear20:3}],['先问要干嘛',{bear30:2}],['能不上吗',{feng:2}],['麦给我',{ji:3}]]},
- {q:'和朋友去看电影，到了才发现那场临时取消了。',a:[['立刻查下一场或附近影院',{bear30:3}],['随机挑一部没听过的看',{bear20:2,lu:1}],['算了，回家也挺好',{feng:2,li:1}],['那就不看了，拉大家去玩别的',{lu:2,ji:1}]]},
- {q:'KTV里，你比较像：',a:[['来首能炸场的',{ji:2,bear20:1}],['带大家一起唱',{lu:2}],['坐着听也挺好',{feng:2}],['谁还没唱？麦给他',{li:2,bear30:1}]]},
- {q:'有人突然问你：“这个你会吗？”',a:[['不会，但可以试试',{bear20:3}],['不会，我先学一下',{bear30:2,li:1}],['不太确定，别找我',{feng:2}],['不会也没事，先玩起来',{lu:2,ji:1}]]},
- {q:'到一个陌生城市，有半天空闲。',a:[['看到哪儿逛哪儿',{lu:2,bear20:1}],['先查个路线',{bear30:2}],['找个舒服地方待着',{feng:2}],['往最热闹的地方走',{ji:2,lu:1}]]},
- {q:'有个挺想做的机会，但你完全没经验。',a:[['报了再说',{bear20:3}],['先弄明白怎么做',{bear30:3}],['再看看，我最近有点累',{feng:2}],['找个人一起',{lu:2,li:1}]]},
- {q:'突然多了500块。',a:[['去体验点新的',{bear20:2,lu:1}],['给在意的人买点什么',{li:2,bear30:1}],['先留着，需要的时候用',{bear30:2,feng:1}],['先研究怎么花最值',{bear30:1},'ren1']]},
- {q:'学一个新东西，第一天就很难。',a:[['再来一遍',{bear20:3}],['先看看哪里做错了',{bear30:3}],['今天先到这儿',{feng:2}],['拉个人一起练',{lu:2,li:1}]]},
- {q:'今天状态很差，但还有必须做的事。',a:[['做完再倒',{bear20:2,bear30:1}],['先消失一会儿',{feng:3}],['找个熟悉的人待会儿',{li:2,feng:1}],['一到人群里反而来劲',{ji:2,lu:1}]]},
- {q:'朋友突然发来：“完了，我好像闯祸了。”',a:[['地址发我',{bear30:2,li:1}],['谁弄你了？',{li:2,bear20:1}],['先问一句：跟我有关系吗',{},'ren2'],['出来吃点东西，边吃边说',{lu:2,ji:1}]]},
- {q:'最顺眼的一句。',a:[['再试一次。',{bear20:4}],['总会有办法。',{bear30:4}],['让我待会儿。',{feng:4}],['我陪你。',{li:4}]]},
- {q:'一群人一起吃饭，准备结账时你更习惯——',a:[['我先付，下次再说',{li:2,bear30:1}],['直接AA，最省心',{bear30:2}],['谁方便谁先付，别在门口算了',{lu:2}],['等一下，我把各自点的对一下',{bear30:1},'ren3']]}
+ {q:'明天突然多出一天假。',a:[
+   ['出门再说',{bear20:2}],
+   ['把拖着的事清掉',{bear30:2}],
+   ['做件自己一直想做、别人未必懂的事',{feng:2}],
+   ['抓个人一起出去',{lu:2}]
+ ]},
+ {q:'突然被人 cue 上台。',a:[
+   ['上就上',{bear20:2}],
+   ['先问要干嘛',{bear30:2}],
+   ['今天不想上，就不上',{feng:2}],
+   ['麦给我',{ji:3}]
+ ]},
+ {q:'大家都说一个机会特别好，但你有点犹豫。',a:[
+   ['先试了再决定',{bear20:2}],
+   ['看看卡在哪里，能不能解决',{bear30:3}],
+   ['先问自己：我是真的想要吗？',{feng:4}],
+   ['先算一下投入值不值',{bear30:1},'ren1']
+ ]},
+ {q:'大家约好的计划临时泡汤了。',a:[
+   ['随机换个没试过的',{bear20:2}],
+   ['立刻找个替代方案',{bear30:2}],
+   ['不硬救，散了也行',{feng:1}],
+   ['换个玩法，大家继续',{lu:3,ji:1}]
+ ]},
+ {q:'好朋友最近状态很差。',a:[
+   ['拉他去做点新鲜事',{bear20:1,lu:1}],
+   ['先问清楚到底发生了什么',{bear30:2}],
+   ['不急着劝，先问他自己想怎么办',{feng:2}],
+   ['我陪着，什么时候想说都行',{li:3}]
+ ]},
+ {q:'学一个新东西，第一天就很难。',a:[
+   ['再来一遍',{bear20:3}],
+   ['先看看哪里做错了',{bear30:3}],
+   ['换个学法，不一定非照标准答案来',{feng:2}],
+   ['拉个人一起练',{lu:2}]
+ ]},
+ {q:'别人对你的评价，和你自己认识的自己差很多。',a:[
+   ['随他们，我继续做我的',{bear20:1}],
+   ['看看有没有具体问题值得改',{bear30:2}],
+   ['那是他们眼里的我，不是我的定义',{feng:4}],
+   ['如果在公开场合，就用表现说话',{ji:3}]
+ ]},
+ {q:'一群人突然冷场。',a:[
+   ['提个大家都没玩过的东西',{bear20:1,lu:1}],
+   ['看看是不是哪里卡住了',{bear30:1}],
+   ['冷就冷，安静也没什么',{feng:1}],
+   ['我来救一下',{ji:3,lu:1}]
+ ]},
+ {q:'很重要的人临时需要你，但你本来已经有安排。',a:[
+   ['看能不能两边都兼顾',{bear30:2}],
+   ['如果他真的需要，我留下',{li:3}],
+   ['先看这是不是我愿意承担的',{feng:2}],
+   ['能不能拉他一起走？',{lu:2}]
+ ]},
+ {q:'突然多了500块。',a:[
+   ['去体验个没试过的东西',{bear20:2}],
+   ['买个最近真正需要的东西',{bear30:2}],
+   ['买个自己喜欢、别人可能觉得没用的东西',{feng:2}],
+   ['研究一下怎么花最值',{bear30:1},'ren2']
+ ]},
+ {q:'朋友突然发来：“完了，我闯祸了。”',a:[
+   ['先把事情说清楚，看怎么补救',{bear30:3}],
+   ['你在哪？我过去',{li:2,bear30:1}],
+   ['先确认一下，这事会不会牵连到我',{},'ren3'],
+   ['出来吃点东西，边吃边说',{lu:2,ji:1}]
+ ]},
+ {q:'一个团队任务没人愿意接。',a:[
+   ['我没做过，我来试试',{bear20:2}],
+   ['先拆一下，看看怎么做最省事',{bear30:3}],
+   ['如果不是我的责任，我不会因为气氛就接下',{feng:3}],
+   ['我先把大家叫起来，一起弄',{lu:2,ji:1}]
+ ]},
+ {q:'哪一句最顺眼？',a:[
+   ['试了再说。',{bear20:4}],
+   ['总会有办法。',{bear30:4}],
+   ['我是谁，我自己说了算。',{feng:4}],
+   ['我还在。',{li:4}]
+ ]}
 ];
+
 const profiles={
- bear20:{avatar:'20',role:'小熊软糖外壳 · 铁头行动系统',core:'试',chips:['纯粹','低恐惧','能吃苦','愿意试'],body:'你不是为了证明自己才往前冲。很多时候只是觉得：<b>“为什么不能试试？”</b><br><br>不会也可以上，难了就再来一遍。你看起来软乎乎，行动系统却硬得离谱。',tip:'勇气是发动机，但发动机不是拿来撞墙的。偶尔也要给自己留一点缓冲区。',verdict:'别人年轻的时候是不知道天高地厚。你比较特别——你知道疼，但你好像不知道怕。',relations:{friend:['季嘉轩','一个敢试，一个敢上。你们最危险的问题通常不是“去不去”，而是“现在走吗？”'],enemy:['任明远','你觉得先试试，他想先算算。你们对“值不值得”的理解不在一个宇宙。'],destiny:['30岁的熊艺文','他最懂你为什么不肯停；你也会提醒他，有些时候可以先心动，再想办法。']}},
- bear30:{avatar:'30',role:'野生解题家',core:'解',chips:['行动','清醒','担当','起兴'],body:'事情来了，你第一反应往往不是“完了”，而是：<b>“哪里还能动？”</b><br><br>你已经知道很多事不会按计划来，却仍然愿意认真生活、认真体验，也依然会被新鲜的小东西点亮。',tip:'“我能做”不等于“都该我做”。解决问题很重要，把自己也算进问题里同样重要。',verdict:'成熟不是不再心动，而是知道世界并不温柔以后，仍然保留心动的能力。',relations:{friend:['陆浩宇','你负责把事情弄明白，他负责把人重新弄开心。组合起来很难一直低气压。'],enemy:['任明远','你问“怎么解决”，他先问“关我什么事”。都很理性，但方向完全不同。'],destiny:['风晴朗','一个太会扛，一个太会感受。你把他从情绪里捞出来，他提醒你别忘了自己也有情绪。']}},
- feng:{avatar:'风',role:'需要暂时退出人群的顶流生物',core:'撤',chips:['清冷','柔软','内收','嘴冷手软'],body:'你并不是不喜欢这个世界，只是有时候觉得：<b>它太吵了。</b><br><br>别人越围上来，你越想找个地方安静一下。不是没有感情，恰恰是因为接收得太多，所以需要把门关上一会儿。',tip:'你可以撤退，但不必每一次都独自撤退。恢复不是逃跑。',verdict:'你不是冷，只是需要一个没有聚光灯的地方，好好做回自己。',relations:{friend:['李麟','都不是最吵的那一个，也都愿意把在意放得很久。安静待着也不会尴尬。'],enemy:['季嘉轩','他越热闹越充电，你越热闹越想找出口。社交电量完全反着长。'],destiny:['30岁的熊艺文','你需要有人允许你停一会儿，也需要有人在你停够以后说：走吧，我们去解决。']}},
- ji:{avatar:'季',role:'麦一递过来就自动开机的人',core:'撑场',chips:['舞台','互动','魅力','现挂'],body:'有些人靠独处充电，你比较像：<b>人一多，电来了。</b><br><br>突然被cue、临时接梗、场面快冷掉——这些事反而容易让你进入状态。灯一亮，你知道自己该怎么站。',tip:'舞台很好，但没有掌声的时候，你也还是你。',verdict:'有些人天生适合站在人群里发光，因为灯一亮，他就知道该怎么活。',relations:{friend:['陆浩宇','你负责接住全场，他负责把全场带跑。请勿把你们同时放进一个本来很安静的房间。'],enemy:['风晴朗','你觉得“来都来了”，他想的是“我能先回去吗”。没有谁错，只是充电方式完全不同。'],destiny:['20岁的熊艺文','一个看见机会就敢试，一个看见舞台就敢上。别人还在犹豫，你们已经开始了。']}},
- li:{avatar:'李',role:'认定了就站这边型选手',core:'守',chips:['长情','守护','稳定','护短'],body:'你不一定最会轰轰烈烈，但你很会：<b>一直在。</b><br><br>一旦把谁划进“自己人”范围，你的耐久度非常惊人。别人表达喜欢靠烟花，你比较像充电宝——关键时候真的有电。',tip:'“我愿意等”和“我只能等”不是一回事。守护别人时，也别把自己留在原地。',verdict:'你最动人的地方，不是等得久，而是认真对待每一次把别人放进心里的决定。',relations:{friend:['30岁的熊艺文','一个愿意守，一个愿意解。你们都是“有事先做点什么”的类型，只是落点不同。'],enemy:['任明远','你把关系放得很重，他更擅长先保护自己的利益。彼此都很难理解对方为什么不按自己的算法来。'],destiny:['风晴朗','你擅长留下，他擅长暂时离开。一个教人稳定，一个教人给自己空间。']}},
- lu:{avatar:'陆',role:'世界再乱也要先活起来的人',core:'带',chips:['古灵精怪','组队','行动派','开心果'],body:'你的核心逻辑大概是：<b>先别死气沉沉。</b><br><br>你会把人拉起来、拉出去、拉进一个新的支线任务。很多时候，你的搞笑不是不认真，而是在给大家重新启动的力气。',tip:'开心不是逃避问题。不过偶尔也别只顾着把别人逗开心。',verdict:'很多难关，笑着过和哭着过，都是要过的——你更愿意把大家一起带过去。',relations:{friend:['季嘉轩','你把人拉进来，他把场子接过去。两个人在一起，很难出现“算了今天不玩了”。'],enemy:['任明远','你觉得开心也算收益，他更习惯把收益算得具体一点。你们的计算器不是同一个型号。'],destiny:['30岁的熊艺文','你负责让世界重新动起来，他负责让动起来以后别跑偏。一个点火，一个掌舵。']}},
- ren:{avatar:'任',role:'隐藏反面角色 · 抠搜坏男人体验卡',core:'算',chips:['成本优先','体面话术','先护自己','算盘常开'],body:'先恭喜你：六个正常人物都没拦住你，系统把<b>隐藏反派档案</b>弹出来了。<br><br>这个角色连熊艺文自己拿到剧本时，都说心里骂了“一万遍任明远狗东西”，还认真提醒大家：<b>生活中遇到这样的男生，一定要远离。</b><br><br>所以别紧张——测到任明远不等于你就是任明远。也可能只是这三道题里，你对成本、自保和“关我什么事”格外敏锐。',tip:'友情提示：这是反面角色彩蛋，不是人格诊断。请勿因为测到任明远当场注销账号；看完可以重测，或者把它当作一次反面教材通关。',verdict:'恭喜解锁本宇宙唯一一张——“建议只在屏幕里见，不建议在生活里遇见”的人物卡。',relations:{friend:['无。','系统正在努力匹配……<br><br><b>匹配失败。</b>'],enemy:['20岁的熊艺文','你：“风险太高。”<br>他：“那不是更刺激？”<br><br>你已经血压升高。'],destiny:['30岁的熊艺文','不是因为你们很合适。<br><br>而是宇宙觉得：<br><b>也许他还能救救你。</b>']}}
+ bear20:{
+  avatar:'20',role:'小熊软糖外壳 · 铁头行动系统',core:'试',chips:['纯粹','低恐惧','愿意试','能吃苦'],
+  body:`你的行动逻辑很简单：<br><br><b>“没做过？”<br>“那试试呗。”</b><br><br>别人面对未知，会先想失败怎么办。你比较容易先想：<b>做了才知道。</b><br><br>你不是一定要赢，也未必非得证明什么。只是对你来说，<b>“不会”从来不自动等于“不能”。</b><br><br><b>典型症状</b><br>别人：“这个挺难的。”<br>你：“嗯。”<br>然后又来了一遍。<br><br><b>隐藏技能</b><br>在所有人还没决定要不要开始时，你已经替大家确认了：<b>至少这条路真的可以走。</b>`,
+  tip:`相信自己能扛，是你的底气。<br><br>但偶尔也记得：<b>能扛，不代表非得硬扛。</b>`,
+  verdict:'你最珍贵的不是无所畏惧，而是还愿意在不知道答案的时候先伸手碰一碰世界。',
+  relations:{
+    friend:['陆浩宇','你负责：“试试？”<br>他负责：“走啊！”<br><br>非常容易把一个念头直接发展成支线任务。'],
+    enemy:['任明远','你：“没做过，试试呗。”<br>他：“收益呢？”<br><br>你已经走远了。'],
+    destiny:['30岁的熊艺文','你擅长开始。<br>他擅长：<b>开始以后出问题怎么办。</b><br><br>非常危险，也非常实用。']
+  }
+ },
+ bear30:{
+  avatar:'30',role:'野生解题家',core:'解',chips:['清醒','行动','责任感','高感受'],
+  body:`你不是看不见情绪。恰恰相反，你往往看得很快。<br><br>只是你看见以后，脑子会自动跳到下一步：<b>“那现在怎么办？”</b><br><br>事情乱了，你找线头。人不舒服，你想办法。计划卡住，你开始拆问题。<br><br>对你来说，<b>问题存在的意义，好像就是等着被处理。</b><br><br><b>典型症状</b><br>别人：“完了。”<br>你：<b>“先别完，哪里出问题了？”</b><br><br><b>隐藏技能</b><br>把一团乱麻重新变成：<b>第一步、第二步、第三步。</b>`,
+  tip:`你最需要防的不是不会解决。<br><br>而是：<b>看到问题，就自动觉得那是自己的题。</b><br><br>“我能解决”不等于<b>“应该由我解决”。</b>`,
+  verdict:'你的力量不只是扛得住，而是总能在混乱里找到下一步。',
+  relations:{
+    friend:['陆浩宇','你解决问题。<br>他解决：<b>大家已经被问题搞得没精神了怎么办。</b><br><br>一个修系统，一个重启用户。'],
+    enemy:['任明远','你：“这事总得有人弄。”<br>他：<b>“为什么是我？”</b><br><br>系统不兼容。'],
+    destiny:['风晴朗','你问：<b>“怎么做到？”</b><br>他问：<b>“我为什么要做到？”</b><br><br>你帮他把想要的东西变成现实。<br>他提醒你：<b>不是每一道题都必须做。</b>']
+  }
+ },
+ feng:{
+  avatar:'风',role:'从别人目光里把自己领回来的人',core:'归',chips:['自持','反骨','自省','自我一致'],
+  body:`你并不是不在意别人怎么看。<br><br>你只是慢慢明白了一件事：<b>别人眼里的你，不能成为你的全部。</b><br><br>如果所有人都告诉你：“这才是对的。”你可能会停下来问：<b>“可这是我要的吗？”</b><br><br>你可以适应规则，甚至可以把规则玩得很好。真正让你难受的，是有一天忽然发现——<b>自己已经活得太像别人希望的样子。</b><br><br><b>典型症状</b><br>所有人：“这机会多好啊！”<br>你：<b>“……可是我想要吗？”</b><br><br><b>隐藏技能</b><br>从一堆“应该”里，一点点辨认出：<b>“我想。”</b>`,
+  tip:`保护真实的自己很重要。<br><br>但也别让保护壳最后变成另一种牢笼。<br><br>找到自己之后，<b>还可以重新走回世界。</b>`,
+  verdict:'你不是从世界里撤退，你只是拒绝让世界替你决定你是谁。',
+  relations:{
+    friend:['李麟','你最需要的不是：“我来告诉你应该怎么办。”<br><br>而是：<b>“你慢慢想，我还在。”</b><br><br>李麟恰好很会这个。'],
+    enemy:['季嘉轩','他：“都看着呢，多好。”<br>你：<b>“这就是问题。”</b><br><br>一个在目光里打开，一个需要确保自己不会被目光定义。'],
+    destiny:['30岁的熊艺文','你负责找到：<b>“我要什么。”</b><br>他负责：<b>“那怎么得到？”</b><br><br>非常适合一起过现实生活。']
+  }
+ },
+ ji:{
+  avatar:'季',role:'灯一亮就自动进入状态的人',core:'亮',chips:['舞台','表现力','互动','临场感'],
+  body:`有些人一被很多人看着就开始掉电。<br><br>你比较像：<b>灯一开，系统启动。</b><br><br>被cue？可以。突然需要接话？可以。场子有点尴尬？<b>问题不大。</b><br><br>你很适合那种有一点不可控、需要现场反应的地方。<br><br><b>典型症状</b><br>别人：“千万别点我。”<br>你：<b>“怎么还没到我？”</b><br><br><b>隐藏技能</b><br>把“好尴尬。”变成：<b>“等等，好像还挺有节目效果。”</b>`,
+  tip:`舞台很适合你。<br><br>但没有灯的时候，<b>你也不需要一直证明自己有趣。</b>`,
+  verdict:'有些人不是一定需要成为中心，只是当目光真的落过来时，他知道该怎么发光。',
+  relations:{
+    friend:['陆浩宇','一个擅长在台上发光。<br>一个擅长让全场活起来。<br><br>冷场碰到你们两个，<b>一般活不过三分钟。</b>'],
+    enemy:['风晴朗','你觉得：<b>“被看见有什么不好？”</b><br>他觉得：<b>“你先让我确定被看见的是不是我。”</b><br><br>暂时无法互相理解。'],
+    destiny:['20岁的熊艺文','你：<b>“我上。”</b><br>他：<b>“我试。”</b><br><br>所有人还在讨论流程。你们已经开始了。']
+  }
+ },
+ li:{
+  avatar:'李',role:'认定了就站在这边的人',core:'守',chips:['长情','稳定','守护','耐心'],
+  body:`你判断一段关系的方式，可能不是：“现在还快乐吗？”<br><br>而更像：<b>“这个人对我重要吗？”</b><br><br>一旦答案是“重要”，你就很难轻易把人从自己的世界里拿出去。<br><br>别人表达感情靠烟花。你更像：<b>长期供电。</b><br><br><b>典型症状</b><br>别人：“你还在等？”<br>你：<b>“嗯。”</b><br><br><b>隐藏技能</b><br>一旦划进“自己人”，<b>忠诚度几乎自动锁定。</b>`,
+  tip:`留下是一种能力。离开有时候也是。<br><br>别把<b>“我愿意守”</b>活成<b>“我只能守”。</b>`,
+  verdict:'你最动人的不是等得久，而是很少随便决定谁值得你留下。',
+  relations:{
+    friend:['30岁的熊艺文','你：<b>“我陪你。”</b><br>他：<b>“我看看怎么办。”</b><br><br>属于出了事很想同时拥有的两个人。'],
+    enemy:['任明远','你计算：关系还能不能守。<br>他计算：<b>还值不值得投入。</b><br><br>计算器型号不同。'],
+    destiny:['风晴朗','你最大的能力是留下。<br>而他最大的课题是：<b>留下的时候还能不能保持自己。</b><br><br>理想版本不是你把他留住，而是：<b>你在，他仍然可以自由地成为自己。</b>']
+  }
+ },
+ lu:{
+  avatar:'陆',role:'先把大家从地上薅起来的人',core:'活',chips:['活力','组队','行动','开心果'],
+  body:`你看到一个人蔫了，可能不会先和他分析人生。<br><br>你比较容易：<b>“走。”<br>“干嘛？”<br>“先走再说。”</b><br><br>你擅长的不是单纯逗人笑，而是让一群本来停住的人，<b>重新动起来。</b><br><br><b>典型症状</b><br>别人：“今天算了吧……”<br>你：<b>“为什么？下一个去哪？”</b><br><br><b>隐藏技能</b><br>把“这次完蛋了。”改写成：<b>“行吧，又多一个故事。”</b>`,
+  tip:`你很会帮别人恢复生命值。<br><br>偶尔也要允许自己：<b>今天就是没电。</b>`,
+  verdict:'你的厉害不是永远开心，而是总有办法让生活重新流动起来。',
+  relations:{
+    friend:['20岁的熊艺文','一个负责：<b>“有个想法。”</b><br>一个负责：<b>“走！”</b><br><br>危险程度：★★★★☆<br>快乐程度：★★★★★'],
+    enemy:['任明远','你：“开心最重要。”<br>他：<b>“花多少？”</b><br><br>你已经不想和他说话了。'],
+    destiny:['季嘉轩','你负责把人群点燃。<br>他负责站在火里表演。<br><br><b>文文宇宙大型活动指定组合。</b>']
+  }
+ },
+ ren:{
+  avatar:'任',role:'人类成本控制中心 · 编外主任',core:'算',chips:['精打细算','风险规避','自我优先','体面得体'],
+  body:`系统刚刚重新检查了一遍你的答案。<br><br>然后又检查了一遍。<br><br>……<br><br>不是。<br><br>你怎么每次都能这么精准地找到：<br><br><b>“那我呢？”</b><br><br>别人看到机会：“好想去！”<br>你：<b>“值吗？”</b><br><br>别人看到朋友出事：“先帮他！”<br>你：<b>“这事会牵连我吗？”</b><br><br>系统沉默了。<br><br><b>典型症状</b><br>别人：“感情不能算这么清楚。”<br>你：<b>“为什么不能？”</b><br><br><b>隐藏技能</b><br>能够在任何浪漫、热血、感人的场景里，精准找到——<b>成本、风险、责任归属和报销可能性。</b><br><br>别人脑子里播放BGM。<br>你脑子里打开了Excel。`,
+  tip:`测到任明远，<b>不代表你就是任明远。</b><br><br>也有可能只是今天做题的时候，你的算盘珠子刚好有点活泼。<br><br>只要现实生活里还没有开始对亲密关系进行——<b>季度投入产出比复盘</b>，暂时都还有救。<br><br><b>友情提醒：人生不是所有项目都需要 ROI。</b><br><b>系统建议：下次心动时，先不要打开计算器。</b>`,
+  verdict:'你不是没有感情。你只是希望感情最好也能开发票。',
+  relations:{
+    friend:['无。','系统正在努力匹配……<br><br>……<br><br><b>匹配失败。</b>'],
+    enemy:['20岁的熊艺文','你：<b>“风险太高。”</b><br>他：<b>“那不是更刺激？”</b><br><br>你已经血压升高。'],
+    destiny:['30岁的熊艺文','不是因为你们很合适。<br><br>而是宇宙觉得：<br><br><b>也许他还能救救你。</b>']
+  }
+ }
 };
+
+// 用核心题解决极少数的最高匹配并列。
+const CORE_QUESTIONS={
+  bear20:[2,5,12],
+  bear30:[2,5,10,11,12],
+  feng:[2,6,11,12],
+  ji:[1,6,7],
+  li:[4,8,12],
+  lu:[3,7,11]
+};
+const PAIR_CORE={
+  'bear20|bear30':[2,5,12],
+  'bear30|feng':[2,6,11],
+  'bear30|li':[4,8,10],
+  'feng|li':[6,8],
+  'ji|lu':[1,7]
+};
+const DEFAULT_ORDER=['bear20','bear30','feng','ji','li','lu'];
 let idx=0, answers=[], scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0}, marks=new Set();
 const $=s=>document.querySelector(s);
 document.body.classList.add('home-mode');
@@ -264,8 +419,49 @@ $('#backBtn').onclick=()=>{if(idx===0){show('home');return;} rebuild(idx-1);};
 function rebuild(target){idx=0;scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();const prev=answers.slice(0,target);answers=prev.slice();prev.forEach((choice,i)=>applyChoice(i,choice,false));idx=target;renderQ();}
 function applyChoice(qi,ai,save=true){const item=questions[qi].a[ai];const pts=item[1]||{};Object.keys(pts).forEach(k=>scores[k]=(scores[k]||0)+pts[k]);if(item[2])marks.add(item[2]);if(save)answers[qi]=ai;}
 function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[i]}</span>${a[0]}`;b.onclick=()=>{applyChoice(idx,i,true);idx++;if(idx>=questions.length)finish();else renderQ();};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
-function finish(){const hidden=['ren1','ren2','ren3'].every(x=>marks.has(x));let key,ranked=[];if(hidden){key='ren';}else{ranked=Object.keys(MAX).map(k=>({k,ratio:scores[k]/MAX[k],raw:scores[k]})).sort((a,b)=>b.ratio-a.ratio||b.raw-a.raw);key=ranked[0].k;}renderResult(key,ranked);}
-function renderResult(key,ranked){const p=profiles[key],t=THEMES[key]||THEMES.ji;const root=document.documentElement;root.style.setProperty('--r1',t[0]);root.style.setProperty('--r2',t[1]);root.style.setProperty('--rsoft',t[2]);root.style.setProperty('--rline',t[3]);$('#resultAvatar').textContent=p.avatar;$('#resultName').textContent=NAMES[key];$('#resultRole').textContent=p.role;$('#coreWord').textContent=p.core;$('#chips').innerHTML=p.chips.map(x=>`<span class="chip">${x}</span>`).join('');$('#resultBody').innerHTML=p.body;$('#resultTip').innerHTML=p.tip;$('#verdict').innerHTML=p.verdict;const r=p.relations;$('#relations').innerHTML=`<div class="relation-card"><div class="rlabel">BEST FRIEND · 最佳好友</div><div class="rname">${r.friend[0]}</div><div class="rtext">${r.friend[1]}</div></div><div class="relation-card enemy"><div class="rlabel">NEMESIS · 宇宙天敌</div><div class="rname">${r.enemy[0]}</div><div class="rtext">${r.enemy[1]}</div></div><div class="relation-card destiny"><div class="rlabel">DESTINY · 宿命搭子</div><div class="rname">${r.destiny[0]}</div><div class="rtext">${r.destiny[1]}</div></div>`;if(key==='ren'){$('#secondaryMatch').innerHTML='<span>隐藏档案已解锁</span><b>任明远</b>';}else{const sec=ranked[1];$('#secondaryMatch').innerHTML=`<span>你的次高匹配</span><b>${NAMES[sec.k]}</b>`;}show('result');}
+function pointsFor(k,qi){
+  const ai=answers[qi];
+  if(ai===undefined) return 0;
+  return (questions[qi].a[ai][1]||{})[k]||0;
+}
+function normCore(k,indices){
+  let got=0,max=0;
+  indices.forEach(qi=>{
+    got+=pointsFor(k,qi);
+    max+=Math.max(...questions[qi].a.map(a=>((a[1]||{})[k]||0)));
+  });
+  return max?got/max:0;
+}
+function genericCore(k){return normCore(k,CORE_QUESTIONS[k]||[]);}
+function breakTie(keys){
+  if(keys.length===2){
+    const pair=[...keys].sort().join('|');
+    const inds=PAIR_CORE[pair];
+    if(inds){
+      const a=normCore(keys[0],inds),b=normCore(keys[1],inds);
+      if(Math.abs(a-b)>1e-9) return a>b?keys[0]:keys[1];
+    }
+  }
+  return [...keys].sort((a,b)=>genericCore(b)-genericCore(a)||scores[b]-scores[a]||DEFAULT_ORDER.indexOf(a)-DEFAULT_ORDER.indexOf(b))[0];
+}
+function buildRanking(){
+  let ranked=Object.keys(CALIB).map(k=>({k,ratio:scores[k]/CALIB[k],raw:scores[k],core:genericCore(k)}))
+    .sort((a,b)=>b.ratio-a.ratio||b.core-a.core||b.raw-a.raw||DEFAULT_ORDER.indexOf(a.k)-DEFAULT_ORDER.indexOf(b.k));
+  const topRatio=ranked[0].ratio;
+  const tied=ranked.filter(x=>Math.abs(x.ratio-topRatio)<1e-9).map(x=>x.k);
+  if(tied.length>1){
+    const winner=breakTie(tied);
+    ranked=[ranked.find(x=>x.k===winner),...ranked.filter(x=>x.k!==winner)];
+  }
+  return ranked;
+}
+function finish(){
+  const hidden=['ren1','ren2','ren3'].every(x=>marks.has(x));
+  const ranked=buildRanking();
+  const key=hidden?'ren':ranked[0].k;
+  renderResult(key,ranked);
+}
+function renderResult(key,ranked){const p=profiles[key],t=THEMES[key]||THEMES.ji;const root=document.documentElement;root.style.setProperty('--r1',t[0]);root.style.setProperty('--r2',t[1]);root.style.setProperty('--rsoft',t[2]);root.style.setProperty('--rline',t[3]);$('#resultAvatar').textContent=p.avatar;$('#resultName').textContent=NAMES[key];$('#resultRole').textContent=p.role;$('#coreWord').textContent=p.core;$('#chips').innerHTML=p.chips.map(x=>`<span class="chip">${x}</span>`).join('');$('#resultBody').innerHTML=p.body;$('#resultTip').innerHTML=p.tip;$('#verdict').innerHTML=p.verdict;const r=p.relations;$('#relations').innerHTML=`<div class="relation-card"><div class="rlabel">BEST FRIEND · 最佳好友</div><div class="rname">${r.friend[0]}</div><div class="rtext">${r.friend[1]}</div></div><div class="relation-card enemy"><div class="rlabel">NEMESIS · 宇宙天敌</div><div class="rname">${r.enemy[0]}</div><div class="rtext">${r.enemy[1]}</div></div><div class="relation-card destiny"><div class="rlabel">DESTINY · 宿命搭子</div><div class="rname">${r.destiny[0]}</div><div class="rtext">${r.destiny[1]}</div></div>`;if(key==='ren'){const normal=ranked[0];$('#secondaryMatch').innerHTML=`<span>如果先把算盘收起来，你更像</span><b>${NAMES[normal.k]}</b>`;}else{const sec=ranked.find(x=>x.k!==key);$('#secondaryMatch').innerHTML=`<span>你的次高匹配</span><b>${NAMES[sec.k]}</b>`;}show('result');}
 $('#retryBtn').onclick=()=>{show('home');};
 function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){let line='',lines=[];for(const ch of text){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;}else line=test;}if(line)lines.push(line);lines=lines.slice(0,maxLines);lines.forEach((ln,i)=>ctx.fillText(ln,x,y+i*lineHeight));return y+lines.length*lineHeight;}
 $('#saveBtn').onclick=()=>{const name=$('#resultName').textContent;const key=Object.keys(NAMES).find(k=>NAMES[k]===name);const p=profiles[key],theme=THEMES[key]||THEMES.ji;const c=$('#poster'),ctx=c.getContext('2d');const g=ctx.createLinearGradient(0,0,1080,1350);g.addColorStop(0,theme[2]);g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1350);ctx.fillStyle=theme[0];ctx.beginPath();ctx.roundRect(120,95,160,160,46);ctx.fill();ctx.fillStyle='#fff';ctx.font='900 58px sans-serif';ctx.textAlign='center';ctx.fillText(p.avatar,200,198);ctx.textAlign='left';ctx.fillStyle='#8b82ad';ctx.font='700 26px sans-serif';ctx.fillText('WENWEN UNIVERSE · CHARACTER FILE',120,320);ctx.fillStyle='#2f294d';ctx.font='900 68px sans-serif';ctx.fillText(name,120,410);ctx.fillStyle='#726b8e';ctx.font='32px sans-serif';ctx.fillText(p.role,120,465);let x=120;ctx.font='700 26px sans-serif';p.chips.forEach(t=>{const w=ctx.measureText(t).width+46;ctx.fillStyle=theme[2];ctx.beginPath();ctx.roundRect(x,510,w,52,26);ctx.fill();ctx.fillStyle=theme[0];ctx.fillText(t,x+23,545);x+=w+14;});ctx.fillStyle='#8d84aa';ctx.font='26px sans-serif';ctx.fillText('你的核心动词',120,650);ctx.fillStyle=theme[0];ctx.font='900 100px sans-serif';ctx.fillText(p.core,120,760);ctx.fillStyle='#39334f';ctx.font='700 34px sans-serif';const plain=p.verdict.replace(/<[^>]+>/g,'');wrapText(ctx,plain,120,860,830,54,6);ctx.fillStyle='#9891aa';ctx.font='24px sans-serif';ctx.fillText('测测你是文文宇宙里的谁？',120,1260);ctx.fillText('趣味测试 · 仅供娱乐与自我探索',120,1300);const a=document.createElement('a');a.download='文文宇宙-'+name+'.png';a.href=c.toDataURL('image/png');a.click();const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);};
