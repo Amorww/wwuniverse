@@ -236,7 +236,7 @@
     <div class="poster-help" id="posterHelp">iPhone、微信或其他内置浏览器如果没有自动保存，可以直接长按上方图片保存到相册。</div>
   </div>
 </div>
-<canvas id="poster" width="1080" height="1350" style="display:none"></canvas>
+<canvas id="poster" width="1080" height="1700" style="display:none"></canvas>
 <script>
 const CALIB={bear20:22,bear30:32,feng:29,ji:12.5,li:14,lu:15};
 const NAMES={bear20:'20岁的熊艺文',bear30:'30岁的熊艺文',feng:'风晴朗',ji:'季嘉轩',li:'李麟',lu:'陆浩宇',ren:'任明远'};
@@ -399,16 +399,26 @@ const profiles={
   }
  },
  ren:{
-  avatar:'任',role:'人类成本控制中心 · 编外主任',core:'算',chips:['精打细算','风险规避','自我优先','体面得体'],
-  body:`系统刚刚重新检查了一遍你的答案。<br><br>然后又检查了一遍。<br><br>……<br><br>不是。<br><br>你怎么每次都能这么精准地找到：<br><br><b>“那我呢？”</b><br><br>别人看到机会：“好想去！”<br>你：<b>“值吗？”</b><br><br>别人看到朋友出事：“先帮他！”<br>你：<b>“这事会牵连我吗？”</b><br><br>系统沉默了。<br><br><b>典型症状</b><br>别人：“感情不能算这么清楚。”<br>你：<b>“为什么不能？”</b><br><br><b>隐藏技能</b><br>能够在任何浪漫、热血、感人的场景里，精准找到——<b>成本、风险、责任归属和报销可能性。</b><br><br>别人脑子里播放BGM。<br>你脑子里打开了Excel。`,
-  tip:`测到任明远，<b>不代表你就是任明远。</b><br><br>也有可能只是今天做题的时候，你的算盘珠子刚好有点活泼。<br><br>只要现实生活里还没有开始对亲密关系进行——<b>季度投入产出比复盘</b>，暂时都还有救。<br><br><b>友情提醒：人生不是所有项目都需要 ROI。</b><br><b>系统建议：下次心动时，先不要打开计算器。</b>`,
+  avatar:'任',role:'人类成本控制中心 · 临时负责人',core:'算',chips:['精打细算','风险评估','自我优先','算盘珠子活跃'],
+  body:`系统刚刚检查了你的答案。<br><br>然后又检查了一遍。<br><br>……<br><br>很好。<br><br>机会来了，你先算值不值。<br>朋友出事，你先看会不会牵连自己。<br>钱到了手里，你第一反应是：<b>怎么花最划算。</b><br><br>别人脑子里开始播放BGM。<br><br>你脑子里：<b>Excel 已自动打开。</b><br><br><b>典型症状</b><br>别人：<b>“感情这种东西不能算这么清楚。”</b><br>你：<b>“为什么不能？”</b><br>系统：<b>“……好的。”</b><br><br><b>隐藏技能</b><br>能够在任何热血、浪漫、感人的场景里，精准定位：<b>风险、成本、收益、责任归属。</b><br><br>别人已经感动得不行。<br>你还在问：<b>“所以谁买单？”</b>`,
+  tip:`测到任明远，<b>不代表你就是任明远。</b><br><br>也有可能只是今天做题的时候，你的算盘珠子比较活泼。<br><br><b>友情提醒：人生不是所有项目都需要 ROI。</b><br><br>以及——<br><b>下次心动时，可以先不要打开计算器。</b>`,
   verdict:'你不是没有感情。你只是希望感情最好也能开发票。',
   relations:{
-    friend:['无。','系统正在努力匹配……<br><br>……<br><br><b>匹配失败。</b>'],
+    friend:['无。','系统正在努力匹配……<br><br>扩大搜索范围……<br><br>降低匹配标准……<br><br>……<br><br><b>匹配失败。</b>'],
     enemy:['李麟','你：<b>“感情也得讲投入产出吧？”</b><br><br>他沉默了三秒。<br><br>然后看你的眼神，像在看一种自己从未见过的生物。<br><br><b>系统建议：不要继续解释。</b>'],
-    destiny:['30岁的熊艺文','不是因为你们很合适。<br><br>而是因为每次你问：<b>“值不值？”</b><br><br>他都已经开始想：<b>“怎么解决？”</b><br><br>你负责算。<br>他负责干。<br><br>宇宙暂时也不知道——<br><b>到底是谁先把谁气死。</b>']
+    destiny:['20岁的熊艺文','你：<b>“先等等，这个风险有点高。”</b><br><br>他：<b>“那试试不就知道了？”</b><br><br>你负责踩刹车。<br>他负责踩油门。<br><br>理论上应该是完美互补。<br><br>实际上——<br><b>车可能已经开沟里了。</b>']
   }
  }
+};
+
+const CARD_RELATIONS={
+  bear20:{friend:['陆浩宇','一个想试，一个喊走。'],enemy:['任明远','你已经出发，他还在算收益。'],destiny:['30岁的熊艺文','你负责开始，他负责解决开始以后的问题。']},
+  bear30:{friend:['陆浩宇','你修问题，他重启气氛。'],enemy:['任明远','你想“怎么解决”，他先问“为什么是我”。'],destiny:['风晴朗','他确认想要什么，你寻找怎么做到。']},
+  feng:{friend:['李麟','你慢慢想，他安静地在。'],enemy:['季嘉轩','一个享受目光，一个警惕被目光定义。'],destiny:['30岁的熊艺文','你找方向，他找办法。']},
+  ji:{friend:['陆浩宇','一个发光，一个把全场带活。'],enemy:['风晴朗','你觉得“都看着多好”，他觉得“这就是问题”。'],destiny:['20岁的熊艺文','你说“我上”，他说“我试”。']},
+  li:{friend:['30岁的熊艺文','你负责陪着，他负责想办法。'],enemy:['任明远','你谈承诺，他谈投入产出。'],destiny:['风晴朗','你愿意留下，也允许他成为自己。']},
+  lu:{friend:['20岁的熊艺文','一个冒出想法，一个直接喊走。'],enemy:['任明远','你问开心吗，他问预算呢。'],destiny:['季嘉轩','你点燃人群，他站进火光里。']},
+  ren:{friend:['无','系统努力匹配中……匹配失败。'],enemy:['李麟','你谈投入产出，他开始看不懂你这种生物。'],destiny:['20岁的熊艺文','你踩刹车，他踩油门。宇宙正在观察这辆车最终会开去哪里。']}
 };
 
 // 用核心题解决极少数的最高匹配并列。
@@ -520,23 +530,57 @@ async function buildPoster(){
   const name=$('#resultName').textContent;
   const key=Object.keys(NAMES).find(k=>NAMES[k]===name);
   if(!key)throw new Error('没有找到当前角色');
-  const p=profiles[key],theme=THEMES[key]||THEMES.ji;
+  const p=profiles[key],theme=THEMES[key]||THEMES.ji, rel=CARD_RELATIONS[key]||{};
   const c=$('#poster'),ctx=c.getContext('2d');
   if(!ctx)throw new Error('当前浏览器不支持生成图片');
   ctx.clearRect(0,0,c.width,c.height);
-  const g=ctx.createLinearGradient(0,0,1080,1350);g.addColorStop(0,theme[2]);g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1350);
-  ctx.save();ctx.globalAlpha=.25;ctx.strokeStyle=theme[0];ctx.lineWidth=2;ctx.beginPath();ctx.arc(920,150,180,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(920,150,235,0,Math.PI*2);ctx.stroke();ctx.restore();
+
+  const font='-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';
+  const g=ctx.createLinearGradient(0,0,1080,1700);g.addColorStop(0,theme[2]);g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1700);
+  ctx.save();ctx.globalAlpha=.23;ctx.strokeStyle=theme[0];ctx.lineWidth=2;ctx.beginPath();ctx.arc(920,150,180,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(920,150,235,0,Math.PI*2);ctx.stroke();ctx.restore();
+
   ctx.fillStyle=theme[0];roundedRectPath(ctx,120,95,160,160,46);ctx.fill();
-  ctx.fillStyle='#fff';ctx.font='900 58px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText(p.avatar,200,198);
-  ctx.textAlign='left';ctx.fillStyle='#8b82ad';ctx.font='700 26px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';ctx.fillText('WENWEN UNIVERSE · CHARACTER FILE',120,320);
-  ctx.fillStyle='#2f294d';ctx.font='900 68px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';ctx.fillText(name,120,410);
-  ctx.fillStyle='#726b8e';ctx.font='32px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';wrapText(ctx,p.role,120,465,830,44,2);
-  let x=120;ctx.font='700 26px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';p.chips.forEach(t=>{const w=ctx.measureText(t).width+46;if(x+w>960)return;ctx.fillStyle=theme[2];roundedRectPath(ctx,x,520,w,52,26);ctx.fill();ctx.fillStyle=theme[0];ctx.fillText(t,x+23,555);x+=w+14;});
-  ctx.fillStyle='#8d84aa';ctx.font='26px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';ctx.fillText('你的核心动词',120,665);
-  ctx.fillStyle=theme[0];ctx.font='900 100px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';ctx.fillText(p.core,120,775);
-  ctx.fillStyle='#39334f';ctx.font='700 34px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';const plain=p.verdict.replace(/<[^>]+>/g,'');wrapText(ctx,plain,120,875,830,54,6);
-  ctx.strokeStyle=theme[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(120,1200);ctx.lineTo(960,1200);ctx.stroke();
-  ctx.fillStyle='#9891aa';ctx.font='24px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';ctx.fillText('测测你是文文宇宙里的谁？',120,1260);ctx.fillText('本测试仅供娱乐',120,1300);
+  ctx.fillStyle='#fff';ctx.font=`900 58px ${font}`;ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText(p.avatar,200,198);
+  ctx.textAlign='left';ctx.fillStyle='#8b82ad';ctx.font=`700 26px ${font}`;ctx.fillText('WENWEN UNIVERSE · CHARACTER FILE',120,320);
+  ctx.fillStyle='#2f294d';ctx.font=`900 68px ${font}`;ctx.fillText(name,120,410);
+  ctx.fillStyle='#726b8e';ctx.font=`32px ${font}`;wrapText(ctx,p.role,120,465,830,44,2);
+
+  let x=120;ctx.font=`700 26px ${font}`;p.chips.forEach(t=>{const w=ctx.measureText(t).width+46;if(x+w>960)return;ctx.fillStyle=theme[2];roundedRectPath(ctx,x,520,w,52,26);ctx.fill();ctx.fillStyle=theme[0];ctx.fillText(t,x+23,555);x+=w+14;});
+
+  ctx.fillStyle='#8d84aa';ctx.font=`26px ${font}`;ctx.fillText('CORE MOVE · 你的核心动作',120,650);
+  ctx.fillStyle=theme[0];ctx.font=`900 100px ${font}`;ctx.fillText(p.core,120,760);
+
+  ctx.fillStyle='#ffffff';ctx.save();ctx.shadowColor='rgba(57,51,79,.08)';ctx.shadowBlur=24;ctx.shadowOffsetY=8;roundedRectPath(ctx,120,815,840,205,32);ctx.fill();ctx.restore();
+  ctx.fillStyle=theme[0];ctx.font=`700 23px ${font}`;ctx.fillText('ONE-LINE VERDICT · 你的判词',160,865);
+  ctx.fillStyle='#39334f';ctx.font=`700 32px ${font}`;const plain=p.verdict.replace(/<[^>]+>/g,'');wrapText(ctx,plain,160,920,760,48,3);
+
+  ctx.fillStyle='#8d84aa';ctx.font=`700 25px ${font}`;ctx.fillText('YOUR UNIVERSE RELATIONS · 你的宇宙关系',120,1090);
+  const cards=[
+    {label:'BEST FRIEND',title:'最佳好友',data:rel.friend},
+    {label:'NEMESIS',title:'宇宙天敌',data:rel.enemy},
+    {label:'DESTINY',title:'宿命搭子',data:rel.destiny}
+  ];
+  const cardX=[120,404,688], cardW=272, cardY=1125, cardH=290;
+  cards.forEach((item,i)=>{
+    const d=item.data||['—',''];
+    ctx.fillStyle='#ffffff';ctx.save();ctx.shadowColor='rgba(57,51,79,.06)';ctx.shadowBlur=16;ctx.shadowOffsetY=5;roundedRectPath(ctx,cardX[i],cardY,cardW,cardH,28);ctx.fill();ctx.restore();
+    ctx.strokeStyle=theme[3];ctx.lineWidth=2;roundedRectPath(ctx,cardX[i],cardY,cardW,cardH,28);ctx.stroke();
+    ctx.fillStyle=theme[0];ctx.font=`800 18px ${font}`;ctx.fillText(item.label,cardX[i]+24,cardY+38);
+    ctx.fillStyle='#8d84aa';ctx.font=`22px ${font}`;ctx.fillText(item.title,cardX[i]+24,cardY+70);
+    ctx.fillStyle='#2f294d';ctx.font=`800 28px ${font}`;wrapText(ctx,d[0],cardX[i]+24,cardY+116,cardW-48,36,2);
+    ctx.fillStyle='#68617c';ctx.font=`23px ${font}`;wrapText(ctx,d[1],cardX[i]+24,cardY+168,cardW-48,34,4);
+  });
+
+  if(key==='ren'){
+    ctx.fillStyle=theme[2];roundedRectPath(ctx,120,1450,840,58,20);ctx.fill();
+    ctx.fillStyle=theme[0];ctx.font=`700 21px ${font}`;ctx.fillText('SYSTEM NOTE · 当前档案存在轻微算盘声，请勿惊慌。',150,1487);
+  }
+
+  ctx.strokeStyle=theme[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(120,1550);ctx.lineTo(960,1550);ctx.stroke();
+  ctx.fillStyle='#8d84aa';ctx.font=`700 22px ${font}`;ctx.fillText('WENWEN UNIVERSE · 30TH BIRTHDAY PROJECT',120,1602);
+  ctx.fillStyle='#aaa3b8';ctx.font=`21px ${font}`;ctx.fillText('by Amor & ChatGPT',120,1642);
+  ctx.textAlign='right';ctx.fillStyle='#b1abbc';ctx.font=`20px ${font}`;ctx.fillText('本测试仅供娱乐',960,1642);
+  ctx.textAlign='left';
   return {blob:await canvasToBlob(c),filename:'文文宇宙-'+name+'.png'};
 }
 $('#saveBtn').onclick=async()=>{
