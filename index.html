@@ -4,6 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>测测你是文文宇宙里的谁？</title>
+<meta name="description" content="一个非官方30岁生日粉丝企划：13道题，看看你在文文宇宙里更接近谁，以及你的第二轨道与宇宙关系。" />
+<meta name="theme-color" content="#f7f5ff" />
+<meta property="og:title" content="测测你是文文宇宙里的谁？" />
+<meta property="og:description" content="13道题 · 7份人物档案 · 36种组合结果。一个非官方30岁生日粉丝企划。" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
 <style>
   :root{
     --bg:#f7f5ff;--card:#ffffff;--ink:#252342;--muted:#787395;
@@ -114,6 +120,7 @@
   .secondary-title{font-size:15px;font-weight:900;color:#49425f;margin:3px 0 7px}
   .secondary-body{font-size:13px;line-height:1.72;color:#716a82}
   .secondary-keywords{margin-top:10px;padding-top:9px;border-top:1px solid #eeeaf4;font-size:11px;line-height:1.55;color:#9a93a8}
+  .secondary-tension-note{margin-top:10px;padding:9px 11px;border-radius:12px;background:#faf7fc;border:1px dashed #ddd4e7;color:#85788d;font-size:11px;line-height:1.6}
   .smallprint{font-size:11px;color:#9a94ac;text-align:center;line-height:1.6;margin:15px 8px 0}
   .result-signature{text-align:center;margin:22px 10px 0;color:#8d84aa}.result-signature .project{font-size:10px;letter-spacing:1.5px;font-weight:800}.result-signature .byline{font-size:11px;color:#aaa3b8;margin-top:4px}
   .btnrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.btnrow button{border-radius:15px;padding:13px 10px;font-weight:800;cursor:pointer}.save{border:0;color:#fff;background:linear-gradient(90deg,var(--r1),var(--r2))}.retry{background:#fff;color:var(--r1);border:1.5px solid var(--rline)}
@@ -238,7 +245,7 @@
     <div class="relations" id="relations"></div>
     <div class="btnrow"><button class="save" id="saveBtn">生成角色卡</button><button class="retry" id="retryBtn">重新测试</button></div>
     <div class="result-signature"><div class="project">WENWEN UNIVERSE · 30TH BIRTHDAY PROJECT</div><div class="byline">by Amor &amp; ChatGPT</div></div>
-    <div class="smallprint">本测试仅供娱乐，不构成心理测评，也不代表对真人或角色的事实性评价。</div>
+    <div class="smallprint">非官方粉丝企划 · 本测试仅供娱乐，不构成心理测评，也不代表对真人或角色的事实性评价。</div>
   </section>
 </main></div>
 <div class="toast" id="toast">角色卡已生成</div>
@@ -298,10 +305,10 @@ const questions=[
    ['那今天就算了，改天再约也行',{feng:1}],
    ['找个方便大家坐着聊的地方，继续聚就行',{lu:3}]
  ]},
- {q:'好朋友最近状态很差。',a:[
+ {q:'好朋友最近状态很差。你的第一反应更像：',a:[
    ['拉他出去做点别的，先换换心情',{bear20:1,lu:1}],
    ['问清楚发生了什么，帮他把事情理一理',{bear30:2}],
-   ['先不替他出主意，问问他自己想怎么处理',{feng:2}],
+   ['先问问他自己现在想怎么办',{feng:2}],
    ['先陪着，他什么时候想说都可以',{li:3}]
  ]},
  {q:'学一个新东西，第一天就很难。',a:[
@@ -334,15 +341,15 @@ const questions=[
    ['买个纯粹因为喜欢、平时总觉得没必要买的东西',{feng:2}],
    ['研究一下怎么花最值',{},'ren2']
  ]},
- {q:'朋友突然发来：“完了，我闯祸了。”',a:[
+ {q:'朋友突然发来：“完了，我闯祸了。”你看到消息的第一反应更接近：',a:[
    ['先把事情从头说一遍，我们看看怎么补救',{bear30:3}],
    ['你在哪？我过去找你',{li:2,bear30:1}],
-   ['先等等，这事会不会牵连到我？',{},'ren3'],
+   ['先问清楚这事有没有把我也牵进去',{},'ren3'],
    ['别一个人慌，出来走走，路上再说',{lu:2}]
  ]},
  {q:'一个团队任务没人愿意接。',a:[
    ['我没做过，我来试试',{bear20:2}],
-   ['先拆一下，看看怎么做最省事',{bear30:3}],
+   ['先拆一下，看看从哪一步开始',{bear30:3}],
    ['如果不是我的责任，我不会因为气氛就接下',{feng:3}],
    ['我先把大家叫起来，一起弄',{lu:2}]
  ]},
@@ -361,9 +368,9 @@ const profiles={
   tip:`相信自己能扛，是你的底气。<br><br>但偶尔也记得：<b>能扛，不代表非得硬扛。</b>`,
   verdict:'你最珍贵的不是无所畏惧，而是还愿意在不知道答案的时候先伸手碰一碰世界。',
   relations:{
-    friend:['陆浩宇','你负责：“试试？”<br>他负责：“走啊！”<br><br>非常容易把一个念头直接发展成支线任务。'],
-    enemy:['任明远','你：“没做过，试试呗。”<br>他：“收益呢？”<br><br>你已经走远了。'],
-    destiny:['30岁的熊艺文','你擅长开始。<br>他擅长：<b>开始以后出问题怎么办。</b><br><br>非常危险，也非常实用。']
+    friend:['陆浩宇','你负责：“试试？”<br>他负责：“走啊！”<br><br>非常容易把一个念头直接发展成支线任务。','一个想试，一个喊走。'],
+    enemy:['任明远','你：“没做过，试试呗。”<br>他：“收益呢？”<br><br>你已经走远了。','你已经出发，他还在算收益。'],
+    destiny:['30岁的熊艺文','你擅长开始。<br>他擅长：<b>开始以后出问题怎么办。</b><br><br>非常危险，也非常实用。','你负责开始，他负责解决开始以后的问题。']
   }
  },
  bear30:{
@@ -372,9 +379,9 @@ const profiles={
   tip:`你最需要防的不是不会解决。<br><br>而是：<b>看到问题，就自动觉得那是自己的题。</b><br><br>“我能解决”不等于<b>“应该由我解决”。</b>`,
   verdict:'你的力量不只是扛得住，而是总能在混乱里找到下一步。',
   relations:{
-    friend:['陆浩宇','你解决问题。<br>他解决：<b>大家已经被问题搞得没精神了怎么办。</b><br><br>一个修系统，一个重启用户。'],
-    enemy:['任明远','你：<b>“先看看这事怎么解决。”</b><br>他：<b>“先等等，这事值得我解决吗？”</b><br><br>你已经开始找下一步。<br>他还在确认投入产出。<br><br><b>系统不兼容。</b>'],
-    destiny:['风晴朗','你问：<b>“怎么做到？”</b><br>他问：<b>“我为什么要做到？”</b><br><br>你帮他把想要的东西变成现实。<br>他提醒你：<b>不是每一道题都必须做。</b>']
+    friend:['陆浩宇','你解决问题。<br>他解决：<b>大家已经被问题搞得没精神了怎么办。</b><br><br>一个修系统，一个重启用户。','你修问题，他重启气氛。'],
+    enemy:['任明远','你：<b>“先看看这事怎么解决。”</b><br>他：<b>“先等等，这事值得我解决吗？”</b><br><br>你已经开始找下一步。<br>他还在确认投入产出。<br><br><b>系统不兼容。</b>','你先想怎么解决，他先算值不值得解决。'],
+    destiny:['风晴朗','你问：<b>“怎么做到？”</b><br>他问：<b>“我为什么要做到？”</b><br><br>你帮他把想要的东西变成现实。<br>他提醒你：<b>不是每一道题都必须做。</b>','他确认想要什么，你寻找怎么做到。']
   }
  },
  feng:{
@@ -383,20 +390,20 @@ const profiles={
   tip:`保护真实的自己很重要。<br><br>但也别让保护壳最后变成另一种牢笼。<br><br>找到自己之后，<b>还可以重新走回世界。</b>`,
   verdict:'你不是从世界里撤退，你只是拒绝让世界替你决定你是谁。',
   relations:{
-    friend:['李麟','你最需要的不是：“我来告诉你应该怎么办。”<br><br>而是：<b>“你慢慢想，我还在。”</b><br><br>李麟恰好很会这个。'],
-    enemy:['季嘉轩','他：<b>“灯亮了？那就上。”</b><br>你：<b>“等等，我得先确定灯下的这个人还是不是我。”</b><br><br>一个在目光落下时进入状态。<br>一个最警惕的是：<b>目光最后替自己完成了定义。</b>'],
-    destiny:['30岁的熊艺文','你负责找到：<b>“我要什么。”</b><br>他负责：<b>“那怎么得到？”</b><br><br>非常适合一起过现实生活。']
+    friend:['李麟','你最需要的不是：“我来告诉你应该怎么办。”<br><br>而是：<b>“你慢慢想，我还在。”</b><br><br>李麟恰好很会这个。','你慢慢想，他安静地在。'],
+    enemy:['季嘉轩','他：<b>“灯亮了？那就上。”</b><br>你：<b>“等等，我得先确定灯下的这个人还是不是我。”</b><br><br>一个在目光落下时进入状态。<br>一个最警惕的是：<b>目光最后替自己完成了定义。</b>','一个把目光变成舞台，一个警惕目光变成定义。'],
+    destiny:['30岁的熊艺文','你负责找到：<b>“我要什么。”</b><br>他负责：<b>“那怎么得到？”</b><br><br>非常适合一起过现实生活。','你找方向，他找办法。']
   }
  },
  ji:{
   avatar:'季',role:'熊艺文在这个角色里呈现出的「亮」',cardRole:'熊艺文塑造季嘉轩时呈现出的「亮」',note:'这里的「季嘉轩」不是对角色完整人物设定的概括，而是取熊艺文塑造这个角色时呈现出的状态。',core:'亮',chips:['舞台','表现力','互动','临场感'],
-  body:`有些人一被很多人看着就开始掉电。<br><br>你比较像：<b>灯一开，系统启动。</b><br><br>被cue？可以。突然需要接话？可以。场子有点尴尬？<b>问题不大。</b><br><br>你很适合那种有一点不可控、需要现场反应的地方。<br><br><b>典型症状</b><br>别人：“千万别点我。”<br>你：<b>“怎么还没到我？”</b><br><br><b>隐藏技能</b><br>把“好尴尬。”变成：<b>“等等，好像还挺有节目效果。”</b>`,
-  tip:`舞台很适合你。<br><br>但没有灯的时候，<b>你也不需要一直证明自己有趣。</b>`,
+  body:`有些人一被很多人看着就开始掉电。<br><br>你比较像：<b>灯一开，系统启动。</b><br><br>被cue？可以。突然需要接话？可以。场子有点尴尬？<b>问题不大。</b><br><br>你很适合那种有一点不可控、需要现场反应的地方。<br><br><b>典型症状</b><br>别人：“突然点到我怎么办？”<br>你：<b>“行，接得住。”</b><br><br><b>隐藏技能</b><br>把“好尴尬。”变成：<b>“等等，好像还挺有节目效果。”</b>`,
+  tip:`你很会接住落过来的目光。<br><br>但没有灯的时候，<b>也不需要一直维持“在状态”。</b>`,
   verdict:'有些人不是一定需要成为中心，只是当目光真的落过来时，他知道该怎么发光。',
   relations:{
-    friend:['陆浩宇','一个擅长在台上发光。<br>一个擅长让全场活起来。<br><br>冷场碰到你们两个，<b>一般活不过三分钟。</b>'],
-    enemy:['风晴朗','你遇到目光，容易进入状态。<br>他遇到目光，会先确认：<b>自己有没有被目光改写。</b><br><br>一个把目光变成舞台。<br>一个坚持舞台不能反过来定义自己。'],
-    destiny:['20岁的熊艺文','你：<b>“我上。”</b><br>他：<b>“我试。”</b><br><br>所有人还在讨论流程。你们已经开始了。']
+    friend:['陆浩宇','一个擅长在台上发光。<br>一个擅长让全场活起来。<br><br>冷场碰到你们两个，<b>一般活不过三分钟。</b>','一个发光，一个把全场带活。'],
+    enemy:['风晴朗','你遇到目光，容易进入状态。<br>他遇到目光，会先确认：<b>自己有没有被目光改写。</b><br><br>一个把目光变成舞台。<br>一个坚持舞台不能反过来定义自己。','你把目光变成舞台，他警惕目光反过来定义自己。'],
+    destiny:['20岁的熊艺文','你：<b>“我上。”</b><br>他：<b>“我试。”</b><br><br>所有人还在讨论流程。你们已经开始了。','你说“我上”，他说“我试”。']
   }
  },
  li:{
@@ -405,9 +412,9 @@ const profiles={
   tip:`留下是一种能力。离开有时候也是。<br><br>别把<b>“我愿意守”</b>活成<b>“我只能守”。</b>`,
   verdict:'你最动人的不是等得久，而是很少随便决定谁值得你留下。',
   relations:{
-    friend:['30岁的熊艺文','你：<b>“我陪你。”</b><br>他：<b>“我看看怎么办。”</b><br><br>属于出了事很想同时拥有的两个人。'],
-    enemy:['任明远','你：<b>“这个人对我很重要。”</b><br>他：<b>“所以预期回报呢？”</b><br><br>……<br><b>无法继续对话。</b>'],
-    destiny:['风晴朗','你最大的能力是留下。<br>而他最大的课题是：<b>留下的时候还能不能保持自己。</b><br><br>理想版本不是你把他留住，而是：<b>你在，他仍然可以自由地成为自己。</b>']
+    friend:['30岁的熊艺文','你：<b>“我陪你。”</b><br>他：<b>“我看看怎么办。”</b><br><br>属于出了事很想同时拥有的两个人。','你负责陪着，他负责想办法。'],
+    enemy:['任明远','你：<b>“这个人对我很重要。”</b><br>他：<b>“所以预期回报呢？”</b><br><br>……<br><b>无法继续对话。</b>','你谈承诺，他谈投入产出。'],
+    destiny:['风晴朗','你最大的能力是留下。<br>而他最大的课题是：<b>留下的时候还能不能保持自己。</b><br><br>理想版本不是你把他留住，而是：<b>你在，他仍然可以自由地成为自己。</b>','你愿意留下，也允许他成为自己。']
   }
  },
  lu:{
@@ -416,9 +423,9 @@ const profiles={
   tip:`你很会帮别人恢复生命值。<br><br>偶尔也要允许自己：<b>今天就是没电。</b>`,
   verdict:'你的厉害不是永远开心，而是总有办法让生活重新流动起来。',
   relations:{
-    friend:['20岁的熊艺文','一个负责：<b>“有个想法。”</b><br>一个负责：<b>“走！”</b><br><br>危险程度：★★★★☆<br>快乐程度：★★★★★'],
-    enemy:['任明远','你：<b>“先动起来。”</b><br>他：<b>“先算清楚。”</b><br><br>一个怕生活停住。<br>一个怕账算不明白。'],
-    destiny:['季嘉轩','你负责把人群点燃。<br>他负责站在火里表演。<br><br><b>文文宇宙大型活动指定组合。</b>']
+    friend:['20岁的熊艺文','一个负责：<b>“有个想法。”</b><br>一个负责：<b>“走！”</b><br><br>危险程度：★★★★☆<br>快乐程度：★★★★★','一个冒出想法，一个直接喊走。'],
+    enemy:['任明远','你：<b>“先动起来。”</b><br>他：<b>“先算清楚。”</b><br><br>一个怕生活停住。<br>一个怕账算不明白。','你先想怎么让事情动起来，他先想这一步值不值得。'],
+    destiny:['季嘉轩','你负责把人群点燃。<br>他负责站在火里表演。<br><br><b>文文宇宙大型活动指定组合。</b>','你点燃人群，他站进火光里。']
   }
  },
  ren:{
@@ -427,21 +434,11 @@ const profiles={
   tip:`测到任明远，<b>不代表你就是任明远。</b><br><br>也有可能只是今天做题的时候，你的算盘珠子比较活泼。<br><br><b>友情提醒：人生不是所有项目都需要 ROI。</b><br><br>以及——<br><b>下次心动时，可以先不要打开计算器。</b>`,
   verdict:'你不是没有感情。你只是希望感情最好也能开发票。',
   relations:{
-    friend:['无。','系统正在努力匹配……<br><br>扩大搜索范围……<br><br>降低匹配标准……<br><br>……<br><br><b>匹配失败。</b>'],
-    enemy:['李麟','你：<b>“感情也得讲投入产出吧？”</b><br><br>他沉默了三秒。<br><br>然后看你的眼神，像在看一种自己从未见过的生物。<br><br><b>系统建议：不要继续解释。</b>'],
-    destiny:['20岁的熊艺文','你：<b>“先等等，这个风险有点高。”</b><br><br>他：<b>“那试试不就知道了？”</b><br><br>你负责踩刹车。<br>他负责踩油门。<br><br><b>你认为这是互补。</b><br>20岁的熊艺文可能已经嫌你算太久，自己先跑了。<br><br>理论上是完美搭档。<br>实际上——<br><b>车可能已经开沟里了。</b>']
+    friend:['无。','系统正在努力匹配……<br><br>扩大搜索范围……<br><br>降低匹配标准……<br><br>……<br><br><b>匹配失败。</b>','系统努力匹配中……匹配失败。'],
+    enemy:['李麟','你：<b>“感情也得讲投入产出吧？”</b><br><br>他沉默了三秒。<br><br>然后看你的眼神，像在看一种自己从未见过的生物。<br><br><b>系统建议：不要继续解释。</b>','你谈投入产出，他开始看不懂你这种生物。'],
+    destiny:['20岁的熊艺文','你：<b>“先等等，这个风险有点高。”</b><br><br>他：<b>“那试试不就知道了？”</b><br><br>你负责踩刹车。<br>他负责踩油门。<br><br><b>你认为这是互补。</b><br>20岁的熊艺文可能已经嫌你算太久，自己先跑了。<br><br>理论上是完美搭档。<br>实际上——<br><b>车可能已经开沟里了。</b>','你认为这是互补。他可能已经嫌你算太久，自己先跑了。']
   }
  }
-};
-
-const CARD_RELATIONS={
-  bear20:{friend:['陆浩宇','一个想试，一个喊走。'],enemy:['任明远','你已经出发，他还在算收益。'],destiny:['30岁的熊艺文','你负责开始，他负责解决开始以后的问题。']},
-  bear30:{friend:['陆浩宇','你修问题，他重启气氛。'],enemy:['任明远','你先想怎么解决，他先算值不值得解决。'],destiny:['风晴朗','他确认想要什么，你寻找怎么做到。']},
-  feng:{friend:['李麟','你慢慢想，他安静地在。'],enemy:['季嘉轩','一个把目光变成舞台，一个警惕目光变成定义。'],destiny:['30岁的熊艺文','你找方向，他找办法。']},
-  ji:{friend:['陆浩宇','一个发光，一个把全场带活。'],enemy:['风晴朗','你把目光变成舞台，他警惕目光反过来定义自己。'],destiny:['20岁的熊艺文','你说“我上”，他说“我试”。']},
-  li:{friend:['30岁的熊艺文','你负责陪着，他负责想办法。'],enemy:['任明远','你谈承诺，他谈投入产出。'],destiny:['风晴朗','你愿意留下，也允许他成为自己。']},
-  lu:{friend:['20岁的熊艺文','一个冒出想法，一个直接喊走。'],enemy:['任明远','你先想怎么让事情动起来，他先想这一步值不值得。'],destiny:['季嘉轩','你点燃人群，他站进火光里。']},
-  ren:{friend:['无','系统努力匹配中……匹配失败。'],enemy:['李麟','你谈投入产出，他开始看不懂你这种生物。'],destiny:['20岁的熊艺文','你认为这是互补。他可能已经嫌你算太久，自己先跑了。']}
 };
 
 
@@ -471,16 +468,16 @@ const SECONDARY_COMBOS={
     "card": "先确认这是自己想走的方向，再为它大胆试一次。"
   },
   "bear20_ji": {
-    "title": "先去试，眼睛已经亮了",
-    "body": "你对未知的第一反应是靠近，而不是观望。更特别的是，你的行动里常常带着明显的兴奋和期待——还没知道结果怎么样，整个人已经因为“会发生什么”而亮起来了。",
-    "keywords": "试 × 亮｜行动里自带期待感",
-    "card": "好奇就去试，而且往往还没开始，眼睛已经先亮了。"
+    "title": "先去试，碰上场面也接得住",
+    "body": "你对未知的第一反应是先靠近、先上手。更特别的是，如果这次尝试突然把你推到需要表达、回应或被看见的位置上，你也不太容易缩回去——事情既然已经开始了，那就顺势把这一场接住。",
+    "keywords": "试 × 亮｜先上手，到了场上也接得住",
+    "card": "先去试；真到了需要表达和回应的时候，也能顺势接住。"
   },
   "ji_bear20": {
-    "title": "一被点亮，就忍不住往前走",
-    "body": "真正推动你的，往往是某个瞬间突然被点燃的兴趣、兴奋或表达欲。一旦心里亮起来，你很难只停在“觉得有意思”——会自然靠近、上手、亲自试试看。",
-    "keywords": "亮 × 试｜兴致一来，行动马上跟上",
-    "card": "先被一件事点亮，然后很快就会亲自去试。"
+    "title": "一进入状态，就想亲自试试",
+    "body": "目光、互动或临场反应一来，你很容易先进入状态。但你又不满足于只把这一刻“接过去”——只要觉得有意思，就会从表达走向行动，想亲自碰一碰、试一遍。",
+    "keywords": "亮 × 试｜先进入状态，再亲自上手",
+    "card": "一进入互动状态，很快就会从“我来接”走到“我来试”。"
   },
   "bear20_li": {
     "title": "先冲出去，也会回头看人还在不在",
@@ -519,16 +516,16 @@ const SECONDARY_COMBOS={
     "card": "先认准自己要去哪里，再把现实里的阻碍一件件处理掉。"
   },
   "bear30_ji": {
-    "title": "把局面接住，也把灯重新点起来",
-    "body": "事情卡住时，你会很快进入“现在怎么办”的状态：找原因、找入口、把局面重新推起来。但你处理问题并不一定沉重，有时甚至能顺手把人的状态和气氛一起带回来。",
-    "keywords": "解 × 亮｜解决卡点，也重新点亮状态",
-    "card": "能把卡住的事情接起来，也能把场面的光重新点回来。"
+    "title": "先把局面理顺，需要出声时也接得住",
+    "body": "事情卡住时，你首先会找问题、找入口、把局面往前推。可如果解决这件事还需要有人站出来说明、回应或稳住场面，你也不太会躲——该处理问题时处理问题，该接住目光时也能接住。",
+    "keywords": "解 × 亮｜先解决卡点，需要时进入表达",
+    "card": "先把问题往前推；需要有人出声时，也能把场面接住。"
   },
   "ji_bear30": {
-    "title": "看起来轻快，真碰到事却很会处理",
-    "body": "你首先让人看到的往往是轻松、明亮和进入状态的能力。但真正碰到麻烦时，你并不会只靠气氛撑过去——该找原因就找原因，该换方案就换方案。",
-    "keywords": "亮 × 解｜表面轻，遇事却有办法",
-    "card": "第一眼很轻快，真正卡住时却很会找办法。"
+    "title": "场面接得住，问题也处理得了",
+    "body": "你首先表现出来的是很会接话、回应和进入临场状态。但如果热闹背后真的有个问题，你并不会只把场面圆过去——该找原因就找原因，该换方案就换方案。",
+    "keywords": "亮 × 解｜先接住场面，再处理问题",
+    "card": "先把当下的互动接住，真有问题时也会继续找办法。"
   },
   "bear30_li": {
     "title": "问题要解决，人也不能落下",
@@ -555,16 +552,16 @@ const SECONDARY_COMBOS={
     "card": "先让事情跑起来，遇到卡点再一路调整。"
   },
   "feng_ji": {
-    "title": "不用迎合，也依然会发光",
-    "body": "你最舒服的状态不是拼命让所有人看见，而是在不违背自己的时候自然亮起来。你的光不是表演出来的，更像一个人终于站在适合自己的位置上以后，自然而然有了颜色。",
-    "keywords": "归 × 亮｜先做自己，再自然发光",
-    "card": "不用迎合谁，站在适合自己的位置上就会自然亮起来。"
+    "title": "站在自己的位置上，才愿意亮起来",
+    "body": "你不会为了“被看见”本身去迎合一个不属于自己的位置。可一旦确认这是你愿意表达的、也不违背自己的东西，目光落过来时你并不会躲——你可以在自己的位置上把这一刻好好接住。",
+    "keywords": "归 × 亮｜先认同自己，再进入表达",
+    "card": "先确认这是自己的位置；确认以后，目光来了也能自然接住。"
   },
   "ji_feng": {
-    "title": "发光的人，也想有不用发光的地方",
-    "body": "你很容易在人群、表达和互动里亮起来，但你并不想永远保持“被看见”的状态。真正珍贵的，是有些地方允许你把光收起来，也仍然可以自然地做自己。",
-    "keywords": "亮 × 归｜会发光，也需要回到自己",
-    "card": "很会亮起来，也珍惜那些不用一直亮着的地方。"
+    "title": "能接住目光，也知道什么时候把它放下",
+    "body": "你很会在人群、表达和临场互动里进入状态，但你并不想让这种“被看见的自己”变成全部。灯亮时可以好好表现，灯灭以后，你仍然会把自己从角色和目光里领回来。",
+    "keywords": "亮 × 归｜会进入状态，也会回到自己",
+    "card": "目光来了能进入状态，结束以后也知道怎么回到自己。"
   },
   "feng_li": {
     "title": "想回来的地方，被人一点点守成了家",
@@ -591,28 +588,28 @@ const SECONDARY_COMBOS={
     "card": "喜欢到处吹风，也知道什么地方是真正适合自己的。"
   },
   "ji_li": {
-    "title": "看起来轻，关键时候却不轻",
-    "body": "你给人的第一感觉可能是明亮、松快，甚至带一点少年气。但真的碰到重要的人和事时，你并不会一直轻轻带过——该站住的时候，你很能站住。",
-    "keywords": "亮 × 守｜轻盈是气质，可靠藏在后面",
-    "card": "看起来很轻快，真正重要的时候却会稳稳站住。"
+    "title": "场上接得住，重要的人也守得住",
+    "body": "你很会在需要表达、回应或临场反应的时候站出来，但这种“亮”并不会让你只顾着自己表现。真的碰到重要的人和事，你仍然会把关系放在心上，该留下的时候也站得住。",
+    "keywords": "亮 × 守｜会表达，也会留下",
+    "card": "需要回应时能站出来，真正重要的时候也会稳稳留下。"
   },
   "li_ji": {
-    "title": "替一束光挡一点风",
-    "body": "你的第一反应往往是把重要的人和东西护住，但这种守护并不一定沉重。你很愿意替别人兜一点底，也希望被你守住的那部分生活还能继续鲜活、明亮。",
-    "keywords": "守 × 亮｜可靠里留着柔软和光",
-    "card": "会替重要的人挡一点风，也想让那束光继续亮着。"
+    "title": "守在后面，也能为重要的人站到前面",
+    "body": "你的第一反应通常是先守住重要的人和关系。但如果守护这件事需要有人出声、回应、站到更显眼的位置上，你也不会一直躲在后面——必要的时候，你愿意替重要的人把这一场接下来。",
+    "keywords": "守 × 亮｜先守住，再在需要时站出来",
+    "card": "平时先守着；如果重要的人需要，你也愿意站出来接住场面。"
   },
   "ji_lu": {
-    "title": "你一亮，场子也跟着活起来",
-    "body": "你的明亮很容易向外传。一个话题、一个反应、一个突然冒出来的点子，都可能被你变成新的互动。你不是自己开心就结束，而是很容易把整片气氛一起带起来。",
-    "keywords": "亮 × 活｜自己的光会变成全场的活气",
-    "card": "你一进入状态，很容易连周围的人和气氛一起带活。"
+    "title": "你一进入状态，场子也跟着活起来",
+    "body": "你很会把一个话题、一次回应、一个临时冒出来的点子接成新的互动。你不是只完成自己的表达就结束，而是容易让周围的人也接上来，于是整个场子一起流动起来。",
+    "keywords": "亮 × 活｜进入表达，也把互动带起来",
+    "card": "你一进入互动状态，很容易连周围的人和气氛一起带活。"
   },
   "lu_ji": {
-    "title": "世界先把你逗活，你再亮起来",
-    "body": "你首先是很容易被生活里的细节勾起兴趣：奇怪的小事、新鲜的东西、突然冒出来的念头。兴致一起来，你整个人就会明显亮起来，连普通的日子都像多了一点光。",
-    "keywords": "活 × 亮｜先起兴，再发光",
-    "card": "先被好玩的东西勾起兴致，然后整个人就亮起来了。"
+    "title": "场子先活起来，你也跟着进入状态",
+    "body": "你首先会被人群里的活气、好玩的细节和突然冒出来的新东西带动。等气氛一起来，如果需要有人接话、回应或把互动继续往前推，你很容易顺势进入状态。",
+    "keywords": "活 × 亮｜先起兴，再进入表达",
+    "card": "先被场子里的活气带动，然后很自然地接进互动里。"
   },
   "li_lu": {
     "title": "先把底托住，再把日子过活",
@@ -668,7 +665,7 @@ $('#startBtn').onclick=()=>{idx=0;answers=[];optionOrders=questions.map(q=>shuff
 $('#backBtn').onclick=()=>{if(answerLocked)return;if(idx===0){show('home');return;} rebuild(idx-1);};
 function rebuild(target){idx=0;scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();answerLocked=false;const prev=answers.slice(0,target);answers=prev.slice();prev.forEach((choice,i)=>applyChoice(i,choice,false));idx=target;renderQ();}
 function applyChoice(qi,ai,save=true){const item=questions[qi].a[ai];const pts=item[1]||{};Object.keys(pts).forEach(k=>scores[k]=(scores[k]||0)+pts[k]);if(item[2])marks.add(item[2]);if(save)answers[qi]=ai;}
-function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';const order=optionOrders[idx]||Array.from({length:q.a.length},(_,i)=>i);order.forEach((originalIndex,displayIndex)=>{const a=q.a[originalIndex];const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[displayIndex]}</span>${a[0]}`;b.onclick=()=>{if(answerLocked)return;answerLocked=true;applyChoice(idx,originalIndex,true);setTimeout(()=>{idx++;if(idx>=questions.length)finish();else renderQ();answerLocked=false;},140);};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
+function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=(((idx+1)/total)*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';const order=optionOrders[idx]||Array.from({length:q.a.length},(_,i)=>i);order.forEach((originalIndex,displayIndex)=>{const a=q.a[originalIndex];const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[displayIndex]}</span>${a[0]}`;b.onclick=()=>{if(answerLocked)return;answerLocked=true;applyChoice(idx,originalIndex,true);setTimeout(()=>{idx++;if(idx>=questions.length)finish();else renderQ();answerLocked=false;},140);};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
 function pointsFor(k,qi){
   const ai=answers[qi];
   if(ai===undefined) return 0;
@@ -710,6 +707,8 @@ function buildRanking(){
   return ranked;
 }
 function jiCoreHits(){return [1,6,7].reduce((n,qi)=>n+(pointsFor('ji',qi)>0?1:0),0);}
+function isMainEligible(k){return k!=='ji'||jiCoreHits()>=2;}
+function pickMainEligible(ranked){return ranked.find(x=>isMainEligible(x.k))||ranked[0];}
 function finish(){
   const hidden=['ren1','ren2','ren3'].every(x=>marks.has(x));
   const ranked=buildRanking();
@@ -717,8 +716,7 @@ function finish(){
   if(hidden){
     key='ren';
   }else{
-    const top=ranked[0].k;
-    key=(top==='ji'&&jiCoreHits()<2)?ranked.find(x=>x.k!=='ji').k:top;
+    key=pickMainEligible(ranked).k;
   }
   renderResult(key,ranked);
 }
@@ -730,17 +728,20 @@ function renderResult(key,ranked){
   const r=p.relations;
   const relationHasJi=[r.friend[0],r.enemy[0],r.destiny[0]].includes('季嘉轩');
   const note=$('#profileNote');
-  const provisionalSecondary=key==='ren'?ranked[0]?.k:ranked.find(x=>x.k!==key)?.k;
+  const renNormal=key==='ren'?pickMainEligible(ranked):null;
+  const provisionalSecondary=key==='ren'?renNormal?.k:ranked.find(x=>x.k!==key)?.k;
   const hasJi=key==='ji'||provisionalSecondary==='ji'||relationHasJi;
   if(hasJi){note.textContent=JI_FOOTNOTE;note.classList.add('show');}else{note.textContent='';note.classList.remove('show');}
   $('#relations').innerHTML=`<div class="relation-card"><div class="rlabel">BEST FRIEND · 最佳好友</div><div class="rname">${markJiName(r.friend[0])}</div><div class="rtext">${r.friend[1]}</div></div><div class="relation-card enemy"><div class="rlabel">NEMESIS · 宇宙天敌</div><div class="rname">${markJiName(r.enemy[0])}</div><div class="rtext">${r.enemy[1]}</div></div><div class="relation-card destiny"><div class="rlabel">DESTINY · 宿命搭子</div><div class="rname">${markJiName(r.destiny[0])}</div><div class="rtext">${r.destiny[1]}</div></div>`;
   if(key==='ren'){
-    const normal=ranked[0],st=THEMES[normal.k];root.style.setProperty('--s1',st[0]);root.style.setProperty('--ssoft',st[2]);root.style.setProperty('--sline',st[3]);
+    const normal=renNormal,st=THEMES[normal.k];root.style.setProperty('--s1',st[0]);root.style.setProperty('--ssoft',st[2]);root.style.setProperty('--sline',st[3]);
     $('#secondaryMatch').innerHTML=`<div class="secondary-kicker">NORMAL MODE · 如果暂时关闭 Excel…</div><div class="secondary-head"><div class="secondary-person">${displayName(normal.k)} · <em>${profiles[normal.k].core}</em></div></div><div class="secondary-body">${REN_NORMAL_COPY[normal.k]||`系统重新计算后发现，你原本最接近的是${displayName(normal.k)}。`}</div>`;
     currentResultContext={key,secondaryKey:normal.k,ranked};
   }else{
     const sec=ranked.find(x=>x.k!==key),combo=SECONDARY_COMBOS[`${key}_${sec.k}`],st=THEMES[sec.k];root.style.setProperty('--s1',st[0]);root.style.setProperty('--ssoft',st[2]);root.style.setProperty('--sline',st[3]);
-    $('#secondaryMatch').innerHTML=`<div class="secondary-kicker">SECONDARY SIGNAL · 第二轨道</div><div class="secondary-head"><div class="secondary-person">${displayName(sec.k)} · <em>${profiles[sec.k].core}</em></div><div class="secondary-combo">${p.core} × ${profiles[sec.k].core}</div></div><div class="secondary-title">「${combo.title}」</div><div class="secondary-body">${combo.body}</div><div class="secondary-keywords">${combo.keywords}</div>`;
+    const enemyKey=Object.keys(NAMES).find(k=>NAMES[k]===r.enemy[0]);
+    const tensionNote=sec.k===enemyKey?'<div class="secondary-tension-note">SYSTEM NOTE · 你最容易被惹到的那一面，可能刚好也住在你自己身上。</div>':'';
+    $('#secondaryMatch').innerHTML=`<div class="secondary-kicker">SECONDARY SIGNAL · 第二轨道</div><div class="secondary-head"><div class="secondary-person">${displayName(sec.k)} · <em>${profiles[sec.k].core}</em></div><div class="secondary-combo">${p.core} × ${profiles[sec.k].core}</div></div><div class="secondary-title">「${combo.title}」</div><div class="secondary-body">${combo.body}</div><div class="secondary-keywords">${combo.keywords}</div>${tensionNote}`;
     currentResultContext={key,secondaryKey:sec.k,ranked};
   }
   show('result');
@@ -782,7 +783,7 @@ async function buildPoster(){
   const key=currentResultContext.key||Object.keys(NAMES).find(k=>displayName(k)===$('#resultName').textContent);
   if(!key)throw new Error('没有找到当前角色');
   const secondaryKey=currentResultContext.secondaryKey;
-  const p=profiles[key],theme=THEMES[key]||THEMES.ji, rel=CARD_RELATIONS[key]||{}, secTheme=secondaryKey?(THEMES[secondaryKey]||theme):theme;
+  const p=profiles[key],theme=THEMES[key]||THEMES.ji, rel=p.relations||{}, secTheme=secondaryKey?(THEMES[secondaryKey]||theme):theme;
   const posterHasJi=key==='ji'||secondaryKey==='ji'||Object.values(rel).some(d=>d&&d[0]==='季嘉轩');
   const combo=(key!=='ren'&&secondaryKey)?SECONDARY_COMBOS[`${key}_${secondaryKey}`]:null;
   const c=$('#poster'),ctx=c.getContext('2d');
@@ -848,7 +849,7 @@ async function buildPoster(){
     ctx.fillStyle=theme[0];ctx.font=`800 18px ${font}`;ctx.fillText(item.label,cardX[i]+24,cardY+38);
     ctx.fillStyle='#8d84aa';ctx.font=`22px ${font}`;ctx.fillText(item.title,cardX[i]+24,cardY+70);
     ctx.fillStyle='#2f294d';ctx.font=`800 28px ${font}`;wrapText(ctx,markJiName(d[0]),cardX[i]+24,cardY+116,cardW-48,36,2);
-    ctx.fillStyle='#68617c';ctx.font=`23px ${font}`;wrapText(ctx,d[1],cardX[i]+24,cardY+168,cardW-48,34,5);
+    ctx.fillStyle='#68617c';ctx.font=`23px ${font}`;wrapText(ctx,d[2]||d[1].replace(/<[^>]+>/g,' '),cardX[i]+24,cardY+168,cardW-48,34,5);
   });
 
   if(key==='ren'){
@@ -864,7 +865,7 @@ async function buildPoster(){
   ctx.strokeStyle=theme[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(120,1885);ctx.lineTo(960,1885);ctx.stroke();
   ctx.fillStyle='#8d84aa';ctx.font=`700 22px ${font}`;ctx.fillText('WENWEN UNIVERSE · 30TH BIRTHDAY PROJECT',120,1937);
   ctx.fillStyle='#aaa3b8';ctx.font=`21px ${font}`;ctx.fillText('by Amor & ChatGPT',120,1977);
-  ctx.textAlign='right';ctx.fillStyle='#b1abbc';ctx.font=`20px ${font}`;ctx.fillText('本测试仅供娱乐',960,1977);
+  ctx.textAlign='right';ctx.fillStyle='#b1abbc';ctx.font=`17px ${font}`;ctx.fillText('非官方粉丝企划 · 仅供娱乐 · 非心理测评/事实性评价',960,1977);
   ctx.textAlign='left';
   return {blob:await canvasToBlob(c),filename:'文文宇宙-'+NAMES[key]+'.png'};
 }
