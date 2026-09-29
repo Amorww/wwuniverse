@@ -276,8 +276,8 @@ const THEMES={
 const questions=[
  {q:'明天突然多出一天假。',a:[
    ['出门再说',{bear20:2}],
-   ['把拖着的事清掉',{bear30:2}],
-   ['做件自己一直想做、别人未必懂的事',{feng:2}],
+   ['正好把最近堆着的事情处理掉',{bear30:2}],
+   ['挑件纯粹因为自己想做的事，好好过这一天',{feng:2}],
    ['抓个人一起出去',{lu:2}]
  ]},
  {q:'突然被人 cue 上台。',a:[
@@ -310,11 +310,11 @@ const questions=[
    ['换个学法，不一定非照标准答案来',{feng:2}],
    ['拉个人一起练',{lu:2}]
  ]},
- {q:'别人对你的评价，和你自己认识的自己差很多。',a:[
-   ['随他们，我继续做我的',{bear20:1}],
-   ['看看有没有具体问题值得改',{bear30:2}],
-   ['那是他们眼里的我，不是我的定义',{feng:4}],
-   ['如果在公开场合，就用表现说话',{ji:3}]
+ {q:'你认真做了一阵子的东西，有人评价：“这好像不太适合你。”',a:[
+   ['那就再多做几次看看，适不适合做了才知道',{bear20:1}],
+   ['问问他具体觉得哪里不合适，看看有没有能调整的地方',{bear30:2}],
+   ['我会听，但要不要继续，还是按我自己的感觉来',{feng:4}],
+   ['比起解释，我更想找机会直接做给大家看',{ji:3}]
  ]},
  {q:'你提前到了聚会地点，活动还没开始，还有二十分钟空档。',a:[
    ['到处看看，有什么没见过的就去研究一下',{bear20:1,lu:1}],
@@ -322,16 +322,16 @@ const questions=[
    ['找个舒服的位置待着，等开始就好',{feng:1}],
    ['主动和旁边的人聊起来，让大家先熟络一点',{ji:3,lu:1}]
  ]},
- {q:'很重要的人临时需要你，但你本来已经有安排。',a:[
-   ['看能不能两边都兼顾',{bear30:2}],
-   ['如果他真的需要，我留下',{li:3}],
-   ['先看这是不是我愿意承担的',{feng:2}],
-   ['能不能拉他一起走？',{lu:2}]
+ {q:'一场聚会结束了，有人问：“还续吗？”',a:[
+   ['先看看现在几点、去哪方便，再决定要不要继续',{bear30:2}],
+   ['如果我在意的人还不想走，我会留下陪他',{li:3}],
+   ['我想回去了就先走，大家继续玩也没关系',{feng:2}],
+   ['还早啊，再找个地方继续玩',{lu:2}]
  ]},
  {q:'突然多了500块。',a:[
    ['去体验个没试过的东西',{bear20:2}],
-   ['买个最近真正需要的东西',{bear30:2}],
-   ['买个自己喜欢、别人可能觉得没用的东西',{feng:2}],
+   ['拿去补一个最近正好要买的东西',{bear30:2}],
+   ['买个纯粹因为喜欢、平时总觉得没必要买的东西',{feng:2}],
    ['研究一下怎么花最值',{},'ren2']
  ]},
  {q:'朋友突然发来：“完了，我闯祸了。”',a:[
@@ -446,38 +446,38 @@ const CARD_RELATIONS={
 
 
 const SECONDARY_COMBOS={
-  'bear20_bear30':{title:'还敢试，但已经开始看懂',body:'你最先出现的反应依然是：去试，去做，先走出去再说。只是你已经不像纯粹的少年那样只凭一股劲——你会复盘，会理解，会慢慢知道自己为什么出发。',keywords:'试 × 解｜行动之后，会回头理解自己',card:'先去试，也会在行动之后慢慢看懂自己。'},
+  'bear20_bear30':{title:'先试起来，再把问题一个个解掉',body:'你的第一反应还是去碰、去做、先迈出去。只是现在的你不会一直凭着一股劲往前冲——遇到卡点，会停下来看看哪里出了问题，再换个办法继续。',keywords:'试 × 解｜先上手，再找办法',card:'先上手，卡住了就找问题、换办法继续。'},
   'bear20_feng':{title:'往外闯的人，心里也藏着归处',body:'你身上最强的是向未知伸手的冲动，但你并不是为了漂泊而漂泊。越往外走，你反而越清楚自己真正想回到什么地方、什么关系、什么样的生活里。',keywords:'试 × 归｜出发，是为了找到自己的方向',card:'向未知伸手，也越来越清楚自己真正想回到哪里。'},
   'bear20_ji':{title:'少年心气，自带高光',body:'你的“试”不是苦大仇深的孤勇，而是带着一点兴奋、一点好奇、一点“那我来看看会发生什么”的明亮。别人首先看到的，往往不是你的野心，而是你眼睛里那种还肯相信事情会变好的光。',keywords:'试 × 亮｜敢往前，也敢期待',card:'敢往前，也敢期待事情会变好。'},
   'bear20_li':{title:'冲出去的人，也会回头护住别人',body:'你敢冒险、敢承担，但你真正放不下的常常不是输赢，而是身后的人。你可以是第一个往前走的人，也很容易变成那个最后确认所有人都跟上的人。',keywords:'试 × 守｜锋芒外露，责任藏在里面',card:'冲得出去，也会回头确认重要的人都跟上。'},
   'bear20_lu':{title:'人生先试玩一下',body:'你对未知的态度不是谨慎观察，而是上手。你容易被新鲜事点燃，也很擅长把本来严肃的事情弄出一点趣味——不是没有压力，只是不愿意让压力夺走行动的兴致。',keywords:'试 × 活｜边走边玩，边玩边长大',card:'好奇就上手，不让压力夺走行动的兴致。'},
 
-  'bear30_bear20':{title:'看懂很多以后，还是愿意再试一次',body:'你的底色已经是理解和消化：你会看见事情的复杂，也知道很多问题没有简单答案。但你身上还留着一块很珍贵的地方——即使知道可能失败，仍然愿意重新伸手。',keywords:'解 × 试｜清醒没有杀死勇气',card:'看懂复杂以后，依然愿意再伸手试一次。'},
-  'bear30_feng':{title:'理解以后，选择安放',body:'你不是因为没见过复杂才平静，而是见过以后，越来越知道什么值得留下。比起证明自己，你更在意把生活重新放回适合自己的位置。',keywords:'解 × 归｜不是退回去，是终于知道哪里值得停留',card:'理解复杂以后，更知道什么值得留下。'},
-  'bear30_ji':{title:'清醒里，还亮着一盏灯',body:'你能理解灰度，却没有因此变得灰暗。成熟给了你分寸，另一部分的你却依然会为很小的事情高兴、认真、起兴。',keywords:'解 × 亮｜懂复杂，也保留明亮',card:'懂得灰度，却仍保留对小事起兴的能力。'},
-  'bear30_li':{title:'因为懂，所以更愿意守',body:'你的可靠并不是机械的责任感。你往往先试着理解一个人为什么会这样、事情为什么会走到这里，然后才决定自己要站在哪里。',keywords:'解 × 守｜理解不是旁观，而是更准确地承担',card:'先理解，再决定怎样更准确地承担。'},
-  'bear30_lu':{title:'什么都懂一点，还是很好玩',body:'你不是无忧无虑，而是有一种很特别的恢复力：理解复杂之后，依旧能重新对生活发生兴趣。该想的时候想，该玩的时候也真的能玩进去。',keywords:'解 × 活｜成熟不是把兴致磨掉',card:'想得明白，也还能真的玩进去。'},
+  'bear30_bear20':{title:'知道怎么解，也还是愿意试',body:'你习惯先找问题出在哪里、下一步能做什么。但你并不会等到所有条件都完美才行动；有些答案，本来就是试出来的。',keywords:'解 × 试｜有办法就做，没把握也敢试',card:'习惯先找办法，也不会等万事俱备才行动。'},
+  'bear30_feng':{title:'会解决问题，也知道什么不必解决',body:'你很容易看见一件事还能怎么处理、局面还能怎么往前推。但另一部分的你也在提醒自己：不是所有出现的问题都自动属于你，有些时候，选择不接也是答案。',keywords:'解 × 归｜找办法，也守住自己的边界',card:'会解决问题，也知道不是每个问题都该由自己接。'},
+  'bear30_ji':{title:'局面再乱，也能把灯重新点起来',body:'事情卡住时，你会自然开始找突破口、想下一步；但你解决问题的方式并不总是沉重的。很多时候，你还能顺手把气氛、状态和人的劲儿一起带回来。',keywords:'解 × 亮｜处理问题，也让场面重新亮起来',card:'能把问题往前推，也能顺手把状态重新点亮。'},
+  'bear30_li':{title:'不只陪着，也会一起想办法',body:'重要的人遇到问题时，你很难只站在旁边说“我在”。你会留下，但留下之后往往还会继续问：现在能做什么？哪一步可以先解决？',keywords:'解 × 守｜留下来，然后一起把事情处理掉',card:'会留下，也会继续问：现在能先解决什么？'},
+  'bear30_lu':{title:'卡住了就换个办法，日子照样往前',body:'你遇到问题不会轻易原地耗着：这条路不通，就换一条；这个方案不行，就再试一个。更难得的是，你不太愿意让“解决问题”把整个人搞得苦大仇深。',keywords:'解 × 活｜事情要处理，兴致也不用丢',card:'路不通就换一条，解决问题也不丢掉兴致。'},
 
   'feng_bear20':{title:'有归处的人，也会突然出发',body:'你的核心需要稳定、真实和归属，但安定并不意味着停滞。只要确认了自己真正珍惜什么，你反而会有勇气为了它去冒险。',keywords:'归 × 试｜心有所归，所以敢往外走',card:'心有所归，所以反而敢为重要的东西往外走。'},
-  'feng_bear30':{title:'安定，是想明白之后的选择',body:'你不是天然与世界和解，而是会经历理解、筛选和取舍。最后留下来的东西可能不多，但会非常确定。',keywords:'归 × 解｜越理解自己，越知道该回哪里',card:'理解、筛选、取舍以后，留下来的会更确定。'},
+  'feng_bear30':{title:'知道自己要什么以后，就开始想怎么做到',body:'你首先在意的是这是不是你真正想走的方向。一旦答案确定下来，你就不会只停在“我想要”——会开始处理现实条件，把想要的生活一点点变成能落地的东西。',keywords:'归 × 解｜先确定方向，再解决怎么抵达',card:'先确定自己要什么，再把现实条件一点点处理好。'},
   'feng_ji':{title:'晴天本身就会发光',body:'你给人的舒服感不是沉静到没有波澜，而是一种柔软的明亮。你容易让人产生“这里可以待一会儿”的感觉，同时又不会让生活失去颜色。',keywords:'归 × 亮｜温柔、安稳，但不黯淡',card:'安稳并不黯淡，你的归处也带着柔软的光。'},
   'feng_li':{title:'把一个地方变成可以放心回来的地方',body:'你最强的能力可能不是冲锋，而是让关系有落点。你的“守”让归属不再只是感觉，而变成一种实际存在：有人记得、有人接住、有人还在那里。',keywords:'归 × 守｜家的感觉，是被一点点做出来的',card:'你把归属变成实际存在：有人记得、有人接住。'},
   'feng_lu':{title:'家里也可以长出风',body:'你既需要归属，又不喜欢被归属困住。理想状态不是永远安静地待在原地，而是有一个可以回来、也允许你随时出去玩的地方。',keywords:'归 × 活｜稳定与自由并不矛盾',card:'有地方可回，也允许自己随时出去吹风。'},
 
   'ji_bear20':{title:'亮着亮着，就往前冲了',body:'你身上的明亮不是静态气质，而是会转化成行动。喜欢就靠近，好奇就去看，觉得值得就愿意试一次。',keywords:'亮 × 试｜光不是装饰，是发动机',card:'你的明亮会变成行动：喜欢就靠近，好奇就去看。'},
-  'ji_bear30':{title:'明亮，但并不单薄',body:'第一眼看你可能很轻、很亮，但真正靠近以后，会发现里面有比表面更多的理解和分寸。你的可贵之处不在于“不知道黑暗”，而在于知道以后仍没有完全失去光。',keywords:'亮 × 解｜轻盈下面有重量',card:'轻盈下面有理解和分寸，知道黑暗也没有失去光。'},
+  'ji_bear30':{title:'看起来轻快，真碰到事却很会处理',body:'你给人的第一印象可能是亮、松、很会进入状态，但真正遇到卡点时，你并不会只靠气氛撑过去。该找原因的时候找原因，该换方案的时候换方案。',keywords:'亮 × 解｜表面轻盈，遇事有办法',card:'看起来轻快，真遇到卡点却很会找办法。'},
   'ji_feng':{title:'一束想落进人间的光',body:'你的明亮最后会寻找一个可以安放自己的地方。比起永远成为人群里最闪的那一个，你其实更珍惜能够自然做自己、安心待着的关系。',keywords:'亮 × 归｜发光，也想有地方落下来',card:'发光之外，你也珍惜能自然做自己的地方。'},
   'ji_li':{title:'少年气里藏着担当',body:'你看起来可能比实际年龄更轻、更松，但真正遇到重要的人和事，却很难彻底袖手旁观。轻盈是你的气质，可靠则藏在后面。',keywords:'亮 × 守｜看起来轻，关键时刻却不轻',card:'看起来轻，真正重要的时候却很难袖手旁观。'},
   'ji_lu':{title:'快乐还会自己拐弯',body:'这是六组里“起兴能力”很强的一种组合。你容易被奇怪的小事吸引，也很容易从一个念头跳到另一个念头，世界在你这里经常还有新玩法。',keywords:'亮 × 活｜好奇、灵动、很容易被生活逗笑',card:'好奇、灵动，很容易把平常日子重新玩出意思。'},
 
   'li_bear20':{title:'我守着，但必要的时候我也会往前冲',body:'你的第一原则通常是“不把重要的东西弄丢”。但当守护需要行动时，你并不会一直停在后方——该冒险的时候，你反而可能比别人更果断。',keywords:'守 × 试｜责任感也可以很有锋芒',card:'守护需要行动时，你会比想象中更果断。'},
-  'li_bear30':{title:'稳，不是因为迟钝',body:'你很少只凭冲动承担什么。你的可靠往往来自判断：理解局势、看清代价，然后仍然决定留下。',keywords:'守 × 解｜知道重量以后依然接住',card:'看清代价以后，仍然决定留下。'},
+  'li_bear30':{title:'留下来，不等于只陪着',body:'你的第一反应通常是先守住重要的人和关系。但真正留下以后，你也很难什么都不做——你会开始找办法、补漏洞、处理眼前能处理的事。',keywords:'守 × 解｜先不走，再一起解决',card:'先留下，再和重要的人一起把眼前问题处理掉。'},
   'li_feng':{title:'最像家的那一种守',body:'你不一定擅长制造戏剧性的瞬间，却很擅长让重要的东西持续存在。对你而言，陪伴不是一句承诺，而是很多不起眼的小动作。',keywords:'守 × 归｜长期、稳定、有落点',card:'你把陪伴做成很多不起眼、但持续存在的小动作。'},
   'li_ji':{title:'替一束光挡一点风',body:'你的守护并不沉重，里面有很柔软的一部分。你尤其容易珍惜那些鲜活、明亮、让你觉得值得保护的东西。',keywords:'守 × 亮｜可靠里藏着温柔',card:'你的可靠里藏着很柔软的珍惜。'},
   'li_lu':{title:'靠谱，但绝对不无聊',body:'你身上同时存在两套系统：一套负责把事情兜住，一套负责把日子过活。别人以为你只是稳，熟了以后才会发现你其实很会给生活找乐子。',keywords:'守 × 活｜该扛的时候扛，该玩的时候玩',card:'该扛的时候扛，该玩的时候也真的会玩。'},
 
   'lu_bear20':{title:'先去看看再说',body:'你对世界的第一反应往往是兴趣，而兴趣很快就会变成行动。别人还在评估值不值得，你可能已经走过去摸了一下。',keywords:'活 × 试｜好奇心直接连接行动力',card:'兴趣一出现，很快就会变成行动。'},
-  'lu_bear30':{title:'会玩的人，也很会懂',body:'你的鲜活不是没心没肺。真正碰到重要的事，你其实会想得很深，只是不喜欢把所有深度都写在脸上。',keywords:'活 × 解｜表面松快，内里有理解力',card:'表面松快，真正重要的事你其实会想得很深。'},
+  'lu_bear30':{title:'先让事情动起来，再一路修正',body:'你通常不会在原地分析太久，先把人和事情带起来更重要。但这并不代表你只凭兴致往前冲；哪里不顺，你会很快换办法，把局面重新接上。',keywords:'活 × 解｜先动起来，卡住了再解',card:'先让事情动起来，哪里不顺就一路修正。'},
   'lu_feng':{title:'自由，但知道自己会回来',body:'你需要变化、趣味和空间，却并不排斥稳定。真正适合你的归属从来不是一根绳子，而是一扇一直可以推开的门。',keywords:'活 × 归｜出去玩，也拥有回来的方向',card:'你喜欢自由，也知道自己会往哪里回来。'},
   'lu_ji':{title:'世界怎么还有这么多好玩的东西',body:'这是很高浓度的“鲜活型”组合。你容易起兴、容易被细节吸引，也常常能把平平无奇的东西重新看出一点意思。',keywords:'活 × 亮｜世界在你这里很少彻底无聊',card:'你很容易起兴，也很会把普通东西重新看出意思。'},
   'lu_li':{title:'玩归玩，该接住的时候会接住',body:'你喜欢自由，不喜欢把自己搞得太沉重，但这并不意味着没有责任感。真正到了重要时刻，你往往会突然变得很可靠。',keywords:'活 × 守｜松弛是表面，底下其实有底线',card:'喜欢自由不代表没责任，关键时刻你很能接住。'}
@@ -510,6 +510,7 @@ const PAIR_CORE={
 };
 const DEFAULT_ORDER=['bear20','bear30','feng','ji','li','lu'];
 let idx=0, answers=[], optionOrders=[], scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0}, marks=new Set();
+let answerLocked=false;
 let currentResultContext={key:null,secondaryKey:null,ranked:[]};
 const $=s=>document.querySelector(s);
 document.body.classList.add('home-mode');
@@ -518,11 +519,11 @@ $('#howBtn').onclick=()=>{$('#howBox').classList.add('show');$('#howBox').setAtt
 $('#howClose').onclick=()=>{$('#howBox').classList.remove('show');$('#howBox').setAttribute('aria-hidden','true');};
 $('#howBox').onclick=e=>{if(e.target===$('#howBox'))$('#howClose').click();};
 function shuffledOrder(n){const a=Array.from({length:n},(_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-$('#startBtn').onclick=()=>{idx=0;answers=[];optionOrders=questions.map(q=>shuffledOrder(q.a.length));scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();show('quiz');renderQ();};
-$('#backBtn').onclick=()=>{if(idx===0){show('home');return;} rebuild(idx-1);};
-function rebuild(target){idx=0;scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();const prev=answers.slice(0,target);answers=prev.slice();prev.forEach((choice,i)=>applyChoice(i,choice,false));idx=target;renderQ();}
+$('#startBtn').onclick=()=>{idx=0;answers=[];optionOrders=questions.map(q=>shuffledOrder(q.a.length));scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();answerLocked=false;show('quiz');renderQ();};
+$('#backBtn').onclick=()=>{if(answerLocked)return;if(idx===0){show('home');return;} rebuild(idx-1);};
+function rebuild(target){idx=0;scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();answerLocked=false;const prev=answers.slice(0,target);answers=prev.slice();prev.forEach((choice,i)=>applyChoice(i,choice,false));idx=target;renderQ();}
 function applyChoice(qi,ai,save=true){const item=questions[qi].a[ai];const pts=item[1]||{};Object.keys(pts).forEach(k=>scores[k]=(scores[k]||0)+pts[k]);if(item[2])marks.add(item[2]);if(save)answers[qi]=ai;}
-function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';const order=optionOrders[idx]||Array.from({length:q.a.length},(_,i)=>i);order.forEach((originalIndex,displayIndex)=>{const a=q.a[originalIndex];const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[displayIndex]}</span>${a[0]}`;b.onclick=()=>{applyChoice(idx,originalIndex,true);idx++;if(idx>=questions.length)finish();else renderQ();};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
+function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';const order=optionOrders[idx]||Array.from({length:q.a.length},(_,i)=>i);order.forEach((originalIndex,displayIndex)=>{const a=q.a[originalIndex];const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[displayIndex]}</span>${a[0]}`;b.onclick=()=>{if(answerLocked)return;answerLocked=true;applyChoice(idx,originalIndex,true);setTimeout(()=>{idx++;if(idx>=questions.length)finish();else renderQ();answerLocked=false;},140);};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
 function pointsFor(k,qi){
   const ai=answers[qi];
   if(ai===undefined) return 0;
@@ -563,10 +564,17 @@ function buildRanking(){
   }
   return ranked;
 }
+function jiCoreHits(){return [1,6,7].reduce((n,qi)=>n+(pointsFor('ji',qi)>0?1:0),0);}
 function finish(){
   const hidden=['ren1','ren2','ren3'].every(x=>marks.has(x));
   const ranked=buildRanking();
-  const key=hidden?'ren':ranked[0].k;
+  let key;
+  if(hidden){
+    key='ren';
+  }else{
+    const top=ranked[0].k;
+    key=(top==='ji'&&jiCoreHits()<2)?ranked.find(x=>x.k!=='ji').k:top;
+  }
   renderResult(key,ranked);
 }
 function renderResult(key,ranked){
@@ -659,7 +667,7 @@ async function buildPoster(){
 
   let x=120;ctx.font=`700 26px ${font}`;p.chips.forEach(t=>{const w=ctx.measureText(t).width+46;if(x+w>960)return;ctx.fillStyle=theme[2];roundedRectPath(ctx,x,520,w,52,26);ctx.fill();ctx.fillStyle=theme[0];ctx.fillText(t,x+23,555);x+=w+14;});
 
-  ctx.fillStyle='#8d84aa';ctx.font=`26px ${font}`;ctx.fillText('CORE MOVE · 你的核心动作',120,650);
+  ctx.fillStyle='#8d84aa';ctx.font=`26px ${font}`;ctx.fillText('CORE MOVE · 你的核心动词',120,650);
   ctx.fillStyle=theme[0];ctx.font=`900 100px ${font}`;ctx.fillText(p.core,120,760);
 
   ctx.fillStyle='#ffffff';ctx.save();ctx.shadowColor='rgba(57,51,79,.08)';ctx.shadowBlur=24;ctx.shadowOffsetY=8;roundedRectPath(ctx,120,815,840,205,32);ctx.fill();ctx.restore();
