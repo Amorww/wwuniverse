@@ -25,27 +25,43 @@
   @keyframes fade{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   /* Home */
-  .hero{text-align:center;padding-top:2px}
-  .home-badge{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;background:#f1edff;color:#6d57c5;font-size:11px;font-weight:850;letter-spacing:1.2px;margin-bottom:12px}
-  .universe-mark{position:relative;width:162px;height:162px;margin:0 auto 10px}
-  .planet{position:absolute;left:50%;top:50%;width:68px;height:68px;transform:translate(-50%,-50%);border-radius:24px;display:grid;place-items:center;font-size:32px;background:linear-gradient(145deg,#8871e9,#6548c7);box-shadow:0 14px 32px rgba(94,67,191,.23);z-index:3}
-  .orbit{position:absolute;inset:18px;border:1.5px solid #d9d0f5;border-radius:50%;transform:rotate(-18deg)}
-  .orbit.o2{inset:4px;transform:rotate(24deg);border-style:dashed;opacity:.58}
-  .orb{position:absolute;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid #e8e1fb;box-shadow:0 7px 18px rgba(76,58,139,.08);font-weight:900;color:#725cc7;font-size:13px}
-  .orb.a{left:6px;top:57px}.orb.b{right:7px;top:29px}.orb.c{right:21px;bottom:16px}.orb.d{left:24px;bottom:7px}.orb.e{left:60px;top:0}.orb.f{right:56px;bottom:0}
-  h1{font-size:34px;line-height:1.15;margin:0 0 7px;letter-spacing:-.8px}
-  .accent{background:linear-gradient(90deg,#382d77,var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .eyebrow{font-size:11px;letter-spacing:2.7px;color:#9288bd;font-weight:750;margin:6px 0 13px}
-  .desc{font-size:15px;line-height:1.65;color:#6d6888;margin:0 auto 15px;max-width:520px}
-  .home-stats{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:0 0 13px}
-  .home-stat{padding:7px 10px;border:1px solid #e9e3f8;background:rgba(255,255,255,.82);border-radius:999px;font-size:11px;color:#756e90;font-weight:700}
-  .home-stat b{color:#5e49b0;margin-right:3px}
-  .home-hint{max-width:520px;margin:0 auto 14px;padding:11px 13px;border-radius:16px;background:linear-gradient(135deg,#f5f1ff,#fff);border:1px solid #e9e2fb;color:#655f7d;font-size:13px;line-height:1.5;text-align:left;display:flex;gap:9px;align-items:flex-start}
-  .home-hint .spark{flex:0 0 24px;width:24px;height:24px;border-radius:8px;background:#ebe4ff;color:#6f55ca;display:grid;place-items:center;font-weight:900}
-  .home-actions{max-width:520px;margin:0 auto}
-  .primary,.secondary{width:100%;border-radius:17px;padding:15px 16px;border:0;cursor:pointer;font-weight:850;font-size:17px}
-  .primary{color:#fff;background:linear-gradient(90deg,#6f54d2,#8063dc);box-shadow:0 12px 28px rgba(103,80,199,.24)}
-  .secondary{margin-top:8px;background:transparent;color:#7b70a4;border:0;padding:8px;font-size:13px;text-decoration:underline;text-underline-offset:4px}
+  #home{position:relative;isolation:isolate;overflow:hidden}
+  #home:before{content:'';position:absolute;inset:0;z-index:-3;background:
+    radial-gradient(circle at 18% 12%,rgba(161,135,244,.26),transparent 28%),
+    radial-gradient(circle at 86% 74%,rgba(232,172,213,.19),transparent 30%),
+    linear-gradient(155deg,#fbfaff 0%,#f3efff 48%,#fbf8ff 100%)}
+  #home:after{content:'';position:absolute;width:310px;height:310px;border-radius:50%;right:-175px;top:-115px;z-index:-2;border:1px solid rgba(112,83,204,.10);box-shadow:0 0 0 44px rgba(126,97,215,.025),0 0 0 88px rgba(126,97,215,.018)}
+  .home-layout{width:100%;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:10px}
+  .home-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .home-brand{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:900;letter-spacing:1.6px;color:#5f5194;text-transform:uppercase}
+  .home-brand-mark{width:29px;height:29px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#795fd6,#a48bf0);box-shadow:0 8px 18px rgba(102,74,193,.2);font-size:13px}
+  .home-serial{font-size:10px;color:#a09ab3;letter-spacing:1px;font-weight:750;white-space:nowrap}
+  .home-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;padding:4px 0}
+  .cosmos-art{position:relative;width:min(74vw,300px);aspect-ratio:1/1;margin:-4px auto 2px}
+  .cosmos-ring{position:absolute;border-radius:50%;inset:14%;border:1px solid rgba(108,83,191,.18);transform:rotate(-17deg)}
+  .cosmos-ring.r2{inset:3%;border-style:dashed;border-color:rgba(108,83,191,.13);transform:rotate(24deg)}
+  .cosmos-ring.r3{inset:28%;border-color:rgba(108,83,191,.12);transform:rotate(8deg)}
+  .cosmos-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:102px;height:102px;border-radius:36px;display:grid;place-items:center;background:linear-gradient(145deg,#ffffffcc,#efe9ff);border:1px solid rgba(119,91,205,.16);box-shadow:0 22px 50px rgba(87,62,168,.16),inset 0 1px 0 #fff}
+  .cosmos-core:before{content:'文';font-size:46px;font-weight:950;line-height:1;background:linear-gradient(145deg,#4a387f,#8d6ee5);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cosmos-core:after{content:'UNIVERSE';position:absolute;bottom:15px;font-size:7px;letter-spacing:2.5px;font-weight:900;color:#978bbf}
+  .cosmos-node{position:absolute;min-width:37px;height:37px;padding:0 9px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.9);border:1px solid rgba(126,101,203,.14);box-shadow:0 9px 24px rgba(78,57,147,.09);font-size:13px;font-weight:900;color:#6654a0;backdrop-filter:blur(8px)}
+  .cosmos-node.n1{left:5%;top:43%}.cosmos-node.n2{right:5%;top:27%}.cosmos-node.n3{right:9%;bottom:19%}.cosmos-node.n4{left:12%;bottom:14%}.cosmos-node.n5{left:30%;top:4%}.cosmos-node.n6{right:29%;bottom:2%}
+  .home-title{text-align:center;margin-top:0}.home-kicker{font-size:10px;letter-spacing:2.6px;font-weight:850;color:#8d80ba;margin-bottom:8px}
+  #home h1{font-size:clamp(31px,8vw,42px);line-height:1.07;margin:0;letter-spacing:-1.1px;color:#292342}
+  .accent{background:linear-gradient(90deg,#5d45ad,#9b7aea);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .home-subtitle{font-size:14px;line-height:1.6;color:#6e6787;margin:11px auto 0;max-width:430px;text-align:center}
+  .home-subtitle b{color:#554976}
+  .home-bottom{width:min(100%,520px);margin:0 auto}
+  .home-meta{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(105,82,178,.12);border-bottom:1px solid rgba(105,82,178,.12);margin-bottom:12px}
+  .meta-item{text-align:center;padding:9px 4px;color:#857d9d;font-size:10px;line-height:1.2}
+  .meta-item+ .meta-item{border-left:1px solid rgba(105,82,178,.10)}
+  .meta-item b{display:block;font-size:14px;color:#554879;margin-bottom:3px;letter-spacing:.2px}
+  .primary,.secondary{width:100%;border-radius:18px;border:0;cursor:pointer;font-weight:850}
+  .primary{padding:15px 16px;color:#fff;background:linear-gradient(90deg,#6349bc,#8f70e5);box-shadow:0 14px 30px rgba(103,80,199,.23);font-size:17px;letter-spacing:.2px}
+  .primary:active{transform:translateY(1px)}
+  .home-foot{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;color:#8b84a0;font-size:11px}
+  .home-foot .dot{width:4px;height:4px;border-radius:50%;background:#b8afcf}
+  .secondary{width:auto;background:transparent;color:#71668f;padding:4px 2px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(113,102,143,.35);border-radius:0}
   .how{display:none;position:fixed;z-index:50;inset:0;background:rgba(31,27,52,.34);padding:20px;align-items:flex-end;justify-content:center}
   .how.show{display:flex}
   .how-card{width:min(100%,540px);background:#fff;border-radius:26px;padding:22px 20px 18px;box-shadow:0 24px 60px rgba(42,33,75,.2);text-align:left;color:#68627e;line-height:1.65}
@@ -84,53 +100,61 @@
   @media(max-width:520px){
     .app{padding:0;min-height:100dvh}.shell{border-radius:0;min-height:100dvh;box-shadow:none;border:0}
     .screen{padding:22px 18px 28px}.question{font-size:23px}
-    #home{height:100dvh;min-height:100dvh;padding:max(12px,env(safe-area-inset-top)) 18px max(12px,env(safe-area-inset-bottom));overflow:hidden}
-    #home.active{display:flex;align-items:center;justify-content:center}
-    #home .hero{width:100%;max-width:430px;margin:auto}
-    #home .universe-mark{width:142px;height:142px;margin-bottom:7px}
-    #home .planet{width:60px;height:60px;border-radius:21px;font-size:29px}
-    #home .orbit{inset:17px}#home .orbit.o2{inset:3px}
-    #home .orb{width:31px;height:31px;font-size:12px}
-    #home .orb.a{left:5px;top:50px}#home .orb.b{right:6px;top:26px}#home .orb.c{right:19px;bottom:14px}#home .orb.d{left:21px;bottom:6px}#home .orb.e{left:52px}#home .orb.f{right:49px}
-    #home h1{font-size:29px;margin-bottom:5px}#home .eyebrow{margin:5px 0 10px;font-size:9px;letter-spacing:2.1px}
-    #home .desc{font-size:14px;line-height:1.52;margin-bottom:11px;padding:0 4px}
-    #home .home-stats{margin-bottom:10px;gap:5px}#home .home-stat{padding:6px 8px;font-size:10px}
-    #home .home-hint{margin-bottom:11px;padding:9px 11px;font-size:12px;line-height:1.45;border-radius:14px}
-    #home .home-hint .spark{width:22px;height:22px;flex-basis:22px}
-    #home .primary{padding:13px 14px;font-size:16px;border-radius:15px}#home .secondary{margin-top:4px;padding:6px;font-size:12px}
+    #home{height:100dvh;min-height:100dvh;padding:max(14px,env(safe-area-inset-top)) 18px max(14px,env(safe-area-inset-bottom));overflow:hidden}
+    #home.active{display:block}
+    #home .home-layout{height:100%;gap:6px}
+    #home .home-stage{justify-content:center;padding:0}
+    #home .cosmos-art{width:min(61vw,242px);margin:-8px auto -2px}
+    #home .cosmos-core{width:84px;height:84px;border-radius:29px}#home .cosmos-core:before{font-size:39px}#home .cosmos-core:after{bottom:12px;font-size:6px}
+    #home .cosmos-node{height:32px;min-width:32px;padding:0 7px;font-size:11px}
+    #home h1{font-size:32px}.home-kicker{font-size:9px;margin-bottom:7px}.home-subtitle{font-size:13px;line-height:1.48;margin-top:9px;padding:0 8px}
+    .home-meta{margin-bottom:10px}.meta-item{padding:8px 3px;font-size:9px}.meta-item b{font-size:13px}
+    #home .primary{padding:13px 14px;font-size:16px;border-radius:16px}.home-foot{margin-top:7px;font-size:10px}
     .relations{grid-template-columns:1fr}.relation-card{min-height:0;padding:14px 14px 14px 15px}.rtext{font-size:12px}
     .result-hero{border-radius:24px;padding:21px 16px 17px}.result-avatar{width:84px;height:84px;border-radius:27px}.result-name{font-size:29px}.result-section{padding:17px 16px 17px 51px}.btnrow{position:relative}
   }
-  @media(max-width:375px) and (max-height:750px){
-    #home .universe-mark{width:122px;height:122px;margin-bottom:3px}#home .planet{width:54px;height:54px;font-size:26px}#home .orb{width:28px;height:28px;font-size:11px}
-    #home .orb.a{top:43px}#home .orb.b{top:21px}#home .orb.c{bottom:10px}#home .orb.d{bottom:4px}#home .orb.e{left:45px}#home .orb.f{right:42px}
-    #home h1{font-size:26px}#home .desc{font-size:13px;margin-bottom:8px}#home .home-hint{margin-bottom:8px}#home .home-stats{margin-bottom:8px}
-    #home .home-badge{margin-bottom:7px;padding:5px 9px;font-size:9px}.eyebrow{display:none}
+  @media(max-width:390px) and (max-height:760px){
+    #home{padding-top:max(10px,env(safe-area-inset-top));padding-bottom:max(10px,env(safe-area-inset-bottom))}
+    #home .cosmos-art{width:min(50vw,190px);margin:-10px auto -7px}
+    #home .cosmos-core{width:72px;height:72px;border-radius:25px}#home .cosmos-core:before{font-size:33px}#home .cosmos-core:after{font-size:5px;bottom:10px}
+    #home .cosmos-node{height:27px;min-width:27px;font-size:10px;padding:0 6px}
+    #home h1{font-size:28px}.home-kicker{margin-bottom:5px}.home-subtitle{font-size:12px;margin-top:6px;line-height:1.4}
+    .home-meta{margin-bottom:8px}.meta-item{padding:6px 3px}.meta-item b{font-size:12px}
+    #home .primary{padding:11px 13px;font-size:15px}.home-foot{margin-top:5px}
   }
 </style>
 </head>
 <body>
 <div class="app"><main class="shell">
   <section class="screen active" id="home">
-    <div class="hero">
-      <div class="home-badge">✦ WENWEN UNIVERSE · ENTRY PASS</div>
-      <div class="universe-mark" aria-hidden="true">
-        <div class="orbit"></div><div class="orbit o2"></div>
-        <div class="orb a">试</div><div class="orb b">解</div><div class="orb c">撤</div><div class="orb d">撑</div><div class="orb e">守</div><div class="orb f">带</div>
-        <div class="planet">🐻</div>
+    <div class="home-layout">
+      <div class="home-top">
+        <div class="home-brand"><span class="home-brand-mark">✦</span><span>WENWEN UNIVERSE</span></div>
+        <div class="home-serial">ENTRY / 001</div>
       </div>
-      <h1>掉进<span class="accent">文文宇宙</span><br>你会是谁？</h1>
-      <div class="eyebrow">SIX WAYS TO MEET THE WORLD</div>
-      <p class="desc">不测“你是什么性格”，只看事情发生时，<b>你最先会做什么。</b></p>
-      <div class="home-stats">
-        <span class="home-stat"><b>12+1</b> 道题</span>
-        <span class="home-stat"><b>6+1</b> 份档案</span>
-        <span class="home-stat"><b>≈2 min</b></span>
+
+      <div class="home-stage">
+        <div class="cosmos-art" aria-hidden="true">
+          <div class="cosmos-ring"></div><div class="cosmos-ring r2"></div><div class="cosmos-ring r3"></div>
+          <div class="cosmos-node n1">试</div><div class="cosmos-node n2">解</div><div class="cosmos-node n3">撤</div>
+          <div class="cosmos-node n4">撑</div><div class="cosmos-node n5">守</div><div class="cosmos-node n6">带</div>
+          <div class="cosmos-core"></div>
+        </div>
+        <div class="home-title">
+          <div class="home-kicker">CHARACTER ORBIT TEST</div>
+          <h1>掉进<span class="accent">文文宇宙</span><br>你会落在哪条轨道？</h1>
+          <p class="home-subtitle">不问“你是什么性格”，只看事情发生时，<b>你最先会做什么。</b><br>凭第一反应，领取你的宇宙人物档案。</p>
+        </div>
       </div>
-      <div class="home-hint"><span class="spark">✦</span><span>别选“更正确”的答案。<b>第一眼想点哪个，就点哪个。</b></span></div>
-      <div class="home-actions">
-        <button class="primary" id="startBtn">进入文文宇宙</button>
-        <button class="secondary" id="howBtn">测试是怎么算的？</button>
+
+      <div class="home-bottom">
+        <div class="home-meta">
+          <div class="meta-item"><b>12+1</b>情境选择</div>
+          <div class="meta-item"><b>6+1</b>人物档案</div>
+          <div class="meta-item"><b>≈ 2 min</b>快速完成</div>
+        </div>
+        <button class="primary" id="startBtn">开始坠入宇宙 →</button>
+        <div class="home-foot"><span>选第一反应，不选“正确答案”</span><span class="dot"></span><button class="secondary" id="howBtn">计分说明</button></div>
       </div>
     </div>
   </section>
@@ -191,10 +215,10 @@
 const MAX={bear20:27,bear30:27,feng:24,ji:13,li:17,lu:18};
 const NAMES={bear20:'20岁的熊艺文',bear30:'30岁的熊艺文',feng:'风晴朗',ji:'季嘉轩',li:'李麟',lu:'陆浩宇',ren:'任明远'};
 const THEMES={
-  bear20:['#e76f51','#f1a36f','#fff1e9','#f6d9ca'],
-  bear30:['#5c7c68','#89a58d','#edf5ef','#d9e9de'],
-  feng:['#60708f','#91a0bd','#eef1f7','#dce3ef'],
-  ji:['#7457c7','#a47ee8','#f2edff','#e3d9fb'],
+  bear20:['#d94f83','#ed86ab','#fff0f6','#f5cddd'],
+  bear30:['#6650c7','#9678e7','#f2eeff','#dfd6f8'],
+  feng:['#c84b58','#e07178','#fff0f1','#f3cdd1'],
+  ji:['#3f8d69','#72b98e','#eef8f2','#cfe8d8'],
   li:['#966b5a','#bf927f','#f8f0ec','#eadbd4'],
   lu:['#cf8b35','#e5b35f','#fff5e4','#f5dfb8'],
   ren:['#58606b','#858e99','#f0f2f4','#dce0e5']
@@ -221,7 +245,7 @@ const profiles={
  ji:{avatar:'季',role:'麦一递过来就自动开机的人',core:'撑场',chips:['舞台','互动','魅力','现挂'],body:'有些人靠独处充电，你比较像：<b>人一多，电来了。</b><br><br>突然被cue、临时接梗、场面快冷掉——这些事反而容易让你进入状态。灯一亮，你知道自己该怎么站。',tip:'舞台很好，但没有掌声的时候，你也还是你。',verdict:'有些人天生适合站在人群里发光，因为灯一亮，他就知道该怎么活。',relations:{friend:['陆浩宇','你负责接住全场，他负责把全场带跑。请勿把你们同时放进一个本来很安静的房间。'],enemy:['风晴朗','你觉得“来都来了”，他想的是“我能先回去吗”。没有谁错，只是充电方式完全不同。'],destiny:['20岁的熊艺文','一个看见机会就敢试，一个看见舞台就敢上。别人还在犹豫，你们已经开始了。']}},
  li:{avatar:'李',role:'认定了就站这边型选手',core:'守',chips:['长情','守护','稳定','护短'],body:'你不一定最会轰轰烈烈，但你很会：<b>一直在。</b><br><br>一旦把谁划进“自己人”范围，你的耐久度非常惊人。别人表达喜欢靠烟花，你比较像充电宝——关键时候真的有电。',tip:'“我愿意等”和“我只能等”不是一回事。守护别人时，也别把自己留在原地。',verdict:'你最动人的地方，不是等得久，而是认真对待每一次把别人放进心里的决定。',relations:{friend:['30岁的熊艺文','一个愿意守，一个愿意解。你们都是“有事先做点什么”的类型，只是落点不同。'],enemy:['任明远','你把关系放得很重，他更擅长先保护自己的利益。彼此都很难理解对方为什么不按自己的算法来。'],destiny:['风晴朗','你擅长留下，他擅长暂时离开。一个教人稳定，一个教人给自己空间。']}},
  lu:{avatar:'陆',role:'世界再乱也要先活起来的人',core:'带',chips:['古灵精怪','组队','行动派','开心果'],body:'你的核心逻辑大概是：<b>先别死气沉沉。</b><br><br>你会把人拉起来、拉出去、拉进一个新的支线任务。很多时候，你的搞笑不是不认真，而是在给大家重新启动的力气。',tip:'开心不是逃避问题。不过偶尔也别只顾着把别人逗开心。',verdict:'很多难关，笑着过和哭着过，都是要过的——你更愿意把大家一起带过去。',relations:{friend:['季嘉轩','你把人拉进来，他把场子接过去。两个人在一起，很难出现“算了今天不玩了”。'],enemy:['任明远','你觉得开心也算收益，他更习惯把收益算得具体一点。你们的计算器不是同一个型号。'],destiny:['30岁的熊艺文','你负责让世界重新动起来，他负责让动起来以后别跑偏。一个点火，一个掌舵。']}},
- ren:{avatar:'任',role:'宇宙成本控制部部长',core:'算',chips:['精打细算','风险规避','体面','先问值不值'],body:'系统检测到你在几个关键节点上，都稳定捕捉到了同一个问题：<b>“那我亏不亏？”</b><br><br>别人正在感动，你已经开始核算；别人准备热血上头，你在旁边提醒预算。不得不承认——有时候还挺有用。',tip:'会算账没有问题。只是人生里有些东西，真的没有办法报销。',verdict:'三个隐藏选项都能精准踩中，也是一种天赋。',relations:{friend:['30岁的熊艺文','你们都不喜欢无效消耗：他算怎么解决，你算值不值得。至少讨论问题时效率很高。'],enemy:['20岁的熊艺文','他觉得“试试又不会怎样”，你脑内已经弹出了风险清单。你们最好别一起做预算。'],destiny:['李麟','一个太会算，一个太愿意给。放在一起，至少能提醒彼此：关系和成本都不能完全不看。']}}
+ ren:{avatar:'任',role:'隐藏反面角色 · 抠搜坏男人体验卡',core:'算',chips:['成本优先','体面话术','先护自己','算盘常开'],body:'先恭喜你：六个正常人物都没拦住你，系统把<b>隐藏反派档案</b>弹出来了。<br><br>这个角色连熊艺文自己拿到剧本时，都说心里骂了“一万遍任明远狗东西”，还认真提醒大家：<b>生活中遇到这样的男生，一定要远离。</b><br><br>所以别紧张——测到任明远不等于你就是任明远。也可能只是这三道题里，你对成本、自保和“关我什么事”格外敏锐。',tip:'友情提示：这是反面角色彩蛋，不是人格诊断。请勿因为测到任明远当场注销账号；看完可以重测，或者把它当作一次反面教材通关。',verdict:'恭喜解锁本宇宙唯一一张——“建议只在屏幕里见，不建议在生活里遇见”的人物卡。',relations:{friend:['无。','系统正在努力匹配……<br><br><b>匹配失败。</b>'],enemy:['20岁的熊艺文','你：“风险太高。”<br>他：“那不是更刺激？”<br><br>你已经血压升高。'],destiny:['30岁的熊艺文','不是因为你们很合适。<br><br>而是宇宙觉得：<br><b>也许他还能救救你。</b>']}}
 };
 let idx=0, answers=[], scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0}, marks=new Set();
 const $=s=>document.querySelector(s);
@@ -239,7 +263,7 @@ function finish(){const hidden=['ren1','ren2','ren3'].every(x=>marks.has(x));let
 function renderResult(key,ranked){const p=profiles[key],t=THEMES[key]||THEMES.ji;const root=document.documentElement;root.style.setProperty('--r1',t[0]);root.style.setProperty('--r2',t[1]);root.style.setProperty('--rsoft',t[2]);root.style.setProperty('--rline',t[3]);$('#resultAvatar').textContent=p.avatar;$('#resultName').textContent=NAMES[key];$('#resultRole').textContent=p.role;$('#coreWord').textContent=p.core;$('#chips').innerHTML=p.chips.map(x=>`<span class="chip">${x}</span>`).join('');$('#resultBody').innerHTML=p.body;$('#resultTip').innerHTML=p.tip;$('#verdict').innerHTML=p.verdict;const r=p.relations;$('#relations').innerHTML=`<div class="relation-card"><div class="rlabel">BEST FRIEND · 最佳好友</div><div class="rname">${r.friend[0]}</div><div class="rtext">${r.friend[1]}</div></div><div class="relation-card enemy"><div class="rlabel">NEMESIS · 宇宙天敌</div><div class="rname">${r.enemy[0]}</div><div class="rtext">${r.enemy[1]}</div></div><div class="relation-card destiny"><div class="rlabel">DESTINY · 宿命搭子</div><div class="rname">${r.destiny[0]}</div><div class="rtext">${r.destiny[1]}</div></div>`;if(key==='ren'){$('#secondaryMatch').innerHTML='<span>隐藏档案已解锁</span><b>任明远</b>';}else{const sec=ranked[1];$('#secondaryMatch').innerHTML=`<span>你的次高匹配</span><b>${NAMES[sec.k]}</b>`;}show('result');}
 $('#retryBtn').onclick=()=>{show('home');};
 function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){let line='',lines=[];for(const ch of text){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;}else line=test;}if(line)lines.push(line);lines=lines.slice(0,maxLines);lines.forEach((ln,i)=>ctx.fillText(ln,x,y+i*lineHeight));return y+lines.length*lineHeight;}
-$('#saveBtn').onclick=()=>{const name=$('#resultName').textContent;const key=Object.keys(NAMES).find(k=>NAMES[k]===name);const p=profiles[key];const c=$('#poster'),ctx=c.getContext('2d');const g=ctx.createLinearGradient(0,0,1080,1350);g.addColorStop(0,'#f7f3ff');g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1350);ctx.fillStyle='#7359d2';ctx.beginPath();ctx.roundRect(120,95,160,160,46);ctx.fill();ctx.fillStyle='#fff';ctx.font='900 58px sans-serif';ctx.textAlign='center';ctx.fillText(p.avatar,200,198);ctx.textAlign='left';ctx.fillStyle='#8b82ad';ctx.font='700 26px sans-serif';ctx.fillText('WENWEN UNIVERSE · CHARACTER FILE',120,320);ctx.fillStyle='#2f294d';ctx.font='900 68px sans-serif';ctx.fillText(name,120,410);ctx.fillStyle='#726b8e';ctx.font='32px sans-serif';ctx.fillText(p.role,120,465);let x=120;ctx.font='700 26px sans-serif';p.chips.forEach(t=>{const w=ctx.measureText(t).width+46;ctx.fillStyle='#eee8ff';ctx.beginPath();ctx.roundRect(x,510,w,52,26);ctx.fill();ctx.fillStyle='#6f57c9';ctx.fillText(t,x+23,545);x+=w+14;});ctx.fillStyle='#8d84aa';ctx.font='26px sans-serif';ctx.fillText('你的核心动词',120,650);ctx.fillStyle='#5f48ba';ctx.font='900 100px sans-serif';ctx.fillText(p.core,120,760);ctx.fillStyle='#39334f';ctx.font='700 34px sans-serif';const plain=p.verdict.replace(/<[^>]+>/g,'');wrapText(ctx,plain,120,860,830,54,6);ctx.fillStyle='#9891aa';ctx.font='24px sans-serif';ctx.fillText('测测你是文文宇宙里的谁？',120,1260);ctx.fillText('趣味测试 · 仅供娱乐与自我探索',120,1300);const a=document.createElement('a');a.download='文文宇宙-'+name+'.png';a.href=c.toDataURL('image/png');a.click();const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);};
+$('#saveBtn').onclick=()=>{const name=$('#resultName').textContent;const key=Object.keys(NAMES).find(k=>NAMES[k]===name);const p=profiles[key],theme=THEMES[key]||THEMES.ji;const c=$('#poster'),ctx=c.getContext('2d');const g=ctx.createLinearGradient(0,0,1080,1350);g.addColorStop(0,theme[2]);g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1350);ctx.fillStyle=theme[0];ctx.beginPath();ctx.roundRect(120,95,160,160,46);ctx.fill();ctx.fillStyle='#fff';ctx.font='900 58px sans-serif';ctx.textAlign='center';ctx.fillText(p.avatar,200,198);ctx.textAlign='left';ctx.fillStyle='#8b82ad';ctx.font='700 26px sans-serif';ctx.fillText('WENWEN UNIVERSE · CHARACTER FILE',120,320);ctx.fillStyle='#2f294d';ctx.font='900 68px sans-serif';ctx.fillText(name,120,410);ctx.fillStyle='#726b8e';ctx.font='32px sans-serif';ctx.fillText(p.role,120,465);let x=120;ctx.font='700 26px sans-serif';p.chips.forEach(t=>{const w=ctx.measureText(t).width+46;ctx.fillStyle=theme[2];ctx.beginPath();ctx.roundRect(x,510,w,52,26);ctx.fill();ctx.fillStyle=theme[0];ctx.fillText(t,x+23,545);x+=w+14;});ctx.fillStyle='#8d84aa';ctx.font='26px sans-serif';ctx.fillText('你的核心动词',120,650);ctx.fillStyle=theme[0];ctx.font='900 100px sans-serif';ctx.fillText(p.core,120,760);ctx.fillStyle='#39334f';ctx.font='700 34px sans-serif';const plain=p.verdict.replace(/<[^>]+>/g,'');wrapText(ctx,plain,120,860,830,54,6);ctx.fillStyle='#9891aa';ctx.font='24px sans-serif';ctx.fillText('测测你是文文宇宙里的谁？',120,1260);ctx.fillText('趣味测试 · 仅供娱乐与自我探索',120,1300);const a=document.createElement('a');a.download='文文宇宙-'+name+'.png';a.href=c.toDataURL('image/png');a.click();const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);};
 </script>
 </body>
 </html>
