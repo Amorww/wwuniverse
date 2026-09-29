@@ -898,8 +898,12 @@ async function buildPoster(){
   ctx.textAlign='right';ctx.fillStyle='#b1abbc';ctx.font=`17px ${font}`;ctx.fillText('非官方粉丝企划 · 仅供娱乐 · 非心理测评/事实性评价',960,1977);
   const quizLabel=getPublicQuizLabel();
   if(quizLabel){
-    ctx.textAlign='center';ctx.fillStyle='#9b94aa';ctx.font=`600 15px ${font}`;
-    ctx.fillText(`测测你是谁 · ${quizLabel}`,540,2017,840);
+    ctx.textAlign='center';
+    ctx.save();
+    ctx.globalAlpha=.82;
+    ctx.fillStyle=theme[0];ctx.font=`600 15px ${font}`;
+    ctx.fillText(`测测你是文文宇宙里的谁 · ${quizLabel}`,540,2017,840);
+    ctx.restore();
   }
   ctx.textAlign='left';
   return {blob:await canvasToBlob(c),filename:'文文宇宙-'+NAMES[key]+'.png'};
