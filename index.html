@@ -9,7 +9,13 @@
 <meta property="og:title" content="测测你是文文宇宙里的谁？" />
 <meta property="og:description" content="13道题 · 7份人物档案 · 36种组合结果。一个非官方30岁生日粉丝企划。" />
 <meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="./og-cover.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="测测你是文文宇宙里的谁？" />
+<link rel="image_src" href="./og-cover.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="./og-cover.png" />
 <style>
   :root{
     --bg:#f7f5ff;--card:#ffffff;--ink:#252342;--muted:#787395;
@@ -266,6 +272,9 @@
 <canvas id="poster" width="1080" height="2050" style="display:none"></canvas>
 <script>
 const CALIB={bear20:23,bear30:32,feng:29.5,ji:10,li:14,lu:16};
+// 任明远隐藏结果固定占用3道题，因此 NORMAL MODE 单独校准剩余信号。
+// 季嘉轩/李麟仍遵守主结果最低命中门槛；在此前提下让六种 NORMAL MODE 尽量均衡。
+const NORMAL_CALIB={bear20:23,bear30:30,feng:30,ji:7,li:8,lu:17};
 const NAMES={bear20:'20岁的熊艺文',bear30:'30岁的熊艺文',feng:'风晴朗',ji:'季嘉轩',li:'李麟',lu:'陆浩宇',ren:'任明远'};
 const displayName=k=>k==='ji'?'季嘉轩*':NAMES[k];
 const markJiName=name=>name==='季嘉轩'?'季嘉轩*':name;
@@ -343,7 +352,7 @@ const questions=[
  ]},
  {q:'朋友突然发来：“完了，我闯祸了。”你看到消息的第一反应更接近：',a:[
    ['先把事情从头说一遍，我们看看怎么补救',{bear30:3}],
-   ['你在哪？我过去找你',{li:2,bear30:1}],
+   ['你在哪？我过去找你',{li:2}],
    ['先问清楚这事有没有把我也牵进去',{},'ren3'],
    ['别一个人慌，出来走走，路上再说',{lu:2}]
  ]},
@@ -418,7 +427,7 @@ const profiles={
   }
  },
  lu:{
-  avatar:'陆',role:'先把大家从地上薅起来的人',core:'活',chips:['活力','组队','行动','开心果'],
+  avatar:'陆',role:'先把大家从地上薅起来的人',core:'活',chips:['活力','组队','行动','起兴'],
   body:`你看到一个人蔫了，可能不会先和他分析人生。<br><br>你比较容易：<b>“走。”<br>“干嘛？”<br>“先走再说。”</b><br><br>你擅长的不是单纯逗人笑，而是让一群本来停住的人，<b>重新动起来。</b><br><br><b>典型症状</b><br>别人：“今天算了吧……”<br>你：<b>“为什么？下一个去哪？”</b><br><br><b>隐藏技能</b><br>把“这次完蛋了。”改写成：<b>“行吧，又多一个故事。”</b>`,
   tip:`你很会帮别人恢复生命值。<br><br>偶尔也要允许自己：<b>今天就是没电。</b>`,
   verdict:'你的厉害不是永远开心，而是总有办法让生活重新流动起来。',
@@ -564,10 +573,10 @@ const SECONDARY_COMBOS={
     "card": "目光来了能进入状态，结束以后也知道怎么回到自己。"
   },
   "feng_li": {
-    "title": "想回来的地方，被人一点点守成了家",
-    "body": "你很在意一个地方、一段关系能不能让自己真正放松下来。而当“守”出现以后，这种归属不再只是感觉——有人记得你的习惯，有人给你留位置，有些东西会持续在那里。",
-    "keywords": "归 × 守｜归属因为被守住而变得具体",
-    "card": "你想要的归属，会因为持续的陪伴而真正有了落点。"
+    "title": "有人稳定地在，你反而更能安心做自己",
+    "body": "你最在意的不是一段关系能不能把自己留住，而是在关系里还能不能保持真实。稳定的陪伴对你的意义，是让你不必迎合、不必扮演，也知道有人愿意在——被接住的同时，你仍然是你自己。",
+    "keywords": "归 × 守｜被稳稳接住，也不必丢掉自己",
+    "card": "有人稳定地在，你反而更有空间安心做自己。"
   },
   "li_feng": {
     "title": "守着你，也不把你困住",
@@ -576,16 +585,16 @@ const SECONDARY_COMBOS={
     "card": "会一直在，也会给重要的人留下做自己的空间。"
   },
   "feng_lu": {
-    "title": "有地方可回，所以更敢出去玩",
-    "body": "你需要的稳定从来不是把自己固定在原地，而是知道自己随时可以回来。正因为心里有一个不会轻易丢掉的方向，你反而更敢去体验、去变化、去吹新的风。",
-    "keywords": "归 × 活｜有根，所以自由",
-    "card": "知道自己会往哪里回来，所以更敢出去看看世界。"
+    "title": "内里站得稳，才更敢去变化",
+    "body": "你首先知道什么状态最像自己、哪些东西不能为了热闹随便改。正因为这个内在坐标不容易丢，你反而更敢去体验、换环境、追新鲜——外面可以一直变，自己不用跟着漂。",
+    "keywords": "归 × 活｜不丢掉自己，也敢不断去体验",
+    "card": "内里有一个不容易丢掉的自己，所以更敢去体验和变化。"
   },
   "lu_feng": {
-    "title": "到处去玩，也知道哪扇门是自己的",
-    "body": "你首先需要的是变化、空间和活气，不喜欢被一种生活方式钉死。但玩得再远，你也并不是没有方向——真正适合你的归属，是那个不会阻止你出去、也一直允许你回来做自己的地方。",
-    "keywords": "活 × 归｜先要自由，也保留回来的方向",
-    "card": "喜欢到处吹风，也知道什么地方是真正适合自己的。"
+    "title": "到处起兴，也不会把自己玩丢",
+    "body": "你首先容易被世界里的新鲜和趣味带着走，愿意换场景、换玩法、继续往前。但热闹和变化不会替你决定自己该成为什么——玩得再开，你也会回到那个自己认得、自己愿意承认的状态。",
+    "keywords": "活 × 归｜先去体验，也保留自己的坐标",
+    "card": "先跟着兴致去体验，但不会因为环境变化就把自己弄丢。"
   },
   "ji_li": {
     "title": "场上接得住，重要的人也守得住",
@@ -640,9 +649,11 @@ const CORE_QUESTIONS={
   bear30:[2,5,10,11,12],
   feng:[2,6,11,12],
   ji:[1,6,7],
-  li:[4,8,12],
+  li:[4,8,10,12],
   lu:[3,7,11]
 };
+// 少数高纯度信号型角色需要至少两次独立命中，避免一句高吸引力选项单独决定主结果。
+const MIN_MAIN_HITS={ji:2,li:2};
 const PAIR_CORE={
   'bear20|bear30':[2,5,12],
   'bear30|feng':[2,6,11],
@@ -693,8 +704,8 @@ function compareTieKeys(a,b){
   return DEFAULT_ORDER.indexOf(a)-DEFAULT_ORDER.indexOf(b);
 }
 function breakTie(keys){return [...keys].sort(compareTieKeys)[0];}
-function buildRanking(){
-  const base=Object.keys(CALIB).map(k=>({k,ratio:scores[k]/CALIB[k],raw:scores[k],core:genericCore(k)}))
+function buildRanking(calib=CALIB){
+  const base=Object.keys(calib).map(k=>({k,ratio:scores[k]/calib[k],raw:scores[k],core:genericCore(k)}))
     .sort((a,b)=>b.ratio-a.ratio);
   const ranked=[];
   for(let i=0;i<base.length;){
@@ -706,21 +717,27 @@ function buildRanking(){
   }
   return ranked;
 }
-function jiCoreHits(){return [1,6,7].reduce((n,qi)=>n+(pointsFor('ji',qi)>0?1:0),0);}
-function isMainEligible(k){return k!=='ji'||jiCoreHits()>=2;}
+function coreHitCount(k){
+  return (CORE_QUESTIONS[k]||[]).reduce((n,qi)=>n+(pointsFor(k,qi)>0?1:0),0);
+}
+function isMainEligible(k){
+  const minHits=MIN_MAIN_HITS[k]||0;
+  return !minHits||coreHitCount(k)>=minHits;
+}
 function pickMainEligible(ranked){return ranked.find(x=>isMainEligible(x.k))||ranked[0];}
 function finish(){
   const hidden=['ren1','ren2','ren3'].every(x=>marks.has(x));
-  const ranked=buildRanking();
-  let key;
+  const ranked=buildRanking(CALIB);
+  let key,normalRanked=null;
   if(hidden){
     key='ren';
+    normalRanked=buildRanking(NORMAL_CALIB);
   }else{
     key=pickMainEligible(ranked).k;
   }
-  renderResult(key,ranked);
+  renderResult(key,ranked,normalRanked);
 }
-function renderResult(key,ranked){
+function renderResult(key,ranked,normalRanked=null){
   const p=profiles[key],t=THEMES[key]||THEMES.ji;const root=document.documentElement;
   root.style.setProperty('--r1',t[0]);root.style.setProperty('--r2',t[1]);root.style.setProperty('--rsoft',t[2]);root.style.setProperty('--rline',t[3]);
   $('#resultAvatar').textContent=p.avatar;$('#resultName').textContent=displayName(key);$('#resultRole').textContent=p.role;$('#coreWord').textContent=p.core;
@@ -728,7 +745,7 @@ function renderResult(key,ranked){
   const r=p.relations;
   const relationHasJi=[r.friend[0],r.enemy[0],r.destiny[0]].includes('季嘉轩');
   const note=$('#profileNote');
-  const renNormal=key==='ren'?pickMainEligible(ranked):null;
+  const renNormal=key==='ren'?pickMainEligible(normalRanked||ranked):null;
   const provisionalSecondary=key==='ren'?renNormal?.k:ranked.find(x=>x.k!==key)?.k;
   const hasJi=key==='ji'||provisionalSecondary==='ji'||relationHasJi;
   if(hasJi){note.textContent=JI_FOOTNOTE;note.classList.add('show');}else{note.textContent='';note.classList.remove('show');}
@@ -736,7 +753,7 @@ function renderResult(key,ranked){
   if(key==='ren'){
     const normal=renNormal,st=THEMES[normal.k];root.style.setProperty('--s1',st[0]);root.style.setProperty('--ssoft',st[2]);root.style.setProperty('--sline',st[3]);
     $('#secondaryMatch').innerHTML=`<div class="secondary-kicker">NORMAL MODE · 如果暂时关闭 Excel…</div><div class="secondary-head"><div class="secondary-person">${displayName(normal.k)} · <em>${profiles[normal.k].core}</em></div></div><div class="secondary-body">${REN_NORMAL_COPY[normal.k]||`系统重新计算后发现，你原本最接近的是${displayName(normal.k)}。`}</div>`;
-    currentResultContext={key,secondaryKey:normal.k,ranked};
+    currentResultContext={key,secondaryKey:normal.k,ranked:normalRanked||ranked};
   }else{
     const sec=ranked.find(x=>x.k!==key),combo=SECONDARY_COMBOS[`${key}_${sec.k}`],st=THEMES[sec.k];root.style.setProperty('--s1',st[0]);root.style.setProperty('--ssoft',st[2]);root.style.setProperty('--sline',st[3]);
     const enemyKey=Object.keys(NAMES).find(k=>NAMES[k]===r.enemy[0]);
@@ -753,6 +770,19 @@ function roundedRectPath(ctx,x,y,w,h,r){
   ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
 }
 function showToast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove('show'),2000);}
+function getPublicQuizHref(){
+  try{
+    const u=new URL(window.location.href);
+    if(!/^https?:$/.test(u.protocol))return '';
+    u.hash='';u.search='';u.pathname=u.pathname.replace(/index\.html$/i,'');
+    return u.toString();
+  }catch(e){return '';}
+}
+function getPublicQuizLabel(){
+  const href=getPublicQuizHref();
+  if(!href)return '';
+  try{const u=new URL(href);return (u.host+u.pathname).replace(/\/$/,'');}catch(e){return href.replace(/^https?:\/\//,'').replace(/\/$/,'');}
+}
 function canvasToBlob(canvas){
   return new Promise((resolve,reject)=>{
     if(canvas.toBlob){canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('图片生成失败')),'image/png',1);return;}
@@ -866,6 +896,11 @@ async function buildPoster(){
   ctx.fillStyle='#8d84aa';ctx.font=`700 22px ${font}`;ctx.fillText('WENWEN UNIVERSE · 30TH BIRTHDAY PROJECT',120,1937);
   ctx.fillStyle='#aaa3b8';ctx.font=`21px ${font}`;ctx.fillText('by Amor & ChatGPT',120,1977);
   ctx.textAlign='right';ctx.fillStyle='#b1abbc';ctx.font=`17px ${font}`;ctx.fillText('非官方粉丝企划 · 仅供娱乐 · 非心理测评/事实性评价',960,1977);
+  const quizLabel=getPublicQuizLabel();
+  if(quizLabel){
+    ctx.textAlign='center';ctx.fillStyle='#9b94aa';ctx.font=`600 15px ${font}`;
+    ctx.fillText(`测测你是谁 · ${quizLabel}`,540,2017,840);
+  }
   ctx.textAlign='left';
   return {blob:await canvasToBlob(c),filename:'文文宇宙-'+NAMES[key]+'.png'};
 }
@@ -880,7 +915,13 @@ $('#sharePosterBtn').onclick=async()=>{
   try{
     const file=new File([posterBlob],posterFilename,{type:'image/png'});
     if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
-      await navigator.share({files:[file],title:'文文宇宙角色卡',text:'测测你是文文宇宙里的谁？'});
+      const href=getPublicQuizHref();
+      const shareData={files:[file],title:'文文宇宙角色卡',text:'测测你是文文宇宙里的谁？'};
+      if(href){
+        const withUrl={...shareData,url:href};
+        if(!navigator.canShare||navigator.canShare(withUrl))shareData.url=href;
+      }
+      await navigator.share(shareData);
     }
   }catch(err){if(err&&err.name!=='AbortError'){console.error(err);showToast('分享失败，可以长按图片保存');}}
 };
