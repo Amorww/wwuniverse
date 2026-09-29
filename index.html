@@ -96,7 +96,17 @@
   .relation-card:before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:var(--r1)}
   .relation-card.enemy:before{background:#9b7b8d}.relation-card.destiny:before{background:linear-gradient(90deg,var(--r1),var(--r2))}
   .rlabel{font-size:10px;letter-spacing:1.3px;color:#928aa7;font-weight:850;margin-bottom:7px}.rname{font-size:17px;font-weight:900;color:#3e3858;margin-bottom:8px}.rtext{font-size:12px;line-height:1.62;color:#756f88}
-  .secondary-match{display:flex;justify-content:space-between;align-items:center;background:var(--rsoft);border:1px solid var(--rline);padding:13px 15px;border-radius:16px;margin:14px 0 18px;color:#746d8d;font-size:13px}.secondary-match b{color:var(--r1);font-size:15px}
+  .profile-note{display:none;margin:10px 0 14px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.82);border:1px dashed var(--rline);color:#80788f;font-size:12px;line-height:1.7}
+  .profile-note.show{display:block}
+  .secondary-match{position:relative;overflow:hidden;background:#fff;border:1px solid var(--sline,var(--rline));padding:17px 17px 16px;border-radius:22px;margin:16px 0 20px;box-shadow:0 8px 24px rgba(67,52,119,.04)}
+  .secondary-match:before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--s1,var(--r1))}
+  .secondary-kicker{font-size:10px;letter-spacing:1.8px;color:#938ba7;font-weight:850;margin-bottom:8px}
+  .secondary-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}
+  .secondary-person{font-size:18px;font-weight:900;color:#3e3858}.secondary-person em{font-style:normal;color:var(--s1,var(--r1))}
+  .secondary-combo{font-size:11px;font-weight:850;color:var(--s1,var(--r1));background:var(--ssoft,var(--rsoft));border:1px solid var(--sline,var(--rline));padding:6px 9px;border-radius:999px;white-space:nowrap}
+  .secondary-title{font-size:15px;font-weight:900;color:#49425f;margin:3px 0 7px}
+  .secondary-body{font-size:13px;line-height:1.72;color:#716a82}
+  .secondary-keywords{margin-top:10px;padding-top:9px;border-top:1px solid #eeeaf4;font-size:11px;line-height:1.55;color:#9a93a8}
   .smallprint{font-size:11px;color:#9a94ac;text-align:center;line-height:1.6;margin:15px 8px 0}.btnrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.btnrow button{border-radius:15px;padding:13px 10px;font-weight:800;cursor:pointer}.save{border:0;color:#fff;background:linear-gradient(90deg,var(--r1),var(--r2))}.retry{background:#fff;color:var(--r1);border:1.5px solid var(--rline)}
   .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:#28233d;color:#fff;padding:11px 16px;border-radius:999px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:90}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
   .poster-sheet{display:none;position:fixed;z-index:80;inset:0;background:rgba(31,27,52,.55);backdrop-filter:blur(10px);padding:18px;align-items:center;justify-content:center}
@@ -198,6 +208,7 @@
       </div>
       <div class="core-ribbon"><span>你的核心动词 · CORE MOVE</span><strong id="coreWord"></strong></div>
     </div>
+    <div class="profile-note" id="profileNote"></div>
 
     <div class="result-section">
       <div class="section-icon">✦</div>
@@ -214,9 +225,9 @@
       <div class="verdict" id="verdict"></div>
     </div>
 
+    <div class="secondary-match" id="secondaryMatch"></div>
     <div class="relations-title">你的宇宙关系图</div>
     <div class="relations" id="relations"></div>
-    <div class="secondary-match" id="secondaryMatch"></div>
     <div class="btnrow"><button class="save" id="saveBtn">生成角色卡</button><button class="retry" id="retryBtn">重新测试</button></div>
     <div class="smallprint">本测试仅供娱乐，不构成心理测评，也不代表对真人或角色的事实性评价。</div>
   </section>
@@ -236,7 +247,7 @@
     <div class="poster-help" id="posterHelp">iPhone、微信或其他内置浏览器如果没有自动保存，可以直接长按上方图片保存到相册。</div>
   </div>
 </div>
-<canvas id="poster" width="1080" height="1700" style="display:none"></canvas>
+<canvas id="poster" width="1080" height="2050" style="display:none"></canvas>
 <script>
 const CALIB={bear20:22,bear30:32,feng:29,ji:12.5,li:14,lu:15};
 const NAMES={bear20:'20岁的熊艺文',bear30:'30岁的熊艺文',feng:'风晴朗',ji:'季嘉轩',li:'李麟',lu:'陆浩宇',ren:'任明远'};
@@ -366,7 +377,7 @@ const profiles={
   }
  },
  ji:{
-  avatar:'季',role:'灯一亮就自动进入状态的人',core:'亮',chips:['舞台','表现力','互动','临场感'],
+  avatar:'季',role:'熊艺文在这个角色里呈现出的「亮」',cardRole:'熊艺文塑造季嘉轩时呈现出的「亮」',note:'这里的「季嘉轩」不是对角色完整人物设定的概括，而是取熊艺文塑造这个角色时呈现出的状态。',core:'亮',chips:['舞台','表现力','互动','临场感'],
   body:`有些人一被很多人看着就开始掉电。<br><br>你比较像：<b>灯一开，系统启动。</b><br><br>被cue？可以。突然需要接话？可以。场子有点尴尬？<b>问题不大。</b><br><br>你很适合那种有一点不可控、需要现场反应的地方。<br><br><b>典型症状</b><br>别人：“千万别点我。”<br>你：<b>“怎么还没到我？”</b><br><br><b>隐藏技能</b><br>把“好尴尬。”变成：<b>“等等，好像还挺有节目效果。”</b>`,
   tip:`舞台很适合你。<br><br>但没有灯的时候，<b>你也不需要一直证明自己有趣。</b>`,
   verdict:'有些人不是一定需要成为中心，只是当目光真的落过来时，他知道该怎么发光。',
@@ -421,6 +432,54 @@ const CARD_RELATIONS={
   ren:{friend:['无','系统努力匹配中……匹配失败。'],enemy:['李麟','你谈投入产出，他开始看不懂你这种生物。'],destiny:['20岁的熊艺文','你踩刹车，他踩油门。宇宙正在观察这辆车最终会开去哪里。']}
 };
 
+
+const SECONDARY_COMBOS={
+  'bear20_bear30':{title:'还敢试，但已经开始看懂',body:'你最先出现的反应依然是：去试，去做，先走出去再说。只是你已经不像纯粹的少年那样只凭一股劲——你会复盘，会理解，会慢慢知道自己为什么出发。',keywords:'试 × 解｜行动之后，会回头理解自己',card:'先去试，也会在行动之后慢慢看懂自己。'},
+  'bear20_feng':{title:'往外闯的人，心里也藏着归处',body:'你身上最强的是向未知伸手的冲动，但你并不是为了漂泊而漂泊。越往外走，你反而越清楚自己真正想回到什么地方、什么关系、什么样的生活里。',keywords:'试 × 归｜出发，是为了找到自己的方向',card:'向未知伸手，也越来越清楚自己真正想回到哪里。'},
+  'bear20_ji':{title:'少年心气，自带高光',body:'你的“试”不是苦大仇深的孤勇，而是带着一点兴奋、一点好奇、一点“那我来看看会发生什么”的明亮。别人首先看到的，往往不是你的野心，而是你眼睛里那种还肯相信事情会变好的光。',keywords:'试 × 亮｜敢往前，也敢期待',card:'敢往前，也敢期待事情会变好。'},
+  'bear20_li':{title:'冲出去的人，也会回头护住别人',body:'你敢冒险、敢承担，但你真正放不下的常常不是输赢，而是身后的人。你可以是第一个往前走的人，也很容易变成那个最后确认所有人都跟上的人。',keywords:'试 × 守｜锋芒外露，责任藏在里面',card:'冲得出去，也会回头确认重要的人都跟上。'},
+  'bear20_lu':{title:'人生先试玩一下',body:'你对未知的态度不是谨慎观察，而是上手。你容易被新鲜事点燃，也很擅长把本来严肃的事情弄出一点趣味——不是没有压力，只是不愿意让压力夺走行动的兴致。',keywords:'试 × 活｜边走边玩，边玩边长大',card:'好奇就上手，不让压力夺走行动的兴致。'},
+
+  'bear30_bear20':{title:'看懂很多以后，还是愿意再试一次',body:'你的底色已经是理解和消化：你会看见事情的复杂，也知道很多问题没有简单答案。但你身上还留着一块很珍贵的地方——即使知道可能失败，仍然愿意重新伸手。',keywords:'解 × 试｜清醒没有杀死勇气',card:'看懂复杂以后，依然愿意再伸手试一次。'},
+  'bear30_feng':{title:'理解以后，选择安放',body:'你不是因为没见过复杂才平静，而是见过以后，越来越知道什么值得留下。比起证明自己，你更在意把生活重新放回适合自己的位置。',keywords:'解 × 归｜不是退回去，是终于知道哪里值得停留',card:'理解复杂以后，更知道什么值得留下。'},
+  'bear30_ji':{title:'清醒里，还亮着一盏灯',body:'你能理解灰度，却没有因此变得灰暗。成熟给了你分寸，另一部分的你却依然会为很小的事情高兴、认真、起兴。',keywords:'解 × 亮｜懂复杂，也保留明亮',card:'懂得灰度，却仍保留对小事起兴的能力。'},
+  'bear30_li':{title:'因为懂，所以更愿意守',body:'你的可靠并不是机械的责任感。你往往先试着理解一个人为什么会这样、事情为什么会走到这里，然后才决定自己要站在哪里。',keywords:'解 × 守｜理解不是旁观，而是更准确地承担',card:'先理解，再决定怎样更准确地承担。'},
+  'bear30_lu':{title:'什么都懂一点，还是很好玩',body:'你不是无忧无虑，而是有一种很特别的恢复力：理解复杂之后，依旧能重新对生活发生兴趣。该想的时候想，该玩的时候也真的能玩进去。',keywords:'解 × 活｜成熟不是把兴致磨掉',card:'想得明白，也还能真的玩进去。'},
+
+  'feng_bear20':{title:'有归处的人，也会突然出发',body:'你的核心需要稳定、真实和归属，但安定并不意味着停滞。只要确认了自己真正珍惜什么，你反而会有勇气为了它去冒险。',keywords:'归 × 试｜心有所归，所以敢往外走',card:'心有所归，所以反而敢为重要的东西往外走。'},
+  'feng_bear30':{title:'安定，是想明白之后的选择',body:'你不是天然与世界和解，而是会经历理解、筛选和取舍。最后留下来的东西可能不多，但会非常确定。',keywords:'归 × 解｜越理解自己，越知道该回哪里',card:'理解、筛选、取舍以后，留下来的会更确定。'},
+  'feng_ji':{title:'晴天本身就会发光',body:'你给人的舒服感不是沉静到没有波澜，而是一种柔软的明亮。你容易让人产生“这里可以待一会儿”的感觉，同时又不会让生活失去颜色。',keywords:'归 × 亮｜温柔、安稳，但不黯淡',card:'安稳并不黯淡，你的归处也带着柔软的光。'},
+  'feng_li':{title:'把一个地方变成可以放心回来的地方',body:'你最强的能力可能不是冲锋，而是让关系有落点。你的“守”让归属不再只是感觉，而变成一种实际存在：有人记得、有人接住、有人还在那里。',keywords:'归 × 守｜家的感觉，是被一点点做出来的',card:'你把归属变成实际存在：有人记得、有人接住。'},
+  'feng_lu':{title:'家里也可以长出风',body:'你既需要归属，又不喜欢被归属困住。理想状态不是永远安静地待在原地，而是有一个可以回来、也允许你随时出去玩的地方。',keywords:'归 × 活｜稳定与自由并不矛盾',card:'有地方可回，也允许自己随时出去吹风。'},
+
+  'ji_bear20':{title:'亮着亮着，就往前冲了',body:'你身上的明亮不是静态气质，而是会转化成行动。喜欢就靠近，好奇就去看，觉得值得就愿意试一次。',keywords:'亮 × 试｜光不是装饰，是发动机',card:'你的明亮会变成行动：喜欢就靠近，好奇就去看。'},
+  'ji_bear30':{title:'明亮，但并不单薄',body:'第一眼看你可能很轻、很亮，但真正靠近以后，会发现里面有比表面更多的理解和分寸。你的可贵之处不在于“不知道黑暗”，而在于知道以后仍没有完全失去光。',keywords:'亮 × 解｜轻盈下面有重量',card:'轻盈下面有理解和分寸，知道黑暗也没有失去光。'},
+  'ji_feng':{title:'一束想落进人间的光',body:'你的明亮最后会寻找一个可以安放自己的地方。比起永远成为人群里最闪的那一个，你其实更珍惜能够自然做自己、安心待着的关系。',keywords:'亮 × 归｜发光，也想有地方落下来',card:'发光之外，你也珍惜能自然做自己的地方。'},
+  'ji_li':{title:'少年气里藏着担当',body:'你看起来可能比实际年龄更轻、更松，但真正遇到重要的人和事，却很难彻底袖手旁观。轻盈是你的气质，可靠则藏在后面。',keywords:'亮 × 守｜看起来轻，关键时刻却不轻',card:'看起来轻，真正重要的时候却很难袖手旁观。'},
+  'ji_lu':{title:'快乐还会自己拐弯',body:'这是六组里“起兴能力”很强的一种组合。你容易被奇怪的小事吸引，也很容易从一个念头跳到另一个念头，世界在你这里经常还有新玩法。',keywords:'亮 × 活｜好奇、灵动、很容易被生活逗笑',card:'好奇、灵动，很容易把平常日子重新玩出意思。'},
+
+  'li_bear20':{title:'我守着，但必要的时候我也会往前冲',body:'你的第一原则通常是“不把重要的东西弄丢”。但当守护需要行动时，你并不会一直停在后方——该冒险的时候，你反而可能比别人更果断。',keywords:'守 × 试｜责任感也可以很有锋芒',card:'守护需要行动时，你会比想象中更果断。'},
+  'li_bear30':{title:'稳，不是因为迟钝',body:'你很少只凭冲动承担什么。你的可靠往往来自判断：理解局势、看清代价，然后仍然决定留下。',keywords:'守 × 解｜知道重量以后依然接住',card:'看清代价以后，仍然决定留下。'},
+  'li_feng':{title:'最像家的那一种守',body:'你不一定擅长制造戏剧性的瞬间，却很擅长让重要的东西持续存在。对你而言，陪伴不是一句承诺，而是很多不起眼的小动作。',keywords:'守 × 归｜长期、稳定、有落点',card:'你把陪伴做成很多不起眼、但持续存在的小动作。'},
+  'li_ji':{title:'替一束光挡一点风',body:'你的守护并不沉重，里面有很柔软的一部分。你尤其容易珍惜那些鲜活、明亮、让你觉得值得保护的东西。',keywords:'守 × 亮｜可靠里藏着温柔',card:'你的可靠里藏着很柔软的珍惜。'},
+  'li_lu':{title:'靠谱，但绝对不无聊',body:'你身上同时存在两套系统：一套负责把事情兜住，一套负责把日子过活。别人以为你只是稳，熟了以后才会发现你其实很会给生活找乐子。',keywords:'守 × 活｜该扛的时候扛，该玩的时候玩',card:'该扛的时候扛，该玩的时候也真的会玩。'},
+
+  'lu_bear20':{title:'先去看看再说',body:'你对世界的第一反应往往是兴趣，而兴趣很快就会变成行动。别人还在评估值不值得，你可能已经走过去摸了一下。',keywords:'活 × 试｜好奇心直接连接行动力',card:'兴趣一出现，很快就会变成行动。'},
+  'lu_bear30':{title:'会玩的人，也很会懂',body:'你的鲜活不是没心没肺。真正碰到重要的事，你其实会想得很深，只是不喜欢把所有深度都写在脸上。',keywords:'活 × 解｜表面松快，内里有理解力',card:'表面松快，真正重要的事你其实会想得很深。'},
+  'lu_feng':{title:'自由，但知道自己会回来',body:'你需要变化、趣味和空间，却并不排斥稳定。真正适合你的归属从来不是一根绳子，而是一扇一直可以推开的门。',keywords:'活 × 归｜出去玩，也拥有回来的方向',card:'你喜欢自由，也知道自己会往哪里回来。'},
+  'lu_ji':{title:'世界怎么还有这么多好玩的东西',body:'这是很高浓度的“鲜活型”组合。你容易起兴、容易被细节吸引，也常常能把平平无奇的东西重新看出一点意思。',keywords:'活 × 亮｜世界在你这里很少彻底无聊',card:'你很容易起兴，也很会把普通东西重新看出意思。'},
+  'lu_li':{title:'玩归玩，该接住的时候会接住',body:'你喜欢自由，不喜欢把自己搞得太沉重，但这并不意味着没有责任感。真正到了重要时刻，你往往会突然变得很可靠。',keywords:'活 × 守｜松弛是表面，底下其实有底线',card:'喜欢自由不代表没责任，关键时刻你很能接住。'}
+};
+
+const REN_NORMAL_COPY={
+  bear20:'把算盘先静音以后，你其实还是很愿意直接去试。',
+  bear30:'排除算盘异常信号以后，你其实最像那个会先想办法把事情解决的人。',
+  feng:'系统重新计算后发现，你本来挺知道自己要什么，只是顺便还想知道划不划算。',
+  ji:'关掉 Excel 后，系统发现你其实也很会在需要的时候亮起来。',
+  li:'系统十分困惑：你心里明明还有一个很会守的人，刚才为什么算盘打得那么响？',
+  lu:'算盘静音以后，你其实更像那个会把生活重新带活的人。'
+};
+
 // 用核心题解决极少数的最高匹配并列。
 const CORE_QUESTIONS={
   bear20:[2,5,12],
@@ -439,6 +498,7 @@ const PAIR_CORE={
 };
 const DEFAULT_ORDER=['bear20','bear30','feng','ji','li','lu'];
 let idx=0, answers=[], scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0}, marks=new Set();
+let currentResultContext={key:null,secondaryKey:null,ranked:[]};
 const $=s=>document.querySelector(s);
 document.body.classList.add('home-mode');
 function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$('#'+id).classList.add('active');document.body.classList.toggle('home-mode',id==='home');window.scrollTo({top:0,behavior:'smooth'});}
@@ -492,7 +552,24 @@ function finish(){
   const key=hidden?'ren':ranked[0].k;
   renderResult(key,ranked);
 }
-function renderResult(key,ranked){const p=profiles[key],t=THEMES[key]||THEMES.ji;const root=document.documentElement;root.style.setProperty('--r1',t[0]);root.style.setProperty('--r2',t[1]);root.style.setProperty('--rsoft',t[2]);root.style.setProperty('--rline',t[3]);$('#resultAvatar').textContent=p.avatar;$('#resultName').textContent=NAMES[key];$('#resultRole').textContent=p.role;$('#coreWord').textContent=p.core;$('#chips').innerHTML=p.chips.map(x=>`<span class="chip">${x}</span>`).join('');$('#resultBody').innerHTML=p.body;$('#resultTip').innerHTML=p.tip;$('#verdict').innerHTML=p.verdict;const r=p.relations;$('#relations').innerHTML=`<div class="relation-card"><div class="rlabel">BEST FRIEND · 最佳好友</div><div class="rname">${r.friend[0]}</div><div class="rtext">${r.friend[1]}</div></div><div class="relation-card enemy"><div class="rlabel">NEMESIS · 宇宙天敌</div><div class="rname">${r.enemy[0]}</div><div class="rtext">${r.enemy[1]}</div></div><div class="relation-card destiny"><div class="rlabel">DESTINY · 宿命搭子</div><div class="rname">${r.destiny[0]}</div><div class="rtext">${r.destiny[1]}</div></div>`;if(key==='ren'){const normal=ranked[0];$('#secondaryMatch').innerHTML=`<span>如果先把算盘收起来，你更像</span><b>${NAMES[normal.k]}</b>`;}else{const sec=ranked.find(x=>x.k!==key);$('#secondaryMatch').innerHTML=`<span>你的次高匹配</span><b>${NAMES[sec.k]}</b>`;}show('result');}
+function renderResult(key,ranked){
+  const p=profiles[key],t=THEMES[key]||THEMES.ji;const root=document.documentElement;
+  root.style.setProperty('--r1',t[0]);root.style.setProperty('--r2',t[1]);root.style.setProperty('--rsoft',t[2]);root.style.setProperty('--rline',t[3]);
+  $('#resultAvatar').textContent=p.avatar;$('#resultName').textContent=NAMES[key];$('#resultRole').textContent=p.role;$('#coreWord').textContent=p.core;
+  $('#chips').innerHTML=p.chips.map(x=>`<span class="chip">${x}</span>`).join('');$('#resultBody').innerHTML=p.body;$('#resultTip').innerHTML=p.tip;$('#verdict').innerHTML=p.verdict;
+  const note=$('#profileNote');if(p.note){note.textContent=p.note;note.classList.add('show');}else{note.textContent='';note.classList.remove('show');}
+  const r=p.relations;$('#relations').innerHTML=`<div class="relation-card"><div class="rlabel">BEST FRIEND · 最佳好友</div><div class="rname">${r.friend[0]}</div><div class="rtext">${r.friend[1]}</div></div><div class="relation-card enemy"><div class="rlabel">NEMESIS · 宇宙天敌</div><div class="rname">${r.enemy[0]}</div><div class="rtext">${r.enemy[1]}</div></div><div class="relation-card destiny"><div class="rlabel">DESTINY · 宿命搭子</div><div class="rname">${r.destiny[0]}</div><div class="rtext">${r.destiny[1]}</div></div>`;
+  if(key==='ren'){
+    const normal=ranked[0],st=THEMES[normal.k];root.style.setProperty('--s1',st[0]);root.style.setProperty('--ssoft',st[2]);root.style.setProperty('--sline',st[3]);
+    $('#secondaryMatch').innerHTML=`<div class="secondary-kicker">NORMAL MODE · 如果暂时关闭 Excel…</div><div class="secondary-head"><div class="secondary-person">${NAMES[normal.k]} · <em>${profiles[normal.k].core}</em></div></div><div class="secondary-body">${REN_NORMAL_COPY[normal.k]||`系统重新计算后发现，你原本最接近的是${NAMES[normal.k]}。`}</div>`;
+    currentResultContext={key,secondaryKey:normal.k,ranked};
+  }else{
+    const sec=ranked.find(x=>x.k!==key),combo=SECONDARY_COMBOS[`${key}_${sec.k}`],st=THEMES[sec.k];root.style.setProperty('--s1',st[0]);root.style.setProperty('--ssoft',st[2]);root.style.setProperty('--sline',st[3]);
+    $('#secondaryMatch').innerHTML=`<div class="secondary-kicker">SECONDARY SIGNAL · 第二轨道</div><div class="secondary-head"><div class="secondary-person">${NAMES[sec.k]} · <em>${profiles[sec.k].core}</em></div><div class="secondary-combo">${p.core} × ${profiles[sec.k].core}</div></div><div class="secondary-title">「${combo.title}」</div><div class="secondary-body">${combo.body}</div><div class="secondary-keywords">${combo.keywords}</div>`;
+    currentResultContext={key,secondaryKey:sec.k,ranked};
+  }
+  show('result');
+}
 $('#retryBtn').onclick=()=>{show('home');};
 function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines=99){let line='',lines=[];for(const ch of text){const test=line+ch;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=ch;}else line=test;}if(line)lines.push(line);lines=lines.slice(0,maxLines);lines.forEach((ln,i)=>ctx.fillText(ln,x,y+i*lineHeight));return y+lines.length*lineHeight;}
 function roundedRectPath(ctx,x,y,w,h,r){
@@ -527,23 +604,24 @@ function openPosterPreview(blob,filename){
 }
 async function buildPoster(){
   if(document.fonts&&document.fonts.ready){try{await document.fonts.ready;}catch(e){}}
-  const name=$('#resultName').textContent;
-  const key=Object.keys(NAMES).find(k=>NAMES[k]===name);
+  const key=currentResultContext.key||Object.keys(NAMES).find(k=>NAMES[k]===$('#resultName').textContent);
   if(!key)throw new Error('没有找到当前角色');
-  const p=profiles[key],theme=THEMES[key]||THEMES.ji, rel=CARD_RELATIONS[key]||{};
+  const secondaryKey=currentResultContext.secondaryKey;
+  const p=profiles[key],theme=THEMES[key]||THEMES.ji, rel=CARD_RELATIONS[key]||{}, secTheme=secondaryKey?(THEMES[secondaryKey]||theme):theme;
+  const combo=(key!=='ren'&&secondaryKey)?SECONDARY_COMBOS[`${key}_${secondaryKey}`]:null;
   const c=$('#poster'),ctx=c.getContext('2d');
   if(!ctx)throw new Error('当前浏览器不支持生成图片');
   ctx.clearRect(0,0,c.width,c.height);
 
   const font='-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif';
-  const g=ctx.createLinearGradient(0,0,1080,1700);g.addColorStop(0,theme[2]);g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fillRect(0,0,1080,1700);
+  const g=ctx.createLinearGradient(0,0,1080,2050);g.addColorStop(0,theme[2]);g.addColorStop(1,'#ffffff');ctx.fillStyle=g;ctx.fillRect(0,0,1080,2050);
   ctx.save();ctx.globalAlpha=.23;ctx.strokeStyle=theme[0];ctx.lineWidth=2;ctx.beginPath();ctx.arc(920,150,180,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(920,150,235,0,Math.PI*2);ctx.stroke();ctx.restore();
 
   ctx.fillStyle=theme[0];roundedRectPath(ctx,120,95,160,160,46);ctx.fill();
   ctx.fillStyle='#fff';ctx.font=`900 58px ${font}`;ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText(p.avatar,200,198);
-  ctx.textAlign='left';ctx.fillStyle='#8b82ad';ctx.font=`700 26px ${font}`;ctx.fillText('WENWEN UNIVERSE · CHARACTER FILE',120,320);
-  ctx.fillStyle='#2f294d';ctx.font=`900 68px ${font}`;ctx.fillText(name,120,410);
-  ctx.fillStyle='#726b8e';ctx.font=`32px ${font}`;wrapText(ctx,p.role,120,465,830,44,2);
+  ctx.textAlign='left';ctx.fillStyle='#8b82ad';ctx.font=`700 26px ${font}`;ctx.fillText(key==='ren'?'WENWEN UNIVERSE · ANOMALY DETECTED':'WENWEN UNIVERSE · CHARACTER FILE',120,320);
+  ctx.fillStyle='#2f294d';ctx.font=`900 68px ${font}`;ctx.fillText(NAMES[key],120,410);
+  ctx.fillStyle='#726b8e';ctx.font=`30px ${font}`;wrapText(ctx,p.cardRole||p.role,120,465,830,42,2);
 
   let x=120;ctx.font=`700 26px ${font}`;p.chips.forEach(t=>{const w=ctx.measureText(t).width+46;if(x+w>960)return;ctx.fillStyle=theme[2];roundedRectPath(ctx,x,520,w,52,26);ctx.fill();ctx.fillStyle=theme[0];ctx.fillText(t,x+23,555);x+=w+14;});
 
@@ -554,13 +632,28 @@ async function buildPoster(){
   ctx.fillStyle=theme[0];ctx.font=`700 23px ${font}`;ctx.fillText('ONE-LINE VERDICT · 你的判词',160,865);
   ctx.fillStyle='#39334f';ctx.font=`700 32px ${font}`;const plain=p.verdict.replace(/<[^>]+>/g,'');wrapText(ctx,plain,160,920,760,48,3);
 
-  ctx.fillStyle='#8d84aa';ctx.font=`700 25px ${font}`;ctx.fillText('YOUR UNIVERSE RELATIONS · 你的宇宙关系',120,1090);
+  // 第二轨道 / 任明远 NORMAL MODE
+  const secY=1065,secH=240;
+  ctx.fillStyle='#ffffff';ctx.save();ctx.shadowColor='rgba(57,51,79,.06)';ctx.shadowBlur=20;ctx.shadowOffsetY=6;roundedRectPath(ctx,120,secY,840,secH,30);ctx.fill();ctx.restore();
+  ctx.fillStyle=secTheme[0];roundedRectPath(ctx,120,secY,8,secH,4);ctx.fill();
+  ctx.fillStyle='#8d84aa';ctx.font=`800 20px ${font}`;ctx.fillText(key==='ren'?'NORMAL MODE · 如果暂时关闭 Excel…':'SECONDARY SIGNAL · 第二轨道',160,secY+42);
+  if(secondaryKey){
+    ctx.fillStyle='#2f294d';ctx.font=`900 32px ${font}`;ctx.fillText(`${NAMES[secondaryKey]} · ${profiles[secondaryKey].core}`,160,secY+88);
+    if(key!=='ren'){
+      ctx.fillStyle=secTheme[0];ctx.font=`800 21px ${font}`;ctx.fillText(`${p.core} × ${profiles[secondaryKey].core} · ${combo.title}`,160,secY+126);
+      ctx.fillStyle='#68617c';ctx.font=`24px ${font}`;wrapText(ctx,combo.card,160,secY+168,730,34,2);
+    }else{
+      ctx.fillStyle='#68617c';ctx.font=`24px ${font}`;wrapText(ctx,REN_NORMAL_COPY[secondaryKey]||'',160,secY+142,730,34,3);
+    }
+  }
+
+  ctx.fillStyle='#8d84aa';ctx.font=`700 25px ${font}`;ctx.fillText('YOUR UNIVERSE RELATIONS · 你的宇宙关系',120,1370);
   const cards=[
     {label:'BEST FRIEND',title:'最佳好友',data:rel.friend},
     {label:'NEMESIS',title:'宇宙天敌',data:rel.enemy},
     {label:'DESTINY',title:'宿命搭子',data:rel.destiny}
   ];
-  const cardX=[120,404,688], cardW=272, cardY=1125, cardH=290;
+  const cardX=[120,404,688], cardW=272, cardY=1405, cardH=320;
   cards.forEach((item,i)=>{
     const d=item.data||['—',''];
     ctx.fillStyle='#ffffff';ctx.save();ctx.shadowColor='rgba(57,51,79,.06)';ctx.shadowBlur=16;ctx.shadowOffsetY=5;roundedRectPath(ctx,cardX[i],cardY,cardW,cardH,28);ctx.fill();ctx.restore();
@@ -568,20 +661,20 @@ async function buildPoster(){
     ctx.fillStyle=theme[0];ctx.font=`800 18px ${font}`;ctx.fillText(item.label,cardX[i]+24,cardY+38);
     ctx.fillStyle='#8d84aa';ctx.font=`22px ${font}`;ctx.fillText(item.title,cardX[i]+24,cardY+70);
     ctx.fillStyle='#2f294d';ctx.font=`800 28px ${font}`;wrapText(ctx,d[0],cardX[i]+24,cardY+116,cardW-48,36,2);
-    ctx.fillStyle='#68617c';ctx.font=`23px ${font}`;wrapText(ctx,d[1],cardX[i]+24,cardY+168,cardW-48,34,4);
+    ctx.fillStyle='#68617c';ctx.font=`23px ${font}`;wrapText(ctx,d[1],cardX[i]+24,cardY+168,cardW-48,34,5);
   });
 
   if(key==='ren'){
-    ctx.fillStyle=theme[2];roundedRectPath(ctx,120,1450,840,58,20);ctx.fill();
-    ctx.fillStyle=theme[0];ctx.font=`700 21px ${font}`;ctx.fillText('SYSTEM NOTE · 当前档案存在轻微算盘声，请勿惊慌。',150,1487);
+    ctx.fillStyle=theme[2];roundedRectPath(ctx,120,1760,840,58,20);ctx.fill();
+    ctx.fillStyle=theme[0];ctx.font=`700 21px ${font}`;ctx.fillText('SYSTEM NOTE · 当前档案存在轻微算盘声，请勿惊慌。',150,1797);
   }
 
-  ctx.strokeStyle=theme[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(120,1550);ctx.lineTo(960,1550);ctx.stroke();
-  ctx.fillStyle='#8d84aa';ctx.font=`700 22px ${font}`;ctx.fillText('WENWEN UNIVERSE · 30TH BIRTHDAY PROJECT',120,1602);
-  ctx.fillStyle='#aaa3b8';ctx.font=`21px ${font}`;ctx.fillText('by Amor & ChatGPT',120,1642);
-  ctx.textAlign='right';ctx.fillStyle='#b1abbc';ctx.font=`20px ${font}`;ctx.fillText('本测试仅供娱乐',960,1642);
+  ctx.strokeStyle=theme[3];ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(120,1885);ctx.lineTo(960,1885);ctx.stroke();
+  ctx.fillStyle='#8d84aa';ctx.font=`700 22px ${font}`;ctx.fillText('WENWEN UNIVERSE · 30TH BIRTHDAY PROJECT',120,1937);
+  ctx.fillStyle='#aaa3b8';ctx.font=`21px ${font}`;ctx.fillText('by Amor & ChatGPT',120,1977);
+  ctx.textAlign='right';ctx.fillStyle='#b1abbc';ctx.font=`20px ${font}`;ctx.fillText('本测试仅供娱乐',960,1977);
   ctx.textAlign='left';
-  return {blob:await canvasToBlob(c),filename:'文文宇宙-'+name+'.png'};
+  return {blob:await canvasToBlob(c),filename:'文文宇宙-'+NAMES[key]+'.png'};
 }
 $('#saveBtn').onclick=async()=>{
   const btn=$('#saveBtn'),old=btn.textContent;btn.disabled=true;btn.textContent='生成中…';
