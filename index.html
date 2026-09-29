@@ -25,43 +25,46 @@
   @keyframes fade{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:none}}
 
   /* Home */
-  #home{position:relative;isolation:isolate;overflow:hidden}
-  #home:before{content:'';position:absolute;inset:0;z-index:-3;background:
-    radial-gradient(circle at 18% 12%,rgba(161,135,244,.26),transparent 28%),
-    radial-gradient(circle at 86% 74%,rgba(232,172,213,.19),transparent 30%),
-    linear-gradient(155deg,#fbfaff 0%,#f3efff 48%,#fbf8ff 100%)}
-  #home:after{content:'';position:absolute;width:310px;height:310px;border-radius:50%;right:-175px;top:-115px;z-index:-2;border:1px solid rgba(112,83,204,.10);box-shadow:0 0 0 44px rgba(126,97,215,.025),0 0 0 88px rgba(126,97,215,.018)}
-  .home-layout{width:100%;height:100%;display:grid;grid-template-rows:auto 1fr auto;gap:10px}
+  #home{position:relative;isolation:isolate;overflow:hidden;background:
+    radial-gradient(circle at 50% 35%,rgba(255,255,255,.96) 0 14%,rgba(247,240,255,.92) 35%,transparent 64%),
+    radial-gradient(circle at 14% 4%,rgba(232,190,224,.34),transparent 31%),
+    radial-gradient(circle at 89% 85%,rgba(176,154,244,.24),transparent 34%),
+    linear-gradient(160deg,#fffafd 0%,#f5f0ff 54%,#fbf9ff 100%)}
+  #home:before{content:'';position:absolute;inset:auto -70px -110px auto;width:260px;height:260px;border-radius:50%;border:1px solid rgba(111,84,197,.08);box-shadow:0 0 0 42px rgba(111,84,197,.025),0 0 0 84px rgba(111,84,197,.015);z-index:-2}
+  #home:after{content:'✦';position:absolute;left:8%;top:23%;font-size:15px;color:rgba(115,89,199,.20);transform:rotate(18deg);z-index:-1}
+  .home-layout{width:100%;height:100%;display:grid;grid-template-rows:auto auto 1fr auto;gap:0}
   .home-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .home-brand{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:900;letter-spacing:1.6px;color:#5f5194;text-transform:uppercase}
-  .home-brand-mark{width:29px;height:29px;border-radius:10px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,#795fd6,#a48bf0);box-shadow:0 8px 18px rgba(102,74,193,.2);font-size:13px}
-  .home-serial{font-size:10px;color:#a09ab3;letter-spacing:1px;font-weight:750;white-space:nowrap}
-  .home-stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;padding:4px 0}
-  .cosmos-art{position:relative;width:min(74vw,300px);aspect-ratio:1/1;margin:-4px auto 2px}
-  .cosmos-ring{position:absolute;border-radius:50%;inset:14%;border:1px solid rgba(108,83,191,.18);transform:rotate(-17deg)}
-  .cosmos-ring.r2{inset:3%;border-style:dashed;border-color:rgba(108,83,191,.13);transform:rotate(24deg)}
-  .cosmos-ring.r3{inset:28%;border-color:rgba(108,83,191,.12);transform:rotate(8deg)}
-  .cosmos-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:102px;height:102px;border-radius:36px;display:grid;place-items:center;background:linear-gradient(145deg,#ffffffcc,#efe9ff);border:1px solid rgba(119,91,205,.16);box-shadow:0 22px 50px rgba(87,62,168,.16),inset 0 1px 0 #fff}
-  .cosmos-core:before{content:'文';font-size:46px;font-weight:950;line-height:1;background:linear-gradient(145deg,#4a387f,#8d6ee5);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .cosmos-core:after{content:'UNIVERSE';position:absolute;bottom:15px;font-size:7px;letter-spacing:2.5px;font-weight:900;color:#978bbf}
-  .cosmos-node{position:absolute;min-width:37px;height:37px;padding:0 9px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.9);border:1px solid rgba(126,101,203,.14);box-shadow:0 9px 24px rgba(78,57,147,.09);font-size:13px;font-weight:900;color:#6654a0;backdrop-filter:blur(8px)}
-  .cosmos-node.n1{left:5%;top:43%}.cosmos-node.n2{right:5%;top:27%}.cosmos-node.n3{right:9%;bottom:19%}.cosmos-node.n4{left:12%;bottom:14%}.cosmos-node.n5{left:30%;top:4%}.cosmos-node.n6{right:29%;bottom:2%}
-  .home-title{text-align:center;margin-top:0}.home-kicker{font-size:10px;letter-spacing:2.6px;font-weight:850;color:#8d80ba;margin-bottom:8px}
-  #home h1{font-size:clamp(31px,8vw,42px);line-height:1.07;margin:0;letter-spacing:-1.1px;color:#292342}
-  .accent{background:linear-gradient(90deg,#5d45ad,#9b7aea);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .home-subtitle{font-size:14px;line-height:1.6;color:#6e6787;margin:11px auto 0;max-width:430px;text-align:center}
-  .home-subtitle b{color:#554976}
+  .home-brand{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:900;letter-spacing:1.8px;color:#6a5b92;text-transform:uppercase}
+  .home-brand-mark{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid rgba(112,84,199,.15);box-shadow:0 7px 20px rgba(82,59,151,.08);font-size:14px}
+  .home-serial{font-size:9px;color:#a39cb5;letter-spacing:1.25px;font-weight:800;white-space:nowrap}
+  .home-copy{text-align:center;padding-top:22px;position:relative;z-index:2}
+  .home-kicker{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:2.5px;font-weight:900;color:#8879b4;margin-bottom:10px}
+  .home-kicker:before,.home-kicker:after{content:'';width:20px;height:1px;background:rgba(119,92,195,.26)}
+  #home h1{font-size:clamp(32px,8.4vw,43px);line-height:1.08;margin:0;letter-spacing:-1.2px;color:#2e2945;font-weight:950}
+  .accent{background:linear-gradient(90deg,#5e49aa,#a36fc0 52%,#d7759c);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .home-subtitle{font-size:13px;line-height:1.55;color:#746d87;margin:10px auto 0;max-width:430px;text-align:center;padding:0 12px}
+  .home-subtitle b{color:#54496f}
+  .home-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:0;padding:0}
+  .cosmos-art{position:relative;width:min(70vw,286px);aspect-ratio:1/1;margin:0 auto}
+  .cosmos-art:before{content:'';position:absolute;inset:7%;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.82),rgba(255,255,255,.18) 48%,transparent 67%);filter:blur(.2px)}
+  .cosmos-ring{position:absolute;border-radius:50%;inset:11%;border:1px solid rgba(112,84,198,.18);transform:rotate(-14deg);box-shadow:inset 0 0 28px rgba(112,84,198,.025)}
+  .cosmos-ring.r2{inset:1%;border-style:dashed;border-color:rgba(112,84,198,.12);transform:rotate(22deg)}
+  .cosmos-ring.r3{inset:26%;border-color:rgba(206,108,153,.13);transform:rotate(7deg)}
+  .cosmos-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:106px;height:106px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#fff,#f7efff);border:1px solid rgba(120,91,204,.16);box-shadow:0 22px 55px rgba(84,59,166,.17),inset 0 1px 0 #fff}
+  .cosmos-core:before{content:'🐻';font-size:48px;filter:drop-shadow(0 7px 12px rgba(83,59,150,.10));transform:translateY(-2px)}
+  .cosmos-core:after{content:'WENWEN';position:absolute;bottom:13px;font-size:6px;letter-spacing:2.2px;font-weight:950;color:#9c91b7}
+  .cosmos-node{position:absolute;min-width:35px;height:35px;padding:0 8px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.88);border:1px solid rgba(126,101,203,.13);box-shadow:0 8px 20px rgba(78,57,147,.07);font-size:11px;font-weight:900;color:#715e9e;backdrop-filter:blur(8px)}
+  .cosmos-node.n1{left:2%;top:43%}.cosmos-node.n2{right:5%;top:25%}.cosmos-node.n3{right:6%;bottom:20%}.cosmos-node.n4{left:10%;bottom:17%}.cosmos-node.n5{left:27%;top:4%}.cosmos-node.n6{right:28%;bottom:2%}
   .home-bottom{width:min(100%,520px);margin:0 auto}
-  .home-meta{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(105,82,178,.12);border-bottom:1px solid rgba(105,82,178,.12);margin-bottom:12px}
-  .meta-item{text-align:center;padding:9px 4px;color:#857d9d;font-size:10px;line-height:1.2}
-  .meta-item+ .meta-item{border-left:1px solid rgba(105,82,178,.10)}
-  .meta-item b{display:block;font-size:14px;color:#554879;margin-bottom:3px;letter-spacing:.2px}
+  .home-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:11px}
+  .meta-item{text-align:center;padding:8px 5px;border-radius:14px;background:rgba(255,255,255,.58);border:1px solid rgba(115,91,205,.08);color:#8b839e;font-size:9px;line-height:1.18;box-shadow:0 5px 15px rgba(78,57,147,.025)}
+  .meta-item b{display:block;font-size:14px;color:#554879;margin-bottom:2px;letter-spacing:.1px}
   .primary,.secondary{width:100%;border-radius:18px;border:0;cursor:pointer;font-weight:850}
-  .primary{padding:15px 16px;color:#fff;background:linear-gradient(90deg,#6349bc,#8f70e5);box-shadow:0 14px 30px rgba(103,80,199,.23);font-size:17px;letter-spacing:.2px}
+  .primary{padding:14px 16px;color:#fff;background:linear-gradient(95deg,#614bb6 0%,#8c6ad7 55%,#b96f9e 115%);box-shadow:0 14px 30px rgba(103,80,199,.20);font-size:16px;letter-spacing:.2px}
   .primary:active{transform:translateY(1px)}
-  .home-foot{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px;color:#8b84a0;font-size:11px}
-  .home-foot .dot{width:4px;height:4px;border-radius:50%;background:#b8afcf}
-  .secondary{width:auto;background:transparent;color:#71668f;padding:4px 2px;font-size:11px;text-decoration:none;border-bottom:1px solid rgba(113,102,143,.35);border-radius:0}
+  .home-foot{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:7px;color:#918aa2;font-size:10px}
+  .home-foot .dot{width:4px;height:4px;border-radius:50%;background:#c1b9d0}
+  .secondary{width:auto;background:transparent;color:#756b8f;padding:3px 1px;font-size:10px;text-decoration:none;border-bottom:1px solid rgba(113,102,143,.28);border-radius:0}
   .how{display:none;position:fixed;z-index:50;inset:0;background:rgba(31,27,52,.34);padding:20px;align-items:flex-end;justify-content:center}
   .how.show{display:flex}
   .how-card{width:min(100%,540px);background:#fff;border-radius:26px;padding:22px 20px 18px;box-shadow:0 24px 60px rgba(42,33,75,.2);text-align:left;color:#68627e;line-height:1.65}
@@ -102,25 +105,26 @@
     .screen{padding:22px 18px 28px}.question{font-size:23px}
     #home{height:100dvh;min-height:100dvh;padding:max(14px,env(safe-area-inset-top)) 18px max(14px,env(safe-area-inset-bottom));overflow:hidden}
     #home.active{display:block}
-    #home .home-layout{height:100%;gap:6px}
-    #home .home-stage{justify-content:center;padding:0}
-    #home .cosmos-art{width:min(61vw,242px);margin:-8px auto -2px}
-    #home .cosmos-core{width:84px;height:84px;border-radius:29px}#home .cosmos-core:before{font-size:39px}#home .cosmos-core:after{bottom:12px;font-size:6px}
-    #home .cosmos-node{height:32px;min-width:32px;padding:0 7px;font-size:11px}
-    #home h1{font-size:32px}.home-kicker{font-size:9px;margin-bottom:7px}.home-subtitle{font-size:13px;line-height:1.48;margin-top:9px;padding:0 8px}
-    .home-meta{margin-bottom:10px}.meta-item{padding:8px 3px;font-size:9px}.meta-item b{font-size:13px}
-    #home .primary{padding:13px 14px;font-size:16px;border-radius:16px}.home-foot{margin-top:7px;font-size:10px}
+    #home .home-layout{height:100%}
+    #home .home-copy{padding-top:17px}
+    #home h1{font-size:31px}.home-kicker{font-size:8px;margin-bottom:8px}.home-subtitle{font-size:12.5px;line-height:1.48;margin-top:8px;padding:0 6px}
+    #home .cosmos-art{width:min(60vw,236px)}
+    #home .cosmos-core{width:88px;height:88px}#home .cosmos-core:before{font-size:41px}#home .cosmos-core:after{bottom:11px;font-size:5.5px}
+    #home .cosmos-node{height:30px;min-width:30px;padding:0 7px;font-size:10px}
+    .home-meta{margin-bottom:9px}.meta-item{padding:7px 3px;font-size:8.5px}.meta-item b{font-size:13px}
+    #home .primary{padding:12px 14px;font-size:15px;border-radius:16px}.home-foot{margin-top:6px;font-size:9.5px}
     .relations{grid-template-columns:1fr}.relation-card{min-height:0;padding:14px 14px 14px 15px}.rtext{font-size:12px}
     .result-hero{border-radius:24px;padding:21px 16px 17px}.result-avatar{width:84px;height:84px;border-radius:27px}.result-name{font-size:29px}.result-section{padding:17px 16px 17px 51px}.btnrow{position:relative}
   }
   @media(max-width:390px) and (max-height:760px){
     #home{padding-top:max(10px,env(safe-area-inset-top));padding-bottom:max(10px,env(safe-area-inset-bottom))}
-    #home .cosmos-art{width:min(50vw,190px);margin:-10px auto -7px}
-    #home .cosmos-core{width:72px;height:72px;border-radius:25px}#home .cosmos-core:before{font-size:33px}#home .cosmos-core:after{font-size:5px;bottom:10px}
-    #home .cosmos-node{height:27px;min-width:27px;font-size:10px;padding:0 6px}
-    #home h1{font-size:28px}.home-kicker{margin-bottom:5px}.home-subtitle{font-size:12px;margin-top:6px;line-height:1.4}
-    .home-meta{margin-bottom:8px}.meta-item{padding:6px 3px}.meta-item b{font-size:12px}
-    #home .primary{padding:11px 13px;font-size:15px}.home-foot{margin-top:5px}
+    #home .home-copy{padding-top:10px}
+    #home h1{font-size:27px}.home-kicker{margin-bottom:5px}.home-subtitle{font-size:11px;margin-top:5px;line-height:1.38}
+    #home .cosmos-art{width:min(48vw,182px)}
+    #home .cosmos-core{width:68px;height:68px}#home .cosmos-core:before{font-size:31px}#home .cosmos-core:after{font-size:4.5px;bottom:8px}
+    #home .cosmos-node{height:25px;min-width:25px;font-size:9px;padding:0 5px}
+    .home-meta{margin-bottom:7px}.meta-item{padding:5px 2px}.meta-item b{font-size:11px}
+    #home .primary{padding:10px 12px;font-size:14px}.home-foot{margin-top:4px;font-size:9px}
   }
 </style>
 </head>
@@ -129,8 +133,14 @@
   <section class="screen active" id="home">
     <div class="home-layout">
       <div class="home-top">
-        <div class="home-brand"><span class="home-brand-mark">✦</span><span>WENWEN UNIVERSE</span></div>
-        <div class="home-serial">ENTRY / 001</div>
+        <div class="home-brand"><span class="home-brand-mark">🐻</span><span>WENWEN UNIVERSE</span></div>
+        <div class="home-serial">CHARACTER TEST</div>
+      </div>
+
+      <div class="home-copy">
+        <div class="home-kicker">ENTER THE WENWEN UNIVERSE</div>
+        <h1>测测你是<span class="accent">文文宇宙</span>里的谁？</h1>
+        <p class="home-subtitle">13个小选择，看看面对热闹、意外、关系和压力时，<b>你的第一反应更像谁。</b></p>
       </div>
 
       <div class="home-stage">
@@ -140,21 +150,16 @@
           <div class="cosmos-node n4">撑</div><div class="cosmos-node n5">守</div><div class="cosmos-node n6">带</div>
           <div class="cosmos-core"></div>
         </div>
-        <div class="home-title">
-          <div class="home-kicker">CHARACTER ORBIT TEST</div>
-          <h1>掉进<span class="accent">文文宇宙</span><br>你会落在哪条轨道？</h1>
-          <p class="home-subtitle">不问“你是什么性格”，只看事情发生时，<b>你最先会做什么。</b><br>凭第一反应，领取你的宇宙人物档案。</p>
-        </div>
       </div>
 
       <div class="home-bottom">
         <div class="home-meta">
-          <div class="meta-item"><b>12+1</b>情境选择</div>
-          <div class="meta-item"><b>6+1</b>人物档案</div>
+          <div class="meta-item"><b>13</b>道题</div>
+          <div class="meta-item"><b>7</b>份人物档案</div>
           <div class="meta-item"><b>≈ 2 min</b>快速完成</div>
         </div>
-        <button class="primary" id="startBtn">开始坠入宇宙 →</button>
-        <div class="home-foot"><span>选第一反应，不选“正确答案”</span><span class="dot"></span><button class="secondary" id="howBtn">计分说明</button></div>
+        <button class="primary" id="startBtn">开始测试 →</button>
+        <div class="home-foot"><span>没有标准答案，凭第一反应选</span><span class="dot"></span><button class="secondary" id="howBtn">计分说明</button></div>
       </div>
     </div>
   </section>
@@ -162,7 +167,7 @@
   <div class="how" id="howBox" aria-hidden="true">
     <div class="how-card">
       <h3>这个测试怎么算？</h3>
-      <p>每个选项会给不同人物增加隐藏权重，最终按各人物的可得满分做归一化比较。隐藏人物不参与普通排名，只在满足特定组合时触发。</p>
+      <p>每个选项会给不同人物增加不同权重，最终按各人物的可得满分做归一化比较。13道题都会参与结果计算，没有标准答案。</p>
       <button class="how-close" id="howClose">知道了</button>
     </div>
   </div>
@@ -206,13 +211,13 @@
     <div class="relations" id="relations"></div>
     <div class="secondary-match" id="secondaryMatch"></div>
     <div class="btnrow"><button class="save" id="saveBtn">保存结果卡</button><button class="retry" id="retryBtn">重新测试</button></div>
-    <div class="smallprint">本测试用于趣味性自我探索，不构成心理测评，也不代表对真人或角色的事实性评价。</div>
+    <div class="smallprint">本测试仅供娱乐，不构成心理测评，也不代表对真人或角色的事实性评价。</div>
   </section>
 </main></div>
 <div class="toast" id="toast">结果卡已生成</div>
 <canvas id="poster" width="1080" height="1350" style="display:none"></canvas>
 <script>
-const MAX={bear20:27,bear30:27,feng:24,ji:13,li:17,lu:18};
+const MAX={bear20:27,bear30:29,feng:24,ji:13,li:19,lu:20};
 const NAMES={bear20:'20岁的熊艺文',bear30:'30岁的熊艺文',feng:'风晴朗',ji:'季嘉轩',li:'李麟',lu:'陆浩宇',ren:'任明远'};
 const THEMES={
   bear20:['#d94f83','#ed86ab','#fff0f6','#f5cddd'],
@@ -236,7 +241,7 @@ const questions=[
  {q:'今天状态很差，但还有必须做的事。',a:[['做完再倒',{bear20:2,bear30:1}],['先消失一会儿',{feng:3}],['找个熟悉的人待会儿',{li:2,feng:1}],['一到人群里反而来劲',{ji:2,lu:1}]]},
  {q:'朋友突然发来：“完了，我好像闯祸了。”',a:[['地址发我',{bear30:2,li:1}],['谁弄你了？',{li:2,bear20:1}],['先问一句：跟我有关系吗',{},'ren2'],['出来吃点东西，边吃边说',{lu:2,ji:1}]]},
  {q:'最顺眼的一句。',a:[['再试一次。',{bear20:4}],['总会有办法。',{bear30:4}],['让我待会儿。',{feng:4}],['我陪你。',{li:4}]]},
- {q:'彩蛋题｜一群人出去吃饭，结账的时候——',bonus:true,a:[['谁方便谁先付',{}],['我先付，下次你们请',{}],['AA最省事',{}],['等一下，我刚才没吃那个',{},'ren3']]}
+ {q:'一群人一起吃饭，准备结账时你更习惯——',a:[['我先付，下次再说',{li:2,bear30:1}],['直接AA，最省心',{bear30:2}],['谁方便谁先付，别在门口算了',{lu:2}],['等一下，我把各自点的对一下',{bear30:1},'ren3']]}
 ];
 const profiles={
  bear20:{avatar:'20',role:'小熊软糖外壳 · 铁头行动系统',core:'试',chips:['纯粹','低恐惧','能吃苦','愿意试'],body:'你不是为了证明自己才往前冲。很多时候只是觉得：<b>“为什么不能试试？”</b><br><br>不会也可以上，难了就再来一遍。你看起来软乎乎，行动系统却硬得离谱。',tip:'勇气是发动机，但发动机不是拿来撞墙的。偶尔也要给自己留一点缓冲区。',verdict:'别人年轻的时候是不知道天高地厚。你比较特别——你知道疼，但你好像不知道怕。',relations:{friend:['季嘉轩','一个敢试，一个敢上。你们最危险的问题通常不是“去不去”，而是“现在走吗？”'],enemy:['任明远','你觉得先试试，他想先算算。你们对“值不值得”的理解不在一个宇宙。'],destiny:['30岁的熊艺文','他最懂你为什么不肯停；你也会提醒他，有些时候可以先心动，再想办法。']}},
@@ -258,7 +263,7 @@ $('#startBtn').onclick=()=>{idx=0;answers=[];scores={bear20:0,bear30:0,feng:0,ji
 $('#backBtn').onclick=()=>{if(idx===0){show('home');return;} rebuild(idx-1);};
 function rebuild(target){idx=0;scores={bear20:0,bear30:0,feng:0,ji:0,li:0,lu:0};marks=new Set();const prev=answers.slice(0,target);answers=prev.slice();prev.forEach((choice,i)=>applyChoice(i,choice,false));idx=target;renderQ();}
 function applyChoice(qi,ai,save=true){const item=questions[qi].a[ai];const pts=item[1]||{};Object.keys(pts).forEach(k=>scores[k]=(scores[k]||0)+pts[k]);if(item[2])marks.add(item[2]);if(save)answers[qi]=ai;}
-function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent=q.bonus?'BONUS QUESTION':'QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[i]}</span>${a[0]}`;b.onclick=()=>{applyChoice(idx,i,true);idx++;if(idx>=questions.length)finish();else renderQ();};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
+function renderQ(){const q=questions[idx];const total=questions.length;$('#count').textContent=(idx+1)+' / '+total;$('#progress').style.width=((idx)/total*100)+'%';$('#qtag').textContent='QUESTION '+String(idx+1).padStart(2,'0');$('#question').textContent=q.q;const box=$('#answers');box.innerHTML='';q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='answer';b.innerHTML=`<span class="letter">${'ABCD'[i]}</span>${a[0]}`;b.onclick=()=>{applyChoice(idx,i,true);idx++;if(idx>=questions.length)finish();else renderQ();};box.appendChild(b);});$('#backBtn').style.visibility=idx===0?'hidden':'visible';}
 function finish(){const hidden=['ren1','ren2','ren3'].every(x=>marks.has(x));let key,ranked=[];if(hidden){key='ren';}else{ranked=Object.keys(MAX).map(k=>({k,ratio:scores[k]/MAX[k],raw:scores[k]})).sort((a,b)=>b.ratio-a.ratio||b.raw-a.raw);key=ranked[0].k;}renderResult(key,ranked);}
 function renderResult(key,ranked){const p=profiles[key],t=THEMES[key]||THEMES.ji;const root=document.documentElement;root.style.setProperty('--r1',t[0]);root.style.setProperty('--r2',t[1]);root.style.setProperty('--rsoft',t[2]);root.style.setProperty('--rline',t[3]);$('#resultAvatar').textContent=p.avatar;$('#resultName').textContent=NAMES[key];$('#resultRole').textContent=p.role;$('#coreWord').textContent=p.core;$('#chips').innerHTML=p.chips.map(x=>`<span class="chip">${x}</span>`).join('');$('#resultBody').innerHTML=p.body;$('#resultTip').innerHTML=p.tip;$('#verdict').innerHTML=p.verdict;const r=p.relations;$('#relations').innerHTML=`<div class="relation-card"><div class="rlabel">BEST FRIEND · 最佳好友</div><div class="rname">${r.friend[0]}</div><div class="rtext">${r.friend[1]}</div></div><div class="relation-card enemy"><div class="rlabel">NEMESIS · 宇宙天敌</div><div class="rname">${r.enemy[0]}</div><div class="rtext">${r.enemy[1]}</div></div><div class="relation-card destiny"><div class="rlabel">DESTINY · 宿命搭子</div><div class="rname">${r.destiny[0]}</div><div class="rtext">${r.destiny[1]}</div></div>`;if(key==='ren'){$('#secondaryMatch').innerHTML='<span>隐藏档案已解锁</span><b>任明远</b>';}else{const sec=ranked[1];$('#secondaryMatch').innerHTML=`<span>你的次高匹配</span><b>${NAMES[sec.k]}</b>`;}show('result');}
 $('#retryBtn').onclick=()=>{show('home');};
