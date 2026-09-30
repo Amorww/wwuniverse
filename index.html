@@ -271,7 +271,7 @@
 </div>
 <canvas id="poster" width="1080" height="2050" style="display:none"></canvas>
 <script>
-const CALIB={bear20:23,bear30:32,feng:29.5,ji:10,li:14,lu:16};
+const CALIB={bear20:23,bear30:29.5,feng:29.5,ji:10,li:14,lu:16};
 // 任明远隐藏结果固定占用3道题，因此 NORMAL MODE 单独校准剩余信号。
 // 季嘉轩/李麟仍遵守主结果最低命中门槛；在此前提下让六种 NORMAL MODE 尽量均衡。
 const NORMAL_CALIB={bear20:23,bear30:30,feng:30,ji:7,li:8,lu:17};
@@ -292,7 +292,7 @@ const THEMES={
 const questions=[
  {q:'明天突然多出一天假。',a:[
    ['出门再说',{bear20:2}],
-   ['正好把最近堆着的事情处理掉',{bear30:2}],
+   ['正好把最近堆着的事情处理掉',{bear30:1}],
    ['挑件纯粹因为自己想做的事，好好过这一天',{feng:2}],
    ['抓个人一起出去',{lu:2}]
  ]},
@@ -346,7 +346,7 @@ const questions=[
  ]},
  {q:'突然多了500块。',a:[
    ['去体验个没试过的东西',{bear20:2}],
-   ['拿去补一个最近正好要买的东西',{bear30:2}],
+   ['拿去补一个最近正好要买的东西',{bear30:1}],
    ['买个纯粹因为喜欢、平时总觉得没必要买的东西',{feng:2}],
    ['研究一下怎么花最值',{},'ren2']
  ]},
